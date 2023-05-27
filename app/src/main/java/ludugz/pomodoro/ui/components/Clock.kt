@@ -2,6 +2,7 @@ package ludugz.pomodoro.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Canvas
@@ -64,8 +65,8 @@ fun Clock(modifier: Modifier = Modifier) {
 
         AnimatedVisibility(
             visible = isPlayButtonVisible,
-            enter = fadeIn(animationSpec = spring()),
-            exit = fadeOut(animationSpec = spring()),
+            enter = fadeIn(animationSpec = tween(durationMillis = 500)),
+            exit = fadeOut(animationSpec = tween(durationMillis = 500)),
         ) {
             Image(
                 painter = painterResource(id = R.drawable.play_circle_filled_24),

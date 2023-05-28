@@ -1,7 +1,6 @@
 package ludugz.pomodoro.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -35,7 +34,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ludugz.pomodoro.R
 
-
 /**
  * Created by Tan N. Truong, on 23 May, 2023
  * Email: ludugz@gmail.com
@@ -62,20 +60,41 @@ fun Clock(modifier: Modifier = Modifier) {
                 .height(300.dp)
                 .clip(shape = CircleShape)
         )
+        AnimatedPlayButton(shouldPlay = isPlayButtonVisible)
 
-        AnimatedVisibility(
-            visible = isPlayButtonVisible,
-            enter = fadeIn(animationSpec = tween(durationMillis = 500)),
-            exit = fadeOut(animationSpec = tween(durationMillis = 500)),
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.play_circle_filled_24),
-                contentDescription = null,
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .size(100.dp)
-            )
-        }
+    }
+}
+
+@Composable
+fun AnimatedPlayButton(
+    shouldPlay: Boolean,
+) {
+    val isPlaying = remember { mutableStateOf(shouldPlay) }
+    AnimatedVisibility(
+        visible = shouldPlay,
+        enter = fadeIn(animationSpec = tween(durationMillis = 500)),
+        exit = fadeOut(animationSpec = tween(durationMillis = 500)),
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.play_circle_filled_24),
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .size(100.dp)
+        )
+    }
+    AnimatedVisibility(
+        visible = !shouldPlay,
+        enter = fadeIn(animationSpec = tween(durationMillis = 500, delayMillis = 500)),
+        exit = fadeOut(animationSpec = tween(durationMillis = 500, delayMillis = 500)),
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.pause_circle_filled_24),
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .size(100.dp)
+        )
     }
 }
 
@@ -85,6 +104,8 @@ fun BorderOuterCircle(
     color: Color = Color.White,
     thickness: Dp = 16.dp,
 ) {
+
+
     val strokeWidth = with(LocalDensity.current) { thickness.toPx() }
     Canvas(modifier) {
         drawCircle(

@@ -96,6 +96,13 @@ fun AnimatedPlayButton(
                 .size(100.dp)
         )
     }
+
+suspend fun animatePlayButton(
+    initialValue: Float,
+    targetValue: Float,
+    animationSpec: AnimationSpec<Float> = tween(),
+    block: (Float) -> Unit,
+) {
 }
 
 @Composable

@@ -97,12 +97,6 @@ fun AnimatedPlayButton(
         )
     }
 
-suspend fun animatePlayButton(
-    initialValue: Float,
-    targetValue: Float,
-    animationSpec: AnimationSpec<Float> = tween(),
-    block: (Float) -> Unit,
-) {
 }
 
 @Composable
@@ -111,8 +105,6 @@ fun BorderOuterCircle(
     color: Color = Color.White,
     thickness: Dp = 16.dp,
 ) {
-
-
     val strokeWidth = with(LocalDensity.current) { thickness.toPx() }
     Canvas(modifier) {
         drawCircle(

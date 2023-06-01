@@ -42,6 +42,10 @@ import ludugz.pomodoro.R
 @Composable
 fun Clock(modifier: Modifier = Modifier) {
     val interactionSource = remember { MutableInteractionSource() }
+    val coroutineScope = rememberCoroutineScope()
+    var alpha by remember { mutableStateOf(1f) }
+    var resource by remember { mutableStateOf(R.drawable.play_circle_filled_24) }
+    var isPlaying by remember { mutableStateOf(false) }
 
     Box(
         modifier = modifier
@@ -50,35 +54,6 @@ fun Clock(modifier: Modifier = Modifier) {
                 interactionSource = interactionSource,
                 indication = null
             ) {
-
-            },
-        contentAlignment = Alignment.Center
-    ) {
-        BorderOuterCircle(
-            modifier = modifier
-                .width(300.dp)
-                .height(300.dp)
-                .clip(shape = CircleShape)
-        )
-        AnimatedPlayButton()
-    }
-}
-
-@Composable
-fun AnimatedPlayButton() {
-    var isPlaying by remember { mutableStateOf(false) }
-    var alpha by remember { mutableStateOf(1f) }
-    var resource by remember { mutableStateOf(R.drawable.play_circle_filled_24) }
-    val coroutineScope = rememberCoroutineScope()
-
-    Image(
-        painter = painterResource(id = resource),
-        contentDescription = null,
-        contentScale = ContentScale.Fit,
-        modifier = Modifier
-            .size(100.dp)
-            .alpha(alpha = alpha)
-            .clickable {
                 isPlaying = !isPlaying
                 coroutineScope.launch {
                     animate(
@@ -112,7 +87,34 @@ fun AnimatedPlayButton() {
                         }
                     )
                 }
-            }
+            },
+        contentAlignment = Alignment.Center
+    ) {
+        BorderOuterCircle(
+            modifier = modifier
+                .width(300.dp)
+                .height(300.dp)
+                .clip(shape = CircleShape)
+        )
+        AnimatedPlayButton(
+            resource = resource,
+            alpha = alpha
+        )
+    }
+}
+
+@Composable
+fun AnimatedPlayButton(
+    resource: Int = R.drawable.play_circle_filled_24,
+    alpha: Float = 1f,
+) {
+    Image(
+        painter = painterResource(id = resource),
+        contentDescription = null,
+        contentScale = ContentScale.Fit,
+        modifier = Modifier
+            .size(100.dp)
+            .alpha(alpha = alpha)
     )
 }
 

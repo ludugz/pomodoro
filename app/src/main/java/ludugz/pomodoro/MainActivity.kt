@@ -24,7 +24,9 @@ class MainActivity : ComponentActivity() {
                     color = Lima300
                 ) {
                     Box(modifier = Modifier.fillMaxSize()) {
-                        Clock()
+                        Clock(
+                            modifier = Modifier.align(alignment = Alignment.Center)
+                        )
                         Wave(
                             modifier = Modifier
                                 .fillMaxWidth()

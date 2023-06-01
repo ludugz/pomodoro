@@ -1,12 +1,6 @@
 package ludugz.pomodoro.ui.components
 
-import android.util.Log
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.AnimationSpec
-import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.animate
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -19,7 +13,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,8 +32,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ludugz.pomodoro.R
 
@@ -50,7 +41,6 @@ import ludugz.pomodoro.R
  */
 @Composable
 fun Clock(modifier: Modifier = Modifier) {
-    var isPlayButtonVisible by remember { mutableStateOf(true) }
     val interactionSource = remember { MutableInteractionSource() }
 
     Box(
@@ -60,7 +50,7 @@ fun Clock(modifier: Modifier = Modifier) {
                 interactionSource = interactionSource,
                 indication = null
             ) {
-                isPlayButtonVisible = !isPlayButtonVisible
+
             },
         contentAlignment = Alignment.Center
     ) {
@@ -70,35 +60,19 @@ fun Clock(modifier: Modifier = Modifier) {
                 .height(300.dp)
                 .clip(shape = CircleShape)
         )
-        AnimatedPlayButton(shouldPlay = isPlayButtonVisible)
+        AnimatedPlayButton()
     }
 }
 
 @Composable
-fun AnimatedPlayButton(
-    shouldPlay: Boolean = false,
-) {
+fun AnimatedPlayButton() {
     var isPlaying by remember { mutableStateOf(false) }
     var alpha by remember { mutableStateOf(1f) }
+    var resource by remember { mutableStateOf(R.drawable.play_circle_filled_24) }
     val coroutineScope = rememberCoroutineScope()
-    val resource =
-        if (isPlaying && (alpha == 1f)) R.drawable.pause_circle_filled_24 else R.drawable.play_circle_filled_24
-
-    LaunchedEffect(key1 = isPlaying) {
-        launch {
-            animate(
-                initialValue = 1f,
-                targetValue = 0f,
-                animationSpec = tween(durationMillis = 500),
-                block = { value, _ ->
-                    alpha = value
-                }
-            )
-        }
-    }
 
     Image(
-        painter = painterResource(id = R.drawable.play_circle_filled_24),
+        painter = painterResource(id = resource),
         contentDescription = null,
         contentScale = ContentScale.Fit,
         modifier = Modifier
@@ -106,6 +80,38 @@ fun AnimatedPlayButton(
             .alpha(alpha = alpha)
             .clickable {
                 isPlaying = !isPlaying
+                coroutineScope.launch {
+                    animate(
+                        initialValue = 1f,
+                        targetValue = 0f,
+                        animationSpec = tween(durationMillis = 500),
+                        block = { value, _ ->
+                            alpha = value
+                            if (value == 0f) {
+                                resource = if (isPlaying) {
+                                    R.drawable.pause_circle_filled_24
+                                } else {
+                                    R.drawable.play_circle_filled_24
+                                }
+                            }
+                        }
+                    )
+                    animate(
+                        initialValue = 0f,
+                        targetValue = 1f,
+                        animationSpec = tween(durationMillis = 500),
+                        block = { value, _ ->
+                            alpha = value
+                            if (value == 1f) {
+                                resource = if (isPlaying) {
+                                    R.drawable.pause_circle_filled_24
+                                } else {
+                                    R.drawable.play_circle_filled_24
+                                }
+                            }
+                        }
+                    )
+                }
             }
     )
 }

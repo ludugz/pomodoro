@@ -1,3 +1,5 @@
+@file:Suppress("NAME_SHADOWING")
+
 package ludugz.pomodoro.ui.components
 
 import androidx.compose.foundation.Canvas
@@ -8,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ludugz.pomodoro.ui.theme.Pink40
 
@@ -17,8 +20,8 @@ import ludugz.pomodoro.ui.theme.Pink40
  */
 
 @Composable
-fun Wave(modifier: Modifier = Modifier) {
-    val strokeWidth = with(LocalDensity.current) { 4.dp.toPx() }
+fun Wave(modifier: Modifier = Modifier, strokeWidth: Dp = 4.dp) {
+    val strokeWidth = with(LocalDensity.current) { strokeWidth.toPx() }
     Canvas(modifier = modifier) {
         drawLine(
             strokeWidth = strokeWidth,

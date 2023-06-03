@@ -19,22 +19,29 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PomodoroTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = Lima300
-                ) {
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        Clock(
-                            modifier = Modifier.align(alignment = Alignment.Center)
-                        )
-                        Wave(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .align(alignment = Alignment.BottomCenter)
-                        )
-                    }
-                }
+                PomodoroPage()
             }
         }
     }
 }
+
+@Composable
+fun PomodoroPage() {
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = Lima300
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Clock(
+                modifier = Modifier.align(alignment = Alignment.Center)
+            )
+            Wave(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(alignment = Alignment.BottomCenter),
+            )
+        }
+    }
+
+}
+

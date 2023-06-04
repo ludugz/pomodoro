@@ -136,12 +136,20 @@ fun BorderOuterCircle(
 }
 
 @Preview(backgroundColor = 0xFFcdeda5, showBackground = true)
+
+@Preview(name = "Clock", backgroundColor = 0xFFcdeda5, showBackground = true)
 @Composable
 fun PreviewClock() {
     Clock()
 }
 
-@Preview(backgroundColor = 0xFFcdeda5, showBackground = true)
+@Preview(
+    name = "Play Button",
+    backgroundColor = 0xFFcdeda5,
+    showBackground = true,
+    widthDp = 150,
+    heightDp = 150
+)
 @Composable
 fun PreviewAnimatedPlayButton() {
     AnimatedPlayButton()

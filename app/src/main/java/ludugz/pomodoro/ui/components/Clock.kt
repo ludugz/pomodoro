@@ -91,10 +91,8 @@ fun Clock(modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center
     ) {
         BorderOuterCircle(
-            modifier = modifier
-                .width(300.dp)
-                .height(300.dp)
-                .clip(shape = CircleShape)
+            circleSize = 300.dp,
+            thickness = 10.dp
         )
         AnimatedPlayButton(
             resource = resource,
@@ -121,11 +119,12 @@ fun AnimatedPlayButton(
 @Composable
 fun BorderOuterCircle(
     modifier: Modifier = Modifier,
+    circleSize: Dp = 300.dp,
     color: Color = Color.White,
     thickness: Dp = 16.dp,
 ) {
     val strokeWidth = with(LocalDensity.current) { thickness.toPx() }
-    Canvas(modifier) {
+    Canvas(modifier.size(size = circleSize)) {
         drawCircle(
             color = color,
             radius = size.minDimension / 2,

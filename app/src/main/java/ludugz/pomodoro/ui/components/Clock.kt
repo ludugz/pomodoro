@@ -134,14 +134,28 @@ fun BorderOuterCircle(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Timer(modifier: Modifier = Modifier) {
-    TextField(
-        value = "",
-        onValueChange = { text ->
+    var timeLeft by remember { mutableStateOf(25 * 60 * 1000) }
+    var isRunning by remember { mutableStateOf(false) }
 
+    LaunchedEffect(key1 = Unit) {
+        launch {
+            object : CountDownTimer(timeLeft.toLong(), 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    timeLeft = millisUntilFinished.toInt()
+                }
+
+                override fun onFinish() {
+                    isRunning = false
+                }
+            }.start()
         }
+    }
+
+    Text(
+        modifier = modifier,
+        text = timeLeft.toString()
     )
 }
 

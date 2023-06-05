@@ -1,5 +1,7 @@
 package ludugz.pomodoro.ui.components
 
+import android.os.CountDownTimer
+import android.util.Log
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
@@ -12,8 +14,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,7 +36,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ludugz.pomodoro.R
 
 /**
@@ -176,4 +182,10 @@ fun PreviewClock() {
 @Composable
 fun PreviewAnimatedPlayButton() {
     AnimatedPlayButton()
+}
+
+@Preview(name = "Timer", showBackground = true, widthDp = 100, heightDp = 50)
+@Composable
+fun PreviewTimer() {
+    Timer()
 }

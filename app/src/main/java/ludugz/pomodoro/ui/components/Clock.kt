@@ -98,6 +98,7 @@ fun Clock(modifier: Modifier = Modifier) {
             resource = resource,
             alpha = alpha
         )
+        Timer()
     }
 }
 

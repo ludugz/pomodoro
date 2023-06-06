@@ -143,14 +143,14 @@ fun BorderOuterCircle(
 
 @Composable
 fun Timer(modifier: Modifier = Modifier) {
-    var timeLeft by remember { mutableStateOf(25 * 60 * 1000) }
+    var timeLeft: Long by remember { mutableStateOf(25 * 60 * 1000) }
     var isRunning by remember { mutableStateOf(false) }
 
     LaunchedEffect(key1 = Unit) {
         launch {
-            object : CountDownTimer(timeLeft.toLong(), 1000) {
+            object : CountDownTimer(timeLeft, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
-                    timeLeft = millisUntilFinished.toInt()
+                    timeLeft = millisUntilFinished
                 }
 
                 override fun onFinish() {

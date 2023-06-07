@@ -1,7 +1,6 @@
 package ludugz.pomodoro.ui.components
 
 import android.os.CountDownTimer
-import android.util.Log
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
@@ -9,13 +8,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -36,9 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import ludugz.pomodoro.R
 
 /**
@@ -162,8 +155,16 @@ fun Timer(modifier: Modifier = Modifier) {
 
     Text(
         modifier = modifier,
-        text = timeLeft.toString()
+        text = "${timeLeft.timeInMinutes()}:${timeLeft.timeInSeconds()}",
     )
+}
+
+fun Long.timeInMinutes(): Long {
+    return ((this / (1000 * 60)) % 60)
+}
+
+fun Long.timeInSeconds(): Long {
+    return (this / 1000) % 60
 }
 
 @Preview(name = "Clock", backgroundColor = 0xFFcdeda5, showBackground = true)

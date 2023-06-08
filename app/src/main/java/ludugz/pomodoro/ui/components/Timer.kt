@@ -20,7 +20,11 @@ import kotlinx.coroutines.launch
  * Email: ludugz@gmail.com
  */
 @Composable
-fun Timer(modifier: Modifier = Modifier, textSize: TextUnit = 24.sp) {
+fun Timer(
+    modifier: Modifier = Modifier,
+    textSize: TextUnit = 24.sp,
+    color: Color = Color.White
+) {
     var timeLeft: Long by remember { mutableStateOf(25 * 60 * 1000) }
     var isRunning by remember { mutableStateOf(false) }
     val formattedTime =
@@ -43,7 +47,7 @@ fun Timer(modifier: Modifier = Modifier, textSize: TextUnit = 24.sp) {
         modifier = modifier,
         text = formattedTime,
         fontSize = textSize,
-        color = Color.White
+        color = color,
     )
 }
 

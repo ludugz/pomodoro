@@ -8,6 +8,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Text
@@ -31,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import ludugz.pomodoro.R
 
@@ -97,7 +100,7 @@ fun Clock(modifier: Modifier = Modifier) {
             resource = resource,
             alpha = alpha
         )
-        Timer()
+        Timer(modifier = modifier)
     }
 }
 
@@ -138,6 +141,8 @@ fun BorderOuterCircle(
 fun Timer(modifier: Modifier = Modifier) {
     var timeLeft: Long by remember { mutableStateOf(25 * 60 * 1000) }
     var isRunning by remember { mutableStateOf(false) }
+    val formattedTime =
+        String.format("%02d:%02d", timeLeft.timeInMinutes(), timeLeft.timeInSeconds())
 
     LaunchedEffect(key1 = Unit) {
         launch {
@@ -152,10 +157,11 @@ fun Timer(modifier: Modifier = Modifier) {
             }.start()
         }
     }
-
     Text(
         modifier = modifier,
-        text = "${timeLeft.timeInMinutes()}:${timeLeft.timeInSeconds()}",
+        text = formattedTime,
+        fontSize = 100.sp,
+        color = Color.Gray
     )
 }
 

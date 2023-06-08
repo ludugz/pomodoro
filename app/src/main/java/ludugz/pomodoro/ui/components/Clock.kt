@@ -36,7 +36,10 @@ import ludugz.pomodoro.R
  * Email: ludugz@gmail.com
  */
 @Composable
-fun Clock(modifier: Modifier = Modifier) {
+fun Clock(
+    modifier: Modifier = Modifier,
+    color: Color = Color.White,
+) {
     val interactionSource = remember { MutableInteractionSource() }
     val coroutineScope = rememberCoroutineScope()
     var alpha by remember { mutableStateOf(1f) }
@@ -88,11 +91,12 @@ fun Clock(modifier: Modifier = Modifier) {
     ) {
         BorderOuterCircle(
             circleSize = 300.dp,
-            thickness = 10.dp
+            thickness = 10.dp,
+            color = color,
         )
         AnimatedPlayButton(
             resource = resource,
-            alpha = alpha
+            alpha = alpha,
         )
     }
 }

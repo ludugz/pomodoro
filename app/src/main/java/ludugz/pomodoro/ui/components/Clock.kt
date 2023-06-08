@@ -1,6 +1,5 @@
 package ludugz.pomodoro.ui.components
 
-import android.os.CountDownTimer
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
@@ -8,13 +7,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,7 +28,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import ludugz.pomodoro.R
 
@@ -100,7 +94,6 @@ fun Clock(modifier: Modifier = Modifier) {
             resource = resource,
             alpha = alpha
         )
-        Timer(modifier = modifier)
     }
 }
 
@@ -137,42 +130,6 @@ fun BorderOuterCircle(
     }
 }
 
-@Composable
-fun Timer(modifier: Modifier = Modifier) {
-    var timeLeft: Long by remember { mutableStateOf(25 * 60 * 1000) }
-    var isRunning by remember { mutableStateOf(false) }
-    val formattedTime =
-        String.format("%02d:%02d", timeLeft.timeInMinutes(), timeLeft.timeInSeconds())
-
-    LaunchedEffect(key1 = Unit) {
-        launch {
-            object : CountDownTimer(timeLeft, 1000) {
-                override fun onTick(millisUntilFinished: Long) {
-                    timeLeft = millisUntilFinished
-                }
-
-                override fun onFinish() {
-                    isRunning = false
-                }
-            }.start()
-        }
-    }
-    Text(
-        modifier = modifier,
-        text = formattedTime,
-        fontSize = 100.sp,
-        color = Color.Gray
-    )
-}
-
-fun Long.timeInMinutes(): Long {
-    return ((this / (1000 * 60)) % 60)
-}
-
-fun Long.timeInSeconds(): Long {
-    return (this / 1000) % 60
-}
-
 @Preview(name = "Clock", backgroundColor = 0xFFcdeda5, showBackground = true)
 @Composable
 fun PreviewClock() {
@@ -189,10 +146,4 @@ fun PreviewClock() {
 @Composable
 fun PreviewAnimatedPlayButton() {
     AnimatedPlayButton()
-}
-
-@Preview(name = "Timer", showBackground = true, widthDp = 100, heightDp = 50)
-@Composable
-fun PreviewTimer() {
-    Timer()
 }

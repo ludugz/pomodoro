@@ -35,7 +35,11 @@ import ludugz.pomodoro.ui.theme.Pink40
  */
 
 @Composable
-fun Wave(modifier: Modifier = Modifier, targetHeight: Dp = 400.dp) {
+fun Wave(
+    modifier: Modifier = Modifier,
+    targetHeight: Dp = 400.dp,
+    color: Color = Color.Cyan
+) {
     var boxHeight by remember { mutableStateOf(0.dp) }
     LaunchedEffect(key1 = Unit) {
         launch {
@@ -54,9 +58,7 @@ fun Wave(modifier: Modifier = Modifier, targetHeight: Dp = 400.dp) {
             .fillMaxWidth()
             .height(height = boxHeight)
             .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(Pink40, Lima300)
-                )
+                color = color
             )
     )
 }

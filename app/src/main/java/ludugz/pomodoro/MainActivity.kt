@@ -41,10 +41,10 @@ fun PomodoroPage() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(alignment = Alignment.BottomCenter),
+                color = Color.Cyan
             )
         }
     }
-
 }
 
 @Preview

@@ -35,8 +35,19 @@ fun PomodoroPage() {
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Clock(
-                modifier = Modifier.align(alignment = Alignment.Center)
-            )
+            Column(
+                modifier = Modifier
+                    .align(alignment = Alignment.Center)
+                    .fillMaxHeight(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Clock(color = Color.White)
+                Timer(
+                    modifier = Modifier.padding(top = 16.dp),
+                    color = Color.White
+                )
+            }
             Wave(
                 modifier = Modifier
                     .fillMaxWidth()

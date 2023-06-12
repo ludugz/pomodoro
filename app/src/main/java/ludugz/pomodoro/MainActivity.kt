@@ -3,18 +3,32 @@ package ludugz.pomodoro
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import ludugz.pomodoro.ui.components.Clock
+import ludugz.pomodoro.ui.components.Timer
 import ludugz.pomodoro.ui.components.Wave
+import ludugz.pomodoro.ui.theme.Lima100
 import ludugz.pomodoro.ui.theme.Lima300
 import ludugz.pomodoro.ui.theme.PomodoroTheme
+import ludugz.pomodoro.ui.theme.Rock300
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,25 +48,30 @@ fun PomodoroPage() {
         color = Lima300
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-            Clock(
             Column(
                 modifier = Modifier
                     .align(alignment = Alignment.Center)
-                    .fillMaxHeight(),
+                    .fillMaxHeight()
+                    .zIndex(zIndex = 2f),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Clock(color = Color.White)
+                Clock(
+                    color = Color.White
+                )
                 Timer(
-                    modifier = Modifier.padding(top = 16.dp),
+                    modifier = Modifier
+                        .padding(top = 16.dp),
                     color = Color.White
                 )
             }
+
             Wave(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .zIndex(zIndex = 1f)
                     .align(alignment = Alignment.BottomCenter),
-                color = Color.Cyan
+                color = Rock300
             )
         }
     }

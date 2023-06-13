@@ -39,7 +39,7 @@ fun Wave(
             animate(
                 initialValue = 0f,
                 targetValue = targetHeight.value,
-                animationSpec = tween(durationMillis = 3000)
+                animationSpec = tween(durationMillis = 5000)
             ) { value, _ ->
                 boxHeight = value.dp
             }

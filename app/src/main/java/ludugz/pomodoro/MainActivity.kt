@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
@@ -47,7 +48,15 @@ fun PomodoroPage() {
         modifier = Modifier.fillMaxSize(),
         color = Lima300
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
+
+        var colorWave by remember { mutableStateOf(Color.White) }
+        var boxHeight by remember { mutableStateOf(0.dp) }
+
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .onGloballyPositioned { coordinates ->
+                boxHeight = coordinates.size.height.dp
+            }) {
             Column(
                 modifier = Modifier
                     .align(alignment = Alignment.Center)
@@ -66,13 +75,16 @@ fun PomodoroPage() {
                 )
             }
 
-            Wave(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .zIndex(zIndex = 1f)
-                    .align(alignment = Alignment.BottomCenter),
-                color = Rock300
-            )
+            if (boxHeight > 0.dp) {
+                Wave(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .zIndex(zIndex = 1f)
+                        .align(alignment = Alignment.BottomCenter),
+                    color = Rock300,
+                    targetHeight = boxHeight
+                )
+            }
         }
     }
 }

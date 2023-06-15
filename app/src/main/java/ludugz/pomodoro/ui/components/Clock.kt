@@ -39,6 +39,7 @@ import ludugz.pomodoro.R
 fun Clock(
     modifier: Modifier = Modifier,
     color: Color = Color.White,
+    isOnButtonClicked: () -> Unit = {},
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val coroutineScope = rememberCoroutineScope()
@@ -53,6 +54,7 @@ fun Clock(
                 interactionSource = interactionSource,
                 indication = null
             ) {
+                isOnButtonClicked()
                 isPlaying = !isPlaying
                 coroutineScope.launch {
                     animate(

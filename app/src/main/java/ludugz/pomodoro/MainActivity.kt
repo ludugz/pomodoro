@@ -48,10 +48,11 @@ fun PomodoroPage() {
         modifier = Modifier.fillMaxSize(),
         color = Lima300
     ) {
-
         var colorWave by remember { mutableStateOf(Color.White) }
         var boxHeight by remember { mutableStateOf(0.dp) }
-
+        var isClockClicked by remember { mutableStateOf(true) }
+        val shouldShowWaveAnimation = boxHeight > 0.dp && isClockClicked
+        
         Box(modifier = Modifier
             .fillMaxSize()
             .onGloballyPositioned { coordinates ->
@@ -66,7 +67,10 @@ fun PomodoroPage() {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Clock(
-                    color = Color.White
+                    color = Color.White,
+                    onClick = {
+                        isClockClicked = !isClockClicked
+                    }
                 )
                 Timer(
                     modifier = Modifier
@@ -75,7 +79,7 @@ fun PomodoroPage() {
                 )
             }
 
-            if (boxHeight > 0.dp) {
+            if (shouldShowWaveAnimation) {
                 Wave(
                     modifier = Modifier
                         .fillMaxWidth()

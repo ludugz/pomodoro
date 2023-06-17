@@ -5,7 +5,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
@@ -39,9 +38,8 @@ import ludugz.pomodoro.R
 fun Clock(
     modifier: Modifier = Modifier,
     color: Color = Color.White,
-    isOnButtonClicked: () -> Unit = {},
+    onClick: () -> Unit = {},
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
     val coroutineScope = rememberCoroutineScope()
     var alpha by remember { mutableStateOf(1f) }
     var resource by remember { mutableStateOf(R.drawable.play_circle_filled_24) }
@@ -50,11 +48,8 @@ fun Clock(
     Box(
         modifier = modifier
             .wrapContentSize()
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null
-            ) {
-                isOnButtonClicked()
+            .clickable {
+                onClick()
                 isPlaying = !isPlaying
                 coroutineScope.launch {
                     animate(
@@ -139,7 +134,7 @@ fun BorderOuterCircle(
 @Preview(name = "Clock", backgroundColor = 0xFFcdeda5, showBackground = true)
 @Composable
 fun PreviewClock() {
-    Clock()
+    Clock(onClick = { })
 }
 
 @Preview(

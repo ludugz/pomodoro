@@ -30,16 +30,18 @@ import ludugz.pomodoro.ui.theme.Lima100
 @Composable
 fun Wave(
     modifier: Modifier = Modifier,
-    targetHeight: Dp = 400.dp,
+    initialValue: Dp,
+    targetValue: Dp,
     color: Color = Lima100,
+    durationMillis: Int = 8000,
 ) {
-    var boxHeight by remember { mutableStateOf(0.dp) }
+    var boxHeight by remember { mutableStateOf(initialValue) }
     LaunchedEffect(key1 = Unit) {
         launch {
             animate(
-                initialValue = 0f,
-                targetValue = targetHeight.value,
-                animationSpec = tween(durationMillis = 5000)
+                initialValue = initialValue.value,
+                targetValue = targetValue.value,
+                animationSpec = tween(durationMillis = durationMillis)
             ) { value, _ ->
                 boxHeight = value.dp
             }
@@ -61,7 +63,5 @@ fun Wave(
 )
 @Composable
 fun PreviewWaveAnimation() {
-    Wave(
-        modifier = Modifier.fillMaxWidth()
-    )
+    Wave(initialValue = 0.dp, targetValue = 100.dp)
 }

@@ -39,18 +39,17 @@ fun Clock(
     modifier: Modifier = Modifier,
     color: Color = Color.White,
     onClick: () -> Unit = {},
+    isPlaying: Boolean = false,
 ) {
     val coroutineScope = rememberCoroutineScope()
     var alpha by remember { mutableStateOf(1f) }
     var resource by remember { mutableStateOf(R.drawable.play_circle_filled_24) }
-    var isPlaying by remember { mutableStateOf(false) }
 
     Box(
         modifier = modifier
             .wrapContentSize()
             .clickable {
                 onClick()
-                isPlaying = !isPlaying
                 coroutineScope.launch {
                     animate(
                         initialValue = 1f,

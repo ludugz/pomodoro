@@ -33,7 +33,7 @@ fun Wave(
     initialValue: Dp,
     targetValue: Dp,
     color: Color = Lima100,
-    durationMillis: Int = 8000,
+    durationMillis: Int = 5000,
 ) {
     var boxHeight by remember { mutableStateOf(initialValue) }
     LaunchedEffect(key1 = Unit) {

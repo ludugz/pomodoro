@@ -50,9 +50,10 @@ fun PomodoroPage() {
     ) {
         var colorWave by remember { mutableStateOf(Color.White) }
         var boxHeight by remember { mutableStateOf(0.dp) }
-        var isClockClicked by remember { mutableStateOf(true) }
-        val shouldShowWaveAnimation = boxHeight > 0.dp && isClockClicked
-        
+        var isPlaying by remember { mutableStateOf(false) }
+        var isFirstTime by remember { mutableStateOf(true) }
+        val shouldShowWaveAnimation = boxHeight > 0.dp && !isFirstTime
+
         Box(modifier = Modifier
             .fillMaxSize()
             .onGloballyPositioned { coordinates ->

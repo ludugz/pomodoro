@@ -2,6 +2,7 @@
 
 package ludugz.pomodoro.ui.components
 
+import android.util.Log
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -36,7 +37,8 @@ fun Wave(
     durationMillis: Int = 5000,
 ) {
     var boxHeight by remember { mutableStateOf(initialValue) }
-    LaunchedEffect(key1 = Unit) {
+    Log.i("tntan", "Wave: initValue = $initialValue, targetValue = $targetValue")
+    LaunchedEffect(key1 = initialValue) {
         launch {
             animate(
                 initialValue = initialValue.value,

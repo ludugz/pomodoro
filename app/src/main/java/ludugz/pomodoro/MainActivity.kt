@@ -26,7 +26,6 @@ import androidx.compose.ui.zIndex
 import ludugz.pomodoro.ui.components.Clock
 import ludugz.pomodoro.ui.components.Timer
 import ludugz.pomodoro.ui.components.Wave
-import ludugz.pomodoro.ui.theme.Lima100
 import ludugz.pomodoro.ui.theme.Lima300
 import ludugz.pomodoro.ui.theme.PomodoroTheme
 import ludugz.pomodoro.ui.theme.Rock300
@@ -70,8 +69,10 @@ fun PomodoroPage() {
                 Clock(
                     color = Color.White,
                     onClick = {
-                        isClockClicked = !isClockClicked
-                    }
+                        isPlaying = !isPlaying
+                        isFirstTime = false
+                    },
+                    isPlaying = isPlaying
                 )
                 Timer(
                     modifier = Modifier
@@ -87,7 +88,8 @@ fun PomodoroPage() {
                         .zIndex(zIndex = 1f)
                         .align(alignment = Alignment.BottomCenter),
                     color = Rock300,
-                    targetHeight = boxHeight
+                    initialValue = if (isPlaying) 0.dp else boxHeight,
+                    targetValue = if (isPlaying) boxHeight else 0.dp,
                 )
             }
         }

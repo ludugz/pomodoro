@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,6 +18,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
@@ -48,6 +51,7 @@ fun Clock(
     Box(
         modifier = modifier
             .wrapContentSize()
+            .clip(shape = CircleShape)
             .clickable {
                 onClick()
                 coroutineScope.launch {
@@ -86,7 +90,6 @@ fun Clock(
         contentAlignment = Alignment.Center
     ) {
         BorderOuterCircle(
-            circleSize = 300.dp,
             thickness = 10.dp,
             color = color,
         )

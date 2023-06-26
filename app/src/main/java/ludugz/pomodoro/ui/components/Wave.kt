@@ -3,6 +3,7 @@
 package ludugz.pomodoro.ui.components
 
 import android.util.Log
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -43,7 +44,7 @@ fun Wave(
             animate(
                 initialValue = initialValue.value,
                 targetValue = targetValue.value,
-                animationSpec = tween(durationMillis = durationMillis)
+                animationSpec = tween(durationMillis = durationMillis, easing = LinearEasing)
             ) { value, _ ->
                 boxHeight = value.dp
             }

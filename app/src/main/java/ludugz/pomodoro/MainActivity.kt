@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,7 +19,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
@@ -48,16 +47,13 @@ fun PomodoroPage() {
         color = Lima300
     ) {
         var colorWave by remember { mutableStateOf(Color.White) }
-        var boxHeight by remember { mutableStateOf(0.dp) }
         var isPlaying by remember { mutableStateOf(false) }
         var isFirstTime by remember { mutableStateOf(true) }
-        val shouldShowWaveAnimation = boxHeight > 0.dp && !isFirstTime
 
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .onGloballyPositioned { coordinates ->
-                boxHeight = coordinates.size.height.dp
-            }) {
+        BoxWithConstraints(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
             Column(
                 modifier = Modifier
                     .align(alignment = Alignment.Center)
@@ -81,15 +77,15 @@ fun PomodoroPage() {
                 )
             }
 
-            if (shouldShowWaveAnimation) {
+            if (!isFirstTime) {
                 Wave(
                     modifier = Modifier
                         .fillMaxWidth()
                         .zIndex(zIndex = 1f)
                         .align(alignment = Alignment.BottomCenter),
                     color = Rock300,
-                    initialValue = if (isPlaying) 0.dp else boxHeight,
-                    targetValue = if (isPlaying) boxHeight else 0.dp,
+                    initialValue = if (isPlaying) 0.dp else maxHeight,
+                    targetValue = if (isPlaying) maxHeight else 0.dp,
                 )
             }
         }

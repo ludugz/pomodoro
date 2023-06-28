@@ -35,7 +35,7 @@ fun Wave(
     initialValue: Dp,
     targetValue: Dp,
     color: Color = Lima100,
-    durationMillis: Int = 5000,
+    durationMillis: Int = 3000,
 ) {
     var boxHeight by remember { mutableStateOf(initialValue) }
     Log.i("tntan", "Wave: initValue = $initialValue, targetValue = $targetValue")

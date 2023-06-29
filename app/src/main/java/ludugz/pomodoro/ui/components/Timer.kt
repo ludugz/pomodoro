@@ -51,14 +51,6 @@ fun Timer(
     )
 }
 
-fun Long.timeInMinutes(): Long {
-    return ((this / (1000 * 60)) % 60)
-}
-
-fun Long.timeInSeconds(): Long {
-    return (this / 1000) % 60
-}
-
 @Preview(name = "Timer", showBackground = false, widthDp = 100, heightDp = 50)
 @Composable
 fun PreviewTimer() {

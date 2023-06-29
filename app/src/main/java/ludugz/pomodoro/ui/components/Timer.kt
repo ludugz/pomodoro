@@ -23,12 +23,10 @@ import kotlinx.coroutines.launch
 fun Timer(
     modifier: Modifier = Modifier,
     textSize: TextUnit = 24.sp,
-    color: Color = Color.White
+    color: Color = Color.White,
 ) {
-    var timeLeft: Long by remember { mutableStateOf(25 * 60 * 1000) }
+    var timeLeft by remember { mutableStateOf(POMODORO_DURATION) }
     var isRunning by remember { mutableStateOf(false) }
-    val formattedTime =
-        String.format("%02d:%02d", timeLeft.timeInMinutes(), timeLeft.timeInSeconds())
 
     LaunchedEffect(key1 = Unit) {
         launch {
@@ -45,7 +43,7 @@ fun Timer(
     }
     Text(
         modifier = modifier,
-        text = formattedTime,
+        text = timeLeft.formattedTime(),
         fontSize = textSize,
         color = color,
     )

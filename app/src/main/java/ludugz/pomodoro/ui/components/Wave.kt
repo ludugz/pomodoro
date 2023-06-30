@@ -35,7 +35,7 @@ fun Wave(
     initialValue: Dp,
     targetValue: Dp,
     color: Color = Lima100,
-    durationMillis: Int = 3000,
+    durationMillis: Int = POMODORO_DURATION.toInt(),
 ) {
     var boxHeight by remember { mutableStateOf(initialValue) }
     Log.i("tntan", "Wave: initValue = $initialValue, targetValue = $targetValue")

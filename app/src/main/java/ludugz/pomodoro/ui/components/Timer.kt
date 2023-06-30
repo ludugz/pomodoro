@@ -7,6 +7,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,21 +25,23 @@ fun Timer(
     modifier: Modifier = Modifier,
     textSize: TextUnit = 24.sp,
     color: Color = Color.White,
+    isPlaying: Boolean = false,
 ) {
     var timeLeft by remember { mutableStateOf(POMODORO_DURATION) }
     var isRunning by remember { mutableStateOf(false) }
-
     LaunchedEffect(key1 = Unit) {
-        launch {
-            object : CountDownTimer(timeLeft, 1000) {
-                override fun onTick(millisUntilFinished: Long) {
-                    timeLeft = millisUntilFinished
-                }
+        if (isPlaying && !isRunning) {
+            launch {
+                object : CountDownTimer(timeLeft, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {
+                        timeLeft = millisUntilFinished
+                    }
 
-                override fun onFinish() {
-                    isRunning = false
-                }
-            }.start()
+                    override fun onFinish() {
+                        isRunning = false
+                    }
+                }.start()
+            }
         }
     }
     Text(

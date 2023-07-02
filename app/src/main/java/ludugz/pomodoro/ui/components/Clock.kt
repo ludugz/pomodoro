@@ -10,16 +10,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
@@ -30,7 +29,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
 import ludugz.pomodoro.R
 
 /**
@@ -41,52 +39,51 @@ import ludugz.pomodoro.R
 fun Clock(
     modifier: Modifier = Modifier,
     color: Color = Color.White,
-    onClick: () -> Unit = {},
     isPlaying: Boolean = false,
+    isFirstTime: Boolean = true,
+    onTogglePlay: () -> Unit = {},
 ) {
-    val coroutineScope = rememberCoroutineScope()
     var alpha by remember { mutableStateOf(1f) }
     var resource by remember { mutableStateOf(R.drawable.play_circle_filled_24) }
-
+    if (!isFirstTime) {
+        LaunchedEffect(key1 = isPlaying) {
+            animate(
+                initialValue = 1f,
+                targetValue = 0f,
+                animationSpec = tween(durationMillis = 500),
+                block = { value, _ ->
+                    alpha = value
+                    if (value == 0f) {
+                        resource = if (isPlaying) {
+                            R.drawable.pause_circle_filled_24
+                        } else {
+                            R.drawable.play_circle_filled_24
+                        }
+                    }
+                }
+            )
+            animate(
+                initialValue = 0f,
+                targetValue = 1f,
+                animationSpec = tween(durationMillis = 500),
+                block = { value, _ ->
+                    alpha = value
+                    if (value == 1f) {
+                        resource = if (isPlaying) {
+                            R.drawable.pause_circle_filled_24
+                        } else {
+                            R.drawable.play_circle_filled_24
+                        }
+                    }
+                }
+            )
+        }
+    }
     Box(
         modifier = modifier
             .wrapContentSize()
             .clip(shape = CircleShape)
-            .clickable {
-                onClick()
-                coroutineScope.launch {
-                    animate(
-                        initialValue = 1f,
-                        targetValue = 0f,
-                        animationSpec = tween(durationMillis = 500),
-                        block = { value, _ ->
-                            alpha = value
-                            if (value == 0f) {
-                                resource = if (isPlaying) {
-                                    R.drawable.pause_circle_filled_24
-                                } else {
-                                    R.drawable.play_circle_filled_24
-                                }
-                            }
-                        }
-                    )
-                    animate(
-                        initialValue = 0f,
-                        targetValue = 1f,
-                        animationSpec = tween(durationMillis = 500),
-                        block = { value, _ ->
-                            alpha = value
-                            if (value == 1f) {
-                                resource = if (isPlaying) {
-                                    R.drawable.pause_circle_filled_24
-                                } else {
-                                    R.drawable.play_circle_filled_24
-                                }
-                            }
-                        }
-                    )
-                }
-            },
+            .clickable(onClick = onTogglePlay),
         contentAlignment = Alignment.Center
     ) {
         BorderOuterCircle(
@@ -136,7 +133,7 @@ fun BorderOuterCircle(
 @Preview(name = "Clock", backgroundColor = 0xFFcdeda5, showBackground = true)
 @Composable
 fun PreviewClock() {
-    Clock(onClick = { })
+    Clock(onTogglePlay = { })
 }
 
 @Preview(

@@ -29,7 +29,7 @@ fun Timer(
 ) {
     var timeLeft by remember { mutableStateOf(POMODORO_DURATION) }
     var isRunning by remember { mutableStateOf(false) }
-    LaunchedEffect(key1 = Unit) {
+    LaunchedEffect(key1 = isPlaying) {
         if (isPlaying && !isRunning) {
             launch {
                 object : CountDownTimer(timeLeft, 1000) {

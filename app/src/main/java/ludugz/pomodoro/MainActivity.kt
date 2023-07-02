@@ -64,16 +64,17 @@ fun PomodoroPage() {
             ) {
                 Clock(
                     color = Color.White,
-                    onClick = {
-                        isPlaying = !isPlaying
-                        isFirstTime = false
-                    },
-                    isPlaying = isPlaying
-                )
+                    isPlaying = isPlaying,
+                    isFirstTime = isFirstTime
+                ) {
+                    isPlaying = !isPlaying
+                    isFirstTime = false
+                }
                 Timer(
                     modifier = Modifier
                         .padding(top = 16.dp),
-                    color = Color.White
+                    color = Color.White,
+                    isPlaying = isPlaying
                 )
             }
 

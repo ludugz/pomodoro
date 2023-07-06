@@ -36,17 +36,21 @@ fun Wave(
     targetValue: Dp,
     color: Color = Lima100,
     durationMillis: Int = POMODORO_DURATION.toInt(),
+    isPlaying: Boolean = false,
 ) {
     var boxHeight by remember { mutableStateOf(initialValue) }
     Log.i("tntan", "Wave: initValue = $initialValue, targetValue = $targetValue")
     LaunchedEffect(key1 = initialValue) {
         launch {
             animate(
-                initialValue = initialValue.value,
+                initialValue = boxHeight.value,
                 targetValue = targetValue.value,
                 animationSpec = tween(durationMillis = durationMillis, easing = LinearEasing)
             ) { value, _ ->
-                boxHeight = value.dp
+                if (isPlaying) {
+                    boxHeight = value.dp
+                    Log.i("tntan", "Box: $boxHeight")
+                }
             }
         }
     }

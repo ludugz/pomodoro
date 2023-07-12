@@ -2,7 +2,6 @@
 
 package ludugz.pomodoro.ui.components
 
-import android.util.Log
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.tween
@@ -39,17 +38,15 @@ fun Wave(
     isPlaying: Boolean = false,
 ) {
     var boxHeight by remember { mutableStateOf(initialValue) }
-    Log.i("tntan", "Wave: initValue = $initialValue, targetValue = $targetValue")
-    LaunchedEffect(key1 = initialValue) {
-        launch {
-            animate(
-                initialValue = boxHeight.value,
-                targetValue = targetValue.value,
-                animationSpec = tween(durationMillis = durationMillis, easing = LinearEasing)
-            ) { value, _ ->
-                if (isPlaying) {
+    LaunchedEffect(key1 = isPlaying) {
+        if (isPlaying) {
+            launch {
+                animate(
+                    initialValue = boxHeight.value,
+                    targetValue = targetValue.value,
+                    animationSpec = tween(durationMillis = durationMillis, easing = LinearEasing)
+                ) { value, _ ->
                     boxHeight = value.dp
-                    Log.i("tntan", "Box: $boxHeight")
                 }
             }
         }

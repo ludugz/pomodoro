@@ -31,17 +31,11 @@ fun Timer(
     var isRunning by remember { mutableStateOf(false) }
     LaunchedEffect(key1 = isPlaying) {
         if (isPlaying && !isRunning) {
-            launch {
-                object : CountDownTimer(timeLeft, 1000) {
-                    override fun onTick(millisUntilFinished: Long) {
-                        timeLeft = millisUntilFinished
-                    }
-
-                    override fun onFinish() {
-                        isRunning = false
-                    }
-                }.start()
-            }
+            isRunning = true
+            countDownTimer.start()
+        } else {
+            isRunning = false
+            countDownTimer.cancel()
         }
     }
     Text(

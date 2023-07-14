@@ -1,6 +1,7 @@
 package ludugz.pomodoro.ui.components
 
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,11 +16,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 /**
  * Created by Tan N. Truong, on 08 June, 2023
  * Email: ludugz@gmail.com
  */
+
 @Composable
 fun Timer(
     modifier: Modifier = Modifier,
@@ -29,6 +32,20 @@ fun Timer(
 ) {
     var timeLeft by remember { mutableStateOf(POMODORO_DURATION) }
     var isRunning by remember { mutableStateOf(false) }
+    val countDownTimer by remember {
+        mutableStateOf(
+            object : CountDownTimer(10000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    timeLeft = millisUntilFinished
+                    Timber.d("timeLeft: $millisUntilFinished")
+                }
+
+        override fun onFinish() {
+                    isRunning = false
+                }
+            })
+    }
+
     LaunchedEffect(key1 = isPlaying) {
         if (isPlaying && !isRunning) {
             isRunning = true

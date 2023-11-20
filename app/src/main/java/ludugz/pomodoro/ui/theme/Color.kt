@@ -15,6 +15,5 @@ val Lima300 = Color(0xFFcdeda5)
 val Lima200 = Color(0xFFe6f5c1)
 val Lima100 = Color(0xFFf4fae3)
 
-// Rock (Brown)
-val Rock300 = Color(0xFFb8aba5)
-val Rock500 = Color(0xFF4e3b3b)
+// Gray
+val LightGray = Color(0xFFC6C6C6)

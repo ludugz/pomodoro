@@ -1,35 +1,34 @@
 package ludugz.pomodoro.ui.components
 
-import androidx.compose.animation.core.animate
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import ludugz.pomodoro.R
+import kotlinx.coroutines.delay
+import ludugz.pomodoro.ui.helpers.Constants.CIRCLE_RADIUS
+import ludugz.pomodoro.ui.helpers.Constants.CIRCLE_THICKNESS
+import ludugz.pomodoro.ui.helpers.Constants.POMODORO_TIMER_DURATION
+import ludugz.pomodoro.ui.helpers.formattedTime
+import timber.log.Timber
 
 /**
  * Created by Tan N. Truong, on 23 May, 2023
@@ -38,89 +37,60 @@ import ludugz.pomodoro.R
 @Composable
 fun Clock(
     modifier: Modifier = Modifier,
-    color: Color = Color.White,
-    isPlaying: Boolean = false,
-    isFirstTime: Boolean = true,
-    onTogglePlay: () -> Unit = {},
+    shouldPlay: Boolean = false,
 ) {
-    var alpha by remember { mutableStateOf(1f) }
-    var resource by remember { mutableStateOf(R.drawable.play_circle_filled_24) }
-    if (!isFirstTime) {
-        LaunchedEffect(key1 = isPlaying) {
-            animate(
-                initialValue = 1f,
-                targetValue = 0f,
-                animationSpec = tween(durationMillis = 500),
-                block = { value, _ ->
-                    alpha = value
-                    if (value == 0f) {
-                        resource = if (isPlaying) {
-                            R.drawable.pause_circle_filled_24
-                        } else {
-                            R.drawable.play_circle_filled_24
-                        }
-                    }
-                }
-            )
-            animate(
-                initialValue = 0f,
-                targetValue = 1f,
-                animationSpec = tween(durationMillis = 500),
-                block = { value, _ ->
-                    alpha = value
-                    if (value == 1f) {
-                        resource = if (isPlaying) {
-                            R.drawable.pause_circle_filled_24
-                        } else {
-                            R.drawable.play_circle_filled_24
-                        }
-                    }
-                }
-            )
-        }
-    }
     Box(
         modifier = modifier
-            .wrapContentSize()
-            .clip(shape = CircleShape)
-            .clickable(onClick = onTogglePlay),
+            .clip(shape = CircleShape),
         contentAlignment = Alignment.Center
     ) {
         BorderOuterCircle(
-            thickness = 10.dp,
-            color = color,
+            modifier = modifier.fillMaxSize(),
         )
-        AnimatedPlayButton(
-            resource = resource,
-            alpha = alpha,
+
+        Timer(
+            shouldPlay = shouldPlay,
         )
     }
 }
 
 @Composable
-fun AnimatedPlayButton(
-    resource: Int = R.drawable.play_circle_filled_24,
-    alpha: Float = 1f,
+fun Timer(
+    modifier: Modifier = Modifier,
+    color: Color = Color.Black,
+    shouldPlay: Boolean = false,
 ) {
-    Image(
-        painter = painterResource(id = resource),
-        contentDescription = null,
-        contentScale = ContentScale.Fit,
-        modifier = Modifier
-            .size(100.dp)
-            .alpha(alpha = alpha)
+
+    var timeLeft by remember {
+        mutableLongStateOf(POMODORO_TIMER_DURATION)
+    }
+
+    LaunchedEffect(key1 = timeLeft, key2 = shouldPlay) {
+        while (timeLeft > 0 && shouldPlay) {
+            delay(1000L)
+            timeLeft--
+            Timber.d("timeLeft: $timeLeft")
+
+        }
+    }
+
+    Text(
+        modifier = modifier,
+        text = timeLeft.formattedTime(),
+        style = MaterialTheme.typography.titleLarge,
+        color = color,
     )
 }
 
 @Composable
 fun BorderOuterCircle(
     modifier: Modifier = Modifier,
-    circleSize: Dp = 300.dp,
-    color: Color = Color.White,
-    thickness: Dp = 16.dp,
+    color: Color = Color.LightGray,
+    circleSize: Dp = CIRCLE_RADIUS.dp,
+    thickness: Dp = CIRCLE_THICKNESS.dp,
 ) {
     val strokeWidth = with(LocalDensity.current) { thickness.toPx() }
-    Canvas(modifier.size(size = circleSize)) {
+    Canvas(modifier = modifier) {
         drawCircle(
             color = color,
             radius = size.minDimension / 2,
@@ -130,20 +100,21 @@ fun BorderOuterCircle(
     }
 }
 
-@Preview(name = "Clock", backgroundColor = 0xFFcdeda5, showBackground = true)
-@Composable
-fun PreviewClock() {
-    Clock(onTogglePlay = { })
-}
-
 @Preview(
-    name = "Play Button",
+    name = "Clock",
     backgroundColor = 0xFFcdeda5,
     showBackground = true,
     widthDp = 150,
     heightDp = 150
 )
+
 @Composable
-fun PreviewAnimatedPlayButton() {
-    AnimatedPlayButton()
+fun PreviewClock() {
+    Clock()
+}
+
+@Preview(name = "Timer", showBackground = false, widthDp = 100, heightDp = 50)
+@Composable
+fun PreviewTimer() {
+    Timer()
 }

@@ -8,6 +8,41 @@ import androidx.compose.ui.unit.sp
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+    titleLarge = TextStyle(
+        fontFamily = FontFamily.Monospace,
+        fontWeight = FontWeight.Normal,
+        fontSize = 24.sp,
+        lineHeight = 32.sp,
+        letterSpacing = 2.sp
+    ),
+    titleMedium = TextStyle(
+        fontFamily = FontFamily.Monospace,
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 1.5.sp
+    ),
+    labelLarge = TextStyle(
+        fontFamily = FontFamily.Monospace,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 2.sp
+    ),
+    labelMedium = TextStyle(
+        fontFamily = FontFamily.Monospace,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 1.5.sp
+    ),
+    titleSmall = TextStyle(
+        fontFamily = FontFamily.Monospace,
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 1.5.sp
+    ),
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
@@ -29,32 +64,4 @@ val Typography = Typography(
         lineHeight = 10.sp,
         letterSpacing = 1.5.sp
     ),
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Monospace,
-        fontWeight = FontWeight.Normal,
-        fontSize = 24.sp,
-        lineHeight = 32.sp,
-        letterSpacing = 2.sp
-    ),
-    titleMedium = TextStyle(
-        fontFamily = FontFamily.Monospace,
-        fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 1.5.sp
-    ),
-    labelLarge = TextStyle(
-        fontFamily = FontFamily.Monospace,
-        fontWeight = FontWeight.Normal,
-        fontSize = 18.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 2.sp
-    ),
-    labelMedium = TextStyle(
-        fontFamily = FontFamily.Monospace,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 1.5.sp
-    )
 )

@@ -17,6 +17,9 @@ object Constants {
     const val TAP_SCREEN_TEXT= "TAP SCREEN WHEN YOU GET DISTRACTED"
     const val EDGE_BAR_MAXIMUM_COUNT = 10
 
+    // Cheering dialog
+    const val CHEERING_DIALOG_CONFIRM_BUTTON = "Let me try"
+
     // Sample (will be replaced later)
     const val MOTIVATION_QUOTE = "Fall in love with boredom."
 }

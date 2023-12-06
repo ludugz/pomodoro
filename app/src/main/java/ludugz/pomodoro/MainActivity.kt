@@ -156,17 +156,6 @@ fun TimerPage() {
                 style = MaterialTheme.typography.bodySmall,
             )
 
-            // Edge bar component
-            Timber.d("parentHeight: ${parentHeightInDp.value}")
-            Timber.d("Edge Bar count: $edgeBarCount")
-            Box(
-                modifier = Modifier
-                    .height(currentEdgeBarHeightInDp())
-                    .width(12.dp)
-                    .align(alignment = Alignment.BottomEnd)
-                    .background(color = Color.LightGray)
-            )
-
             // Cheering Dialog component
             if (edgeBarCount >= EDGE_BAR_MAXIMUM_COUNT) {
                 CheeringDialog(
@@ -239,12 +228,8 @@ fun CheeringDialog(
 }
 
 private fun currentEdgeBarHeightInDp(): Dp {
-    Timber.d("Current edge bar height: ${(parentHeightInDp * edgeBarCount / EDGE_BAR_MAXIMUM_COUNT)}")
-    return parentHeightInDp * edgeBarCount / EDGE_BAR_MAXIMUM_COUNT
-}
-
-private fun updateEdgeBarCount(): Int {
-    return edgeBarCount++
+    Timber.d("Current edge bar height: ${(parentHeightInDp * userTapOnScreen / MAXIMUM_USER_TAP_COUNT)}")
+    return parentHeightInDp * userTapOnScreen / MAXIMUM_USER_TAP_COUNT
 }
 
 @Preview

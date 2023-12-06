@@ -106,7 +106,7 @@ fun SplashPage(
     }
 }
 
-var edgeBarCount by mutableIntStateOf(0)
+var userTapOnScreen by mutableIntStateOf(0)
 var shouldPlay by mutableStateOf(false)
 var parentHeightInDp by mutableStateOf(0.dp)
 
@@ -123,8 +123,8 @@ fun TimerPage() {
                     parentHeightInDp = coordinates.size.height.pixelsToDp()
                 }
                 .clickable {
-                    if (edgeBarCount < EDGE_BAR_MAXIMUM_COUNT) {
-                        edgeBarCount++
+                    if (userTapOnScreen < MAXIMUM_USER_TAP_COUNT) {
+                        userTapOnScreen++
                     }
                 },
         ) {
@@ -157,7 +157,7 @@ fun TimerPage() {
             )
 
             // Cheering Dialog component
-            if (edgeBarCount >= EDGE_BAR_MAXIMUM_COUNT) {
+            if (userTapOnScreen >= MAXIMUM_USER_TAP_COUNT) {
                 CheeringDialog(
                     onDismissRequest = { edgeBarCount = 0 },
                     onConfirmation = {},

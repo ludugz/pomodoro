@@ -15,7 +15,7 @@ object Constants {
     const val POMODORO_TIMER_DURATION: Long = 10
     const val TIMER_COUNT_DOWN_INTERVAL = 1000L
     const val TAP_SCREEN_TEXT= "TAP SCREEN WHEN YOU GET DISTRACTED"
-    const val EDGE_BAR_MAXIMUM_COUNT = 10
+    const val MAXIMUM_USER_TAP_COUNT = 5
 
     // Cheering dialog
     const val CHEERING_DIALOG_CONFIRM_BUTTON = "Let me try"

@@ -154,6 +154,9 @@ fun TimerPage() {
                     ),
                 text = TAP_SCREEN_TEXT,
                 style = MaterialTheme.typography.bodySmall,
+            TapScreenComponent(
+                modifier = Modifier.padding(bottom = 36.dp).align(alignment = Alignment.BottomCenter),
+                count = userTapOnScreen
             )
 
             // Cheering Dialog component
@@ -166,6 +169,21 @@ fun TimerPage() {
                 )
             }
         }
+    }
+}
+
+@Composable
+fun TapScreenComponent(modifier: Modifier = Modifier, count: Int = 0) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = TAP_SCREEN_TEXT,
+            style = MaterialTheme.typography.bodyMedium,
+        )
+
+        Text(text = count.toString())
     }
 }
 
@@ -243,3 +261,10 @@ fun PreviewSplashPage() {
 fun PreviewPomodoroPage() {
     TimerPage()
 }
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewTapScreenComponent() {
+    TapScreenComponent()
+}
+

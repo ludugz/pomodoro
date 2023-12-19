@@ -201,19 +201,24 @@ fun CheeringDialog(
     val randomIndex = (cheeringWords.indices).random()
     val randomCheeringWord = cheeringWords[randomIndex]
 
-    Dialog(onDismissRequest = { onDismissRequest() }) {
+    Dialog(onDismissRequest = {
+        onDismissRequest()
+    }) {
         // Draw a rectangle shape with rounded corners inside the dialog
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(375.dp)
-                .padding(16.dp),
-            shape = RoundedCornerShape(16.dp),
+                .wrapContentHeight()
+                .padding(16.dp)
+                .clip(shape = RoundedCornerShape(32.dp)),
+            shape = RoundedCornerShape(32.dp),
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .background(color = Color.White),
+                verticalArrangement = Arrangement.SpaceAround,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Image(
@@ -222,11 +227,15 @@ fun CheeringDialog(
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
                         .size(160.dp)
+                        .padding(top = 32.dp),
                 )
                 Text(
                     text = randomCheeringWord,
-                    modifier = Modifier.padding(16.dp),
-                    style = MaterialTheme.typography.bodySmall,
+                    color = Color.Black,
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp, vertical = 32.dp),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
                 Row(
                     modifier = Modifier
@@ -234,10 +243,16 @@ fun CheeringDialog(
                     horizontalArrangement = Arrangement.End,
                 ) {
                     TextButton(
-                        onClick = { onConfirmation() },
+                        onClick = {
+                            onConfirmation()
+                        },
                         modifier = Modifier.padding(8.dp),
                     ) {
-                        Text(text = CHEERING_DIALOG_CONFIRM_BUTTON)
+                        Image(
+                            modifier = Modifier.size(48.dp),
+                            painter = painterResource(id = R.drawable.check_mark_36),
+                            contentDescription = "Check Button"
+                        )
                     }
                 }
             }

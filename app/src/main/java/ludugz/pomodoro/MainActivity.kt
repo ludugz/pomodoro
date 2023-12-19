@@ -146,14 +146,6 @@ fun TimerPage() {
             )
 
             // Tap Screen component
-            Text(
-                modifier = Modifier
-                    .align(alignment = Alignment.BottomCenter)
-                    .padding(
-                        bottom = 36.dp
-                    ),
-                text = TAP_SCREEN_TEXT,
-                style = MaterialTheme.typography.bodySmall,
             TapScreenComponent(
                 modifier = Modifier.padding(bottom = 36.dp).align(alignment = Alignment.BottomCenter),
                 count = userTapOnScreen
@@ -162,8 +154,12 @@ fun TimerPage() {
             // Cheering Dialog component
             if (userTapOnScreen >= MAXIMUM_USER_TAP_COUNT) {
                 CheeringDialog(
-                    onDismissRequest = { edgeBarCount = 0 },
-                    onConfirmation = {},
+                    onDismissRequest = {
+                        userTapOnScreen = 0
+                    },
+                    onConfirmation = {
+                        userTapOnScreen = 0
+                    },
                     painter = painterResource(id = R.drawable.smiling_dog),
                     imageDescription = "Smiling dog",
                 )

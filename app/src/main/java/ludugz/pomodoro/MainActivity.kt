@@ -13,10 +13,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -31,12 +30,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -47,13 +48,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
 import ludugz.pomodoro.ui.components.Clock
-import ludugz.pomodoro.ui.helpers.Constants.CHEERING_DIALOG_CONFIRM_BUTTON
 import ludugz.pomodoro.ui.helpers.Constants.CIRCLE_RADIUS
-import ludugz.pomodoro.ui.helpers.Constants.EDGE_BAR_MAXIMUM_COUNT
+import ludugz.pomodoro.ui.helpers.Constants.MAXIMUM_USER_TAP_COUNT
 import ludugz.pomodoro.ui.helpers.Constants.MOTIVATION_QUOTE
 import ludugz.pomodoro.ui.helpers.Constants.TAP_SCREEN_TEXT
 import ludugz.pomodoro.ui.helpers.pixelsToDp
 import ludugz.pomodoro.ui.navigation.ScreenRoute
+import ludugz.pomodoro.ui.theme.DialogBackground
 import ludugz.pomodoro.ui.theme.PomodoroTheme
 import timber.log.Timber
 

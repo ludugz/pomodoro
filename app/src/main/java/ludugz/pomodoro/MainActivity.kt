@@ -73,17 +73,68 @@ var edgeBarCount by mutableIntStateOf(0)
 var shouldPlay by mutableStateOf(false)
 var parentHeightInDp by mutableStateOf(0.dp)
 
+/**
+ * Timer Page component
+ */
 @Composable
-fun PomodoroPage() {
+fun TimerPage() {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Lima300
+        color = Color.White,
     ) {
-        var colorWave by remember { mutableStateOf(Color.White) }
-        var isPlaying by remember { mutableStateOf(false) }
-        var isFirstTime by remember { mutableStateOf(true) }
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .onGloballyPositioned { coordinates ->
+                    parentHeightInDp = coordinates.size.height.pixelsToDp()
+                }
+                .clickable {
+                    if (edgeBarCount < SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
+                        edgeBarCount++
+                    }
+                },
+        ) {
+            // Motivation Quote component
+            Text(
+                modifier = Modifier
+                    .align(alignment = Alignment.TopCenter)
+                    .padding(top = 128.dp),
+                text = MOTIVATION_QUOTE,
+                style = MaterialTheme.typography.bodyMedium,
+            )
 
-        BoxWithConstraints(
+            // Timer Clock compoent
+            Clock(
+                modifier = Modifier
+                    .size(CIRCLE_RADIUS.dp)
+                    .align(alignment = Alignment.Center),
+                shouldPlay = shouldPlay
+            )
+
+            // Tap Screen component
+            Text(
+                modifier = Modifier
+                    .align(alignment = Alignment.BottomCenter)
+                    .padding(
+                        bottom = 36.dp
+                    ),
+                text = TAP_SCREEN_TEXT,
+                style = MaterialTheme.typography.bodySmall,
+            )
+
+            // Cheering Dialog component
+            if (edgeBarCount >= SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
+                CheeringDialog(
+                    onDismissRequest = { edgeBarCount = 0 },
+                    onConfirmation = {},
+                    painter = painterResource(id = R.drawable.smiling_dog),
+                    imageDescription = "Smiling dog",
+                )
+            }
+        }
+    }
+}
+
             modifier = Modifier
                 .fillMaxSize()
         ) {
@@ -135,5 +186,5 @@ fun PreviewSplashPage() {
 @Preview
 @Composable
 fun PreviewPomodoroPage() {
-    PomodoroPage()
+    TimerPage()
 }

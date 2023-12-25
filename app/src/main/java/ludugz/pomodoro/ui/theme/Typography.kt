@@ -8,41 +8,53 @@ import androidx.compose.ui.unit.sp
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+    // Title
     titleLarge = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
-        fontSize = 24.sp,
+        fontSize = 32.sp,
         lineHeight = 32.sp,
         letterSpacing = 2.sp
     ),
     titleMedium = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
+        fontSize = 28.sp,
         lineHeight = 28.sp,
+        letterSpacing = 2.sp
+    ),
+    titleSmall = TextStyle(
+        fontFamily = FontFamily.Monospace,
+        fontWeight = FontWeight.Normal,
+        fontSize = 24.sp,
+        lineHeight = 24.sp,
         letterSpacing = 1.5.sp
     ),
+
+    // Label
     labelLarge = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
+        fontSize = 24.sp,
         lineHeight = 24.sp,
         letterSpacing = 2.sp
     ),
     labelMedium = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
+        fontSize = 20.sp,
         lineHeight = 20.sp,
         letterSpacing = 1.5.sp
     ),
-    titleSmall = TextStyle(
+    labelSmall = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
-        lineHeight = 28.sp,
+        fontSize = 16.sp,
+        lineHeight = 16.sp,
         letterSpacing = 1.5.sp
     ),
+
+    // Body
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
@@ -55,7 +67,7 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 18.sp,
-        letterSpacing = 2.sp
+        letterSpacing = 1.sp
     ),
     bodySmall = TextStyle(
         fontFamily = FontFamily.Monospace,

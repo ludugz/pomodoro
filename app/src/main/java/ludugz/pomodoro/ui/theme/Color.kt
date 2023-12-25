@@ -17,3 +17,8 @@ val Lima100 = Color(0xFFf4fae3)
 
 // Gray
 val LightGray = Color(0xFFC6C6C6)
+
+
+
+// Cheer Dialog
+val DialogBackground = Color(0xFFb0c8c8)

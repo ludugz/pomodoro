@@ -40,6 +40,39 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ * Splash Page component
+ */
+@Composable
+fun SplashPage(
+    modifier: Modifier = Modifier,
+    navController: NavController = rememberNavController(),
+) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(color = Color.LightGray),
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.rock_garden),
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .size(320.dp)
+        )
+    }
+
+    LaunchedEffect(key1 = true) {
+        delay(3000)
+        navController.navigate(ScreenRoute.TIMER.name)
+    }
+}
+
+var edgeBarCount by mutableIntStateOf(0)
+var shouldPlay by mutableStateOf(false)
+var parentHeightInDp by mutableStateOf(0.dp)
+
 @Composable
 fun PomodoroPage() {
     Surface(
@@ -91,6 +124,12 @@ fun PomodoroPage() {
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewSplashPage() {
+    SplashPage()
 }
 
 @Preview

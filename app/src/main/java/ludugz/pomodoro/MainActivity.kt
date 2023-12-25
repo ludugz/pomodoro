@@ -135,43 +135,59 @@ fun TimerPage() {
     }
 }
 
+/**
+ * Cheering Dialog component
+ */
+@Composable
+fun CheeringDialog(
+    onDismissRequest: () -> Unit,
+    onConfirmation: () -> Unit,
+    painter: Painter,
+    imageDescription: String,
+) {
+    val cheeringWords = LocalContext.current.resources.getStringArray(R.array.cheering_words_array)
+    val randomIndex = (cheeringWords.indices).random()
+    val randomCheeringWord = cheeringWords[randomIndex]
+
+    Dialog(onDismissRequest = { onDismissRequest() }) {
+        // Draw a rectangle shape with rounded corners inside the dialog
+        Card(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
+                .height(375.dp)
+                .padding(16.dp),
+            shape = RoundedCornerShape(16.dp),
         ) {
             Column(
                 modifier = Modifier
-                    .align(alignment = Alignment.Center)
-                    .fillMaxHeight()
-                    .zIndex(zIndex = 2f),
+                    .fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Clock(
-                    color = Color.White,
-                    isPlaying = isPlaying,
-                    isFirstTime = isFirstTime
+                Image(
+                    painter = painter,
+                    contentDescription = imageDescription,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .size(160.dp)
+                )
+                Text(
+                    text = randomCheeringWord,
+                    modifier = Modifier.padding(16.dp),
+                    style = MaterialTheme.typography.bodySmall,
+                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End,
                 ) {
-                    isPlaying = !isPlaying
-                    isFirstTime = false
+                    TextButton(
+                        onClick = { onConfirmation() },
+                        modifier = Modifier.padding(8.dp),
+                    ) {
+                        Text(text = "Okay let me try")
+                    }
                 }
-                Timer(
-                    modifier = Modifier
-                        .padding(top = 16.dp),
-                    color = Color.White,
-                    isPlaying = isPlaying
-                )
-            }
-
-            if (!isFirstTime) {
-                Wave(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .zIndex(zIndex = 1f)
-                        .align(alignment = Alignment.BottomCenter),
-                    color = Rock300,
-                    initialValue = if (isPlaying) 0.dp else maxHeight,
-                    targetValue = if (isPlaying) maxHeight else 0.dp,
-                )
             }
         }
     }

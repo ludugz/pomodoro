@@ -65,7 +65,7 @@ fun SplashPage(
 
     LaunchedEffect(key1 = true) {
         delay(3000)
-        navController.navigate(ScreenRoute.TIMER.name)
+        navController.navigate(Screen.TIMER.name)
     }
 }
 
@@ -103,7 +103,7 @@ fun TimerPage() {
                 style = MaterialTheme.typography.bodyMedium,
             )
 
-            // Timer Clock compoent
+            // Timer Clock component
             Clock(
                 modifier = Modifier
                     .size(CIRCLE_RADIUS.dp)

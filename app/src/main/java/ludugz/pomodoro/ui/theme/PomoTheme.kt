@@ -64,7 +64,7 @@ fun PomodoroTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = RockTypography,
         content = content
     )
 }

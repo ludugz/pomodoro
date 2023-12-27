@@ -7,7 +7,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 // Set of Material typography styles to start with
-val Typography = Typography(
+val RockTypography = Typography(
     // Title
     titleLarge = TextStyle(
         fontFamily = FontFamily.Monospace,

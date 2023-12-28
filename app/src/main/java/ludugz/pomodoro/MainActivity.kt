@@ -16,14 +16,14 @@ import ludugz.pomodoro.ui.pages.SettingPage
 import ludugz.pomodoro.ui.pages.SplashPage
 import ludugz.pomodoro.ui.pages.StatisticPage
 import ludugz.pomodoro.ui.pages.TimerPage
-import ludugz.pomodoro.ui.theme.PomodoroTheme
+import ludugz.pomodoro.ui.theme.RockTheme
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PomodoroTheme {
+            RockTheme {
                 val navController = rememberNavController()
                 Scaffold(
                     bottomBar = {

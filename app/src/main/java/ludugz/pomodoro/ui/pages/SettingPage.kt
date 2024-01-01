@@ -17,7 +17,7 @@ fun SettingPage(navController: NavController) {
     Text(text = "Setting Page")
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewSettingPage() {
     SettingPage(navController = rememberNavController())

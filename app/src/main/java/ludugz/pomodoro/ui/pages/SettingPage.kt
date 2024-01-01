@@ -12,6 +12,11 @@ import androidx.navigation.compose.rememberNavController
  * Email: ludugz@gmail.com
  */
 
+enum class SettingSelectableType {
+    Toggle,
+    ColorSelection,
+    Expandable,
+}
 @Composable
 fun SettingPage(navController: NavController) {
     Text(text = "Setting Page")

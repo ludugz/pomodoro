@@ -1,13 +1,8 @@
 package ludugz.pomodoro.ui.helpers
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import ludugz.pomodoro.ui.theme.RockTypography
 
 
 /**
@@ -15,11 +10,11 @@ import androidx.compose.ui.unit.dp
  * Email: ludugz@gmail.com
  */
 
+/**
+ * Setting screen
+ */
 @Composable
 fun SettingsLabelTextStyle(text: String) = Text(
     text = text,
-    modifier = Modifier
-        .background(Color.Black)
-        .padding(16.dp),
-    style = MaterialTheme.typography.bodyMedium,
+    style = RockTypography.titleSmall,
 )

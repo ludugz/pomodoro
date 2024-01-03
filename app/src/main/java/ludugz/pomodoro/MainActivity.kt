@@ -12,10 +12,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import ludugz.pomodoro.ui.navigation.BottomNavigationBar
 import ludugz.pomodoro.ui.navigation.Screen
-import ludugz.pomodoro.ui.pages.SettingPage
+import ludugz.pomodoro.ui.pages.setting.SettingPage
 import ludugz.pomodoro.ui.pages.SplashPage
 import ludugz.pomodoro.ui.pages.StatisticPage
 import ludugz.pomodoro.ui.pages.TimerPage
+import ludugz.pomodoro.ui.pages.setting.BackgroundPage
 import ludugz.pomodoro.ui.theme.RockTheme
 
 class MainActivity : ComponentActivity() {
@@ -49,6 +50,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Screen.SETTING_SCREEN_ROUTE) {
                             SettingPage(navController = navController)
+                        }
+                        composable(Screen.BACKGROUND_SCREEN_ROUTE + "/{color}") {
+                            BackgroundPage(navController = navController)
                         }
                     }
                 }

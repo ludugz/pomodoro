@@ -33,6 +33,7 @@ sealed class Screen(val route: String, @DrawableRes val icon: Int) {
         const val TIMER_SCREEN_ROUTE = "Timer"
         const val STATISTIC_SCREEN_ROUTE = "Statistic"
         const val SETTING_SCREEN_ROUTE = "Setting"
+        const val BACKGROUND_SCREEN_ROUTE = "Background"
     }
 }
 

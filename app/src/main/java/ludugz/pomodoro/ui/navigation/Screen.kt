@@ -20,20 +20,24 @@ import ludugz.pomodoro.R
  * Created by Tan N. Truong, on 16 November, 2023
  * Email: ludugz@gmail.com
  */
-sealed class Screen(val route: String, @DrawableRes val icon: Int) {
+sealed class Screen(val route: String, @DrawableRes val iconRes: Int) {
     object Splash : Screen(SPLASH_SCREEN_ROUTE, UNDEFINED_DRAWABLE_RES)
     object Timer : Screen(TIMER_SCREEN_ROUTE, R.drawable.timer_nav_icon)
     object Statistic : Screen(STATISTIC_SCREEN_ROUTE, R.drawable.statistic_nav_icon)
     object Setting : Screen(SETTING_SCREEN_ROUTE, R.drawable.gear_setting_nav_icon)
+    object Background : Screen(route = BACKGROUND_SCREEN_ROUTE, iconRes = UNDEFINED_DRAWABLE_RES) {
+        const val colorTypeArg = "color"
+        val routeWithArgs = "${route}/{${colorTypeArg}}"
+    }
 
     companion object {
         const val UNDEFINED_DRAWABLE_RES = -1
 
-        const val SPLASH_SCREEN_ROUTE = "Splash"
-        const val TIMER_SCREEN_ROUTE = "Timer"
-        const val STATISTIC_SCREEN_ROUTE = "Statistic"
-        const val SETTING_SCREEN_ROUTE = "Setting"
-        const val BACKGROUND_SCREEN_ROUTE = "Background"
+        const val SPLASH_SCREEN_ROUTE = "splash"
+        const val TIMER_SCREEN_ROUTE = "timer"
+        const val STATISTIC_SCREEN_ROUTE = "statistic"
+        const val SETTING_SCREEN_ROUTE = "setting"
+        const val BACKGROUND_SCREEN_ROUTE = "background"
     }
 }
 
@@ -49,7 +53,7 @@ fun BottomNavigationBar(
             NavigationBarItem(
                 icon = {
                     Icon(
-                        painter = painterResource(id = item.icon),
+                        painter = painterResource(id = item.iconRes),
                         contentDescription = "Bottom Navigation Icon"
                     )
                 },

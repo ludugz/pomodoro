@@ -1,6 +1,7 @@
 package ludugz.pomodoro.ui.pages.setting
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,7 +27,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import ludugz.pomodoro.R
 import ludugz.pomodoro.ui.helpers.SettingsLabelTextStyle
-import ludugz.pomodoro.ui.theme.BackgroundColors
+import ludugz.pomodoro.ui.navigation.Screen
+import ludugz.pomodoro.ui.theme.BackgroundColorsMap
 import ludugz.pomodoro.ui.theme.RockTypography
 
 
@@ -39,6 +43,8 @@ enum class SettingSelectableType {
     Expandable,
 }
 
+val LocalBackgroundColor = staticCompositionLocalOf { Color.Unspecified }
+
 @Composable
 fun SettingPage(navController: NavController) {
     Column(
@@ -52,10 +58,18 @@ fun SettingPage(navController: NavController) {
             label = "Dark Mode",
             selectionType = SettingSelectableType.Toggle,
         )
+
+        // Background Color
+        val colorKey = "Yellow"
+        val colorValue = BackgroundColorsMap.get(colorKey) ?: 0
         SelectableItem(
             iconResource = R.drawable.color_icon,
             label = "Background Color",
             selectionType = SettingSelectableType.ColorSelection,
+            colorRes = colorValue,
+            onItemSelectedListener = {
+                navController.navigate(route = "${Screen.Background.route}/${colorKey}")
+            },
         )
         Spacer(modifier = Modifier.height(16.dp))
         SettingsLabelTextStyle(text = "Feedback")
@@ -73,7 +87,13 @@ fun SettingPage(navController: NavController) {
 }
 
 @Composable
-fun SelectableItem(iconResource: Int, label: String, selectionType: SettingSelectableType) {
+fun SelectableItem(
+    iconResource: Int,
+    label: String,
+    selectionType: SettingSelectableType,
+    colorRes: Long = 0,
+    onItemSelectedListener: () -> Unit = {},
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -81,7 +101,8 @@ fun SelectableItem(iconResource: Int, label: String, selectionType: SettingSelec
             .padding(
                 horizontal = 16.dp,
                 vertical = 8.dp,
-            ),
+            )
+            .clickable(onClick = onItemSelectedListener),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
@@ -111,7 +132,7 @@ fun SelectableItem(iconResource: Int, label: String, selectionType: SettingSelec
                         .padding(vertical = 8.dp)
                         .fillMaxHeight()
                         .aspectRatio(1f)
-                        .background(color = Color(BackgroundColors[0]))
+                        .background(color = Color(color = colorRes))
                 )
             }
 

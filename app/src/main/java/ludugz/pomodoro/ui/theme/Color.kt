@@ -22,9 +22,10 @@ val LightGray = Color(0xFFC6C6C6)
 val DialogBackground = Color(0xFFb0c8c8)
 
 // Background colors
-val BackgroundColors = listOf(
-    0xFFF0E442, // Yellow
-    0xFF87CEFA, // Light sky blue
-    0xFFDEB887, // Burly wood
-    0xFFFFB6C1, // Light pink
+val BackgroundColorsMap = mapOf(
+    "White" to 0xFFFFFFFF,
+    "Yellow" to 0xFFF0E442,
+    "Sky Blue" to 0xFF87CEFA,
+    "Burly wood" to 0xFFDEB887,
+    "Yellow" to 0xFFFFB6C1,
 )

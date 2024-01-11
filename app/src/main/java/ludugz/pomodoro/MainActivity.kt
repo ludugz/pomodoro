@@ -7,9 +7,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import dagger.hilt.android.AndroidEntryPoint
 import ludugz.pomodoro.ui.navigation.BottomNavigationBar
 import ludugz.pomodoro.ui.navigation.Screen
 import ludugz.pomodoro.ui.pages.setting.SettingPage
@@ -17,8 +20,10 @@ import ludugz.pomodoro.ui.pages.SplashPage
 import ludugz.pomodoro.ui.pages.StatisticPage
 import ludugz.pomodoro.ui.pages.TimerPage
 import ludugz.pomodoro.ui.pages.setting.BackgroundPage
+import ludugz.pomodoro.ui.theme.BackgroundColorsMap
 import ludugz.pomodoro.ui.theme.RockTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,20 +44,34 @@ class MainActivity : ComponentActivity() {
                         startDestination = Screen.SPLASH_SCREEN_ROUTE,
                         modifier = Modifier.padding(top = paddingValues.calculateTopPadding()),
                     ) {
-                        composable(Screen.SPLASH_SCREEN_ROUTE) {
+                        composable(route = Screen.SPLASH_SCREEN_ROUTE) {
                             SplashPage(navController = navController)
                         }
-                        composable(Screen.TIMER_SCREEN_ROUTE) {
+                        composable(route = Screen.TIMER_SCREEN_ROUTE) {
                             TimerPage(navController = navController)
                         }
-                        composable(Screen.STATISTIC_SCREEN_ROUTE) {
+                        composable(route = Screen.STATISTIC_SCREEN_ROUTE) {
                             StatisticPage(navController = navController)
                         }
-                        composable(Screen.SETTING_SCREEN_ROUTE) {
+                        composable(route = Screen.SETTING_SCREEN_ROUTE, arguments = listOf()) {
                             SettingPage(navController = navController)
                         }
-                        composable(Screen.BACKGROUND_SCREEN_ROUTE + "/{color}") {
-                            BackgroundPage(navController = navController)
+                        composable(
+                            route = "background/{color}",
+                            arguments = listOf(
+                                navArgument(name = Screen.Background.colorTypeArg) {
+                                    type = NavType.StringType
+                                }
+                            )
+                        ) { navBackStackEntry ->
+                            val backgroundColor =
+                                navBackStackEntry.arguments?.getString(Screen.Background.colorTypeArg)
+                                    ?: ""
+                            BackgroundPage(
+                                colorResource = BackgroundColorsMap.get(
+                                    backgroundColor
+                                ) ?: 0
+                            )
                         }
                     }
                 }

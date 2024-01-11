@@ -12,7 +12,7 @@ import ludugz.pomodoro.ui.helpers.SettingsLabelTextStyle
  */
 @Composable
 fun BackgroundPage(
-    colorResource: Int,
+    colorResource: Long,
 ) {
     SettingsLabelTextStyle(text = "Display")
     BackgroundGrid(

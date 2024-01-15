@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
@@ -26,7 +25,7 @@ import timber.log.Timber
 const val BACKGROUND_GRID_COLUMN = 6
 
 @Composable
-fun BackgroundGrid(
+fun ColorsGrid(
     modifier: Modifier = Modifier,
     color: Color,
     itemSize: Dp,

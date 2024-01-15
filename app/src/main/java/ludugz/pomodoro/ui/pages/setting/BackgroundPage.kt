@@ -1,9 +1,13 @@
 package ludugz.pomodoro.ui.pages.setting
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import ludugz.pomodoro.ui.components.BackgroundGrid
+import ludugz.pomodoro.ui.components.ColorsGrid
 import ludugz.pomodoro.ui.helpers.SettingsLabelTextStyle
 
 /**
@@ -12,11 +16,19 @@ import ludugz.pomodoro.ui.helpers.SettingsLabelTextStyle
  */
 @Composable
 fun BackgroundPage(
+    modifier: Modifier = Modifier,
     colorResource: Long,
 ) {
-    SettingsLabelTextStyle(text = "Display")
-    BackgroundGrid(
-        color = Color(color = colorResource),
-        itemSize = 32.dp
-    )
+
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        SettingsLabelTextStyle(text = "Color")
+        ColorsGrid(
+            color = Color(color = colorResource),
+            itemSize = 32.dp
+        )
+    }
 }

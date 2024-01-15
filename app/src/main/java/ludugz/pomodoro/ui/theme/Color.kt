@@ -23,9 +23,22 @@ val DialogBackground = Color(0xFFb0c8c8)
 
 // Background colors
 val BackgroundColorsMap = mapOf(
-    "White" to 0xFFFFFFFF,
+    "Red" to 0xFFFF0000,
+    "Lime" to 0xFF00FF00,
+    "Blue" to 0xFF0000FF,
+    "Orange" to 0xFFFFA500,
+    "Purple" to 0xFF800080,
     "Yellow" to 0xFFF0E442,
-    "Sky Blue" to 0xFF87CEFA,
-    "Burly wood" to 0xFFDEB887,
-    "Yellow" to 0xFFFFB6C1,
+    "Magenta" to 0xFFFF00FF,
+    "Silver" to 0xFFC0C0C0,
+    "Grey" to 0xFF808080,
+    "Maroon" to 0xFF800000,
+    "Olive" to 0xFF808000,
+    "Green" to 0xFF008000,
+    "Teal" to 0xFF008080,
+    "Navy" to 0xFF000080,
+    "Fuchsia" to 0xFFFF00FF,
+    "Aqua" to 0xFF00FFFF,
+    "Coral" to 0xFFFF7F50,
+    "Chocolate" to 0xFFD2691E
 )

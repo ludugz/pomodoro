@@ -1,33 +1,56 @@
 package ludugz.pomodoro.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import ludugz.pomodoro.ui.theme.BackgroundColorsMap
+import timber.log.Timber
 
 /**
  * Created by Tan N. Truong, on 01 January, 2024
  * Email: ludugz@gmail.com
  */
+
+const val BACKGROUND_GRID_COLUMN = 6
+
 @Composable
-fun BackgroundGrid(color: Color, itemSize: Dp) {
-    Column {
-        repeat(3) { row ->
-            Row {
-                repeat(6) { column ->
-                    // Place your content here
+fun BackgroundGrid(
+    modifier: Modifier = Modifier,
+    color: Color,
+    itemSize: Dp,
+) {
+    val colors = BackgroundColorsMap
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(horizontal = 16.dp),
+    ) {
+        colors.entries.chunked(size = BACKGROUND_GRID_COLUMN).forEach { chunk ->
+            Timber.d("chunk: $chunk")
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                chunk.forEach { colorEntry ->
+                    Timber.d("colorEntry: $colorEntry")
                     Box(
                         modifier = Modifier
                             .padding(5.dp)
-                            .background(color = color)
-                            .size(size = itemSize)
+                            .background(color = Color(color = colorEntry.value))
+                            .size(size = 32.dp)
                     )
                 }
             }

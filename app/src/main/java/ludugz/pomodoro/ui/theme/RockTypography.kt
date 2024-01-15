@@ -14,21 +14,21 @@ val RockTypography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 32.sp,
         lineHeight = 32.sp,
-        letterSpacing = 2.sp
+        letterSpacing = 1.5.sp
     ),
     titleMedium = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
         fontSize = 28.sp,
         lineHeight = 28.sp,
-        letterSpacing = 2.sp
+        letterSpacing = 1.sp
     ),
     titleSmall = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
         fontSize = 24.sp,
         lineHeight = 24.sp,
-        letterSpacing = 1.5.sp
+        letterSpacing = 1.sp
     ),
 
     // Label
@@ -37,21 +37,21 @@ val RockTypography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 24.sp,
         lineHeight = 24.sp,
-        letterSpacing = 2.sp
+        letterSpacing = 1.sp
     ),
     labelMedium = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
         fontSize = 20.sp,
         lineHeight = 20.sp,
-        letterSpacing = 1.5.sp
+        letterSpacing = 1.sp
     ),
     labelSmall = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 16.sp,
-        letterSpacing = 1.5.sp
+        letterSpacing = 1.sp
     ),
 
     // Body
@@ -60,7 +60,7 @@ val RockTypography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        letterSpacing = 2.sp
+        letterSpacing = 1.sp
     ),
     bodyMedium = TextStyle(
         fontFamily = FontFamily.Monospace,
@@ -74,6 +74,6 @@ val RockTypography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 6.sp,
         lineHeight = 10.sp,
-        letterSpacing = 1.5.sp
+        letterSpacing = 1.sp
     ),
 )

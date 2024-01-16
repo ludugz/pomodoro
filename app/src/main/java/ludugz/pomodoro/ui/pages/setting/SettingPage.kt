@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,7 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import ludugz.pomodoro.R
-import ludugz.pomodoro.ui.helpers.SettingsLabelTextStyle
+import ludugz.pomodoro.ui.helpers.SettingsSubtitleTextStyle
+import ludugz.pomodoro.ui.helpers.SettingsTitleTextStyle
 import ludugz.pomodoro.ui.navigation.Screen
 import ludugz.pomodoro.ui.theme.BackgroundColorsMap
 import ludugz.pomodoro.ui.theme.RockTypography
@@ -43,8 +43,6 @@ enum class SettingSelectableType {
     Expandable,
 }
 
-val LocalBackgroundColor = staticCompositionLocalOf { Color.Unspecified }
-
 @Composable
 fun SettingPage(navController: NavController) {
     Column(
@@ -52,7 +50,7 @@ fun SettingPage(navController: NavController) {
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.Start,
     ) {
-        SettingsLabelTextStyle(text = "Display")
+        SettingsTitleTextStyle(text = "Display")
         SelectableItem(
             iconResource = R.drawable.dark_mode_icon,
             label = "Dark Mode",
@@ -72,7 +70,7 @@ fun SettingPage(navController: NavController) {
             },
         )
         Spacer(modifier = Modifier.height(16.dp))
-        SettingsLabelTextStyle(text = "Feedback")
+        SettingsTitleTextStyle(text = "Feedback")
         SelectableItem(
             iconResource = R.drawable.request_feature_icon,
             label = "Request a feature",
@@ -111,19 +109,15 @@ fun SelectableItem(
                 painter = painterResource(id = iconResource),
                 contentDescription = ""
             )
-            Text(
-                text = label,
+            SettingsSubtitleTextStyle(
                 modifier = Modifier.padding(16.dp),
-                style = RockTypography.bodyMedium,
+                text = label
             )
         }
 
         when (selectionType) {
             SettingSelectableType.Toggle -> {
-                Text(
-                    text = "OFF",
-                    style = RockTypography.bodyMedium,
-                )
+                SettingsSubtitleTextStyle(text = "OFF")
             }
 
             SettingSelectableType.ColorSelection -> {

@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ludugz.pomodoro.ui.components.ColorsGrid
-import ludugz.pomodoro.ui.helpers.SettingsLabelTextStyle
+import ludugz.pomodoro.ui.helpers.BackgroundLabelTextStyle
 
 /**
  * Created by Tan N. Truong, on 04 January, 2024
@@ -25,7 +25,7 @@ fun BackgroundPage(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        SettingsLabelTextStyle(text = "Color")
+        BackgroundLabelTextStyle(text = "Color")
         ColorsGrid(
             color = Color(color = colorResource),
             itemSize = 32.dp

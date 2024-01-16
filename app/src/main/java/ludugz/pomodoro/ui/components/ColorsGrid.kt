@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ludugz.pomodoro.ui.theme.BackgroundColorsMap
@@ -55,4 +56,13 @@ fun ColorsGrid(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun ColorsGridPreview() {
+    ColorsGrid(
+        color = Color(color = 0xFF000000),
+        itemSize = 32.dp
+    )
 }

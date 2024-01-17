@@ -58,7 +58,7 @@ fun ColorsGrid(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun ColorsGridPreview() {
     ColorsGrid(

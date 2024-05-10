@@ -145,3 +145,13 @@ fun SelectableItem(
 fun PreviewSettingPage() {
     SettingPage(navController = rememberNavController())
 }
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewSelectableItem() {
+    SelectableItem(
+        iconResource = R.drawable.dark_mode_icon,
+        label = "Dark Mode",
+        selectionType = SettingSelectableType.Toggle,
+    )
+}

@@ -28,8 +28,6 @@ import ludugz.pomodoro.ui.components.CheeringDialog
 import ludugz.pomodoro.ui.components.Clock
 import ludugz.pomodoro.ui.helpers.Constants
 import ludugz.pomodoro.ui.helpers.pixelsToDp
-import ludugz.pomodoro.ui.navigation.BottomNavigationBar
-import ludugz.pomodoro.ui.navigation.Screen
 
 
 /**
@@ -76,16 +74,17 @@ fun TimerPage(navController: NavController = rememberNavController()) {
             Clock(
                 modifier = Modifier
                     .size(Constants.CIRCLE_RADIUS.dp)
-                    .align(alignment = Alignment.Center),
-                shouldPlay = shouldPlay
+                    .align(alignment = Alignment.Center), shouldPlay = shouldPlay
             )
 
             // Tap Screen component
             Text(
                 modifier = Modifier
-                    .align(alignment = Alignment.BottomCenter)
+                    .align(
+                        alignment = Alignment.BottomCenter
+                    )
                     .padding(
-                        bottom = 36.dp
+                        bottom = parentHeightInDp / 5
                     ),
                 text = Constants.TAP_SCREEN_TEXT,
                 style = MaterialTheme.typography.bodySmall,

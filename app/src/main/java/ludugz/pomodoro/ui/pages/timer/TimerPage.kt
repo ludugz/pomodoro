@@ -1,4 +1,4 @@
-package ludugz.pomodoro.ui.pages
+package ludugz.pomodoro.ui.pages.timer
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box

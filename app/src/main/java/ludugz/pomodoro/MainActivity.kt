@@ -16,9 +16,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import ludugz.pomodoro.ui.navigation.BottomNavigationBar
 import ludugz.pomodoro.ui.navigation.Screen
 import ludugz.pomodoro.ui.pages.setting.SettingPage
-import ludugz.pomodoro.ui.pages.SplashPage
-import ludugz.pomodoro.ui.pages.StatisticPage
-import ludugz.pomodoro.ui.pages.TimerPage
+import ludugz.pomodoro.ui.pages.splash.SplashPage
+import ludugz.pomodoro.ui.pages.statistic.StatisticPage
+import ludugz.pomodoro.ui.pages.timer.TimerPage
 import ludugz.pomodoro.ui.pages.setting.BackgroundPage
 import ludugz.pomodoro.ui.theme.BackgroundColorsMap
 import ludugz.pomodoro.ui.theme.RockTheme

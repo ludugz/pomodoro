@@ -1,4 +1,4 @@
-package ludugz.pomodoro.ui.pages
+package ludugz.pomodoro.ui.pages.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

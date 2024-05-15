@@ -6,6 +6,9 @@ package ludugz.pomodoro.ui.helpers
  * Email: ludugz@gmail.com
  */
 object Constants {
+
+    // Common
+    const val EMPTY_STRING = ""
     // Splash Page
 
     // Timer Page

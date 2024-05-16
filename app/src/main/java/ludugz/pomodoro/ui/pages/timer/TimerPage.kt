@@ -1,9 +1,12 @@
 package ludugz.pomodoro.ui.pages.timer
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
@@ -26,6 +29,7 @@ import androidx.navigation.compose.rememberNavController
 import ludugz.pomodoro.R
 import ludugz.pomodoro.ui.components.CheeringDialog
 import ludugz.pomodoro.ui.components.Clock
+import ludugz.pomodoro.ui.components.RoundedButton
 import ludugz.pomodoro.ui.helpers.Constants
 import ludugz.pomodoro.ui.helpers.pixelsToDp
 
@@ -40,7 +44,7 @@ import ludugz.pomodoro.ui.helpers.pixelsToDp
  */
 
 var edgeBarCount by mutableIntStateOf(0)
-var shouldPlay by mutableStateOf(false)
+var isTimerRunning by mutableStateOf(false)
 var parentHeightInDp by mutableStateOf(0.dp)
 
 @Composable
@@ -49,9 +53,9 @@ fun TimerPage(navController: NavController = rememberNavController()) {
         modifier = Modifier.fillMaxSize(),
         color = Color.White,
     ) {
-        Box(
+        Column(
             modifier = Modifier
-                .fillMaxHeight()
+                .fillMaxSize()
                 .onGloballyPositioned { coordinates ->
                     parentHeightInDp = coordinates.size.height.pixelsToDp()
                 }
@@ -62,26 +66,50 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                 },
         ) {
             // Motivation Quote component
+            Spacer(modifier = Modifier.weight(1f))
             Text(
                 modifier = Modifier
-                    .align(alignment = Alignment.TopCenter)
-                    .padding(top = 128.dp),
+                    .align(alignment = Alignment.CenterHorizontally),
                 text = Constants.MOTIVATION_QUOTE,
                 style = MaterialTheme.typography.bodyMedium,
             )
+
+            Spacer(modifier = Modifier.weight(1f))
 
             // Timer Clock component
             Clock(
                 modifier = Modifier
                     .size(Constants.CIRCLE_RADIUS.dp)
-                    .align(alignment = Alignment.Center), shouldPlay = shouldPlay
+                    .align(alignment = Alignment.CenterHorizontally), shouldPlay = !isTimerRunning
             )
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(alignment = Alignment.CenterHorizontally),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                val buttonResource = if (isTimerRunning) {
+                    R.drawable.ic_pause_transparent_24
+                } else {
+                    R.drawable.ic_play_transparent_24
+                }
+                RoundedButton(
+                    modifier = Modifier.padding(all = 6.dp),
+                    resource = buttonResource,
+                ) {
+                    isTimerRunning = !isTimerRunning
+                }
+            }
+
+            Spacer(modifier = Modifier.weight(2f))
 
             // Tap Screen component
             Text(
                 modifier = Modifier
                     .align(
-                        alignment = Alignment.BottomCenter
+                        alignment = Alignment.CenterHorizontally
                     )
                     .padding(
                         bottom = parentHeightInDp / 5

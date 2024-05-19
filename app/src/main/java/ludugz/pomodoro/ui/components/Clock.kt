@@ -1,6 +1,7 @@
 package ludugz.pomodoro.ui.components
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.CircleShape
@@ -37,11 +38,13 @@ import timber.log.Timber
 @Composable
 fun Clock(
     modifier: Modifier = Modifier,
-    shouldPlay: Boolean = false,
+    isRunning: Boolean = false,
+    onPlayOrPause: () -> Unit = {},
 ) {
     Box(
         modifier = modifier
-            .clip(shape = CircleShape),
+            .clip(shape = CircleShape)
+            .clickable { onPlayOrPause() },
         contentAlignment = Alignment.Center
     ) {
         BorderOuterCircle(
@@ -49,7 +52,7 @@ fun Clock(
         )
 
         Timer(
-            shouldPlay = shouldPlay,
+            isRunning = isRunning,
         )
     }
 }
@@ -58,19 +61,18 @@ fun Clock(
 fun Timer(
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
-    shouldPlay: Boolean = false,
+    isRunning: Boolean = false,
 ) {
 
     var timeLeft by remember {
         mutableLongStateOf(POMODORO_TIMER_DURATION)
     }
 
-    LaunchedEffect(key1 = timeLeft, key2 = shouldPlay) {
-        while (timeLeft > 0 && shouldPlay) {
+    LaunchedEffect(key1 = timeLeft, key2 = isRunning) {
+        while (timeLeft > 0 && isRunning) {
             delay(1000L)
             timeLeft--
             Timber.d("timeLeft: $timeLeft")
-
         }
     }
 
@@ -102,7 +104,7 @@ fun BorderOuterCircle(
 
 @Preview(
     name = "Clock",
-    backgroundColor = 0xFFcdeda5,
+    backgroundColor = 0xFFFFFFFF,
     showBackground = true,
     widthDp = 150,
     heightDp = 150

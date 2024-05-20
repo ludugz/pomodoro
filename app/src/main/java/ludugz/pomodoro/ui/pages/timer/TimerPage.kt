@@ -101,6 +101,13 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                 ) {
                     isTimerRunning = !isTimerRunning
                 }
+
+                RoundedButton(
+                    modifier = Modifier.padding(all = 6.dp),
+                    resource = R.drawable.ic_reset_transparent_24,
+                ) {
+                    // TODO: Implement later
+                }
             }
 
             Spacer(modifier = Modifier.weight(2f))

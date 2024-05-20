@@ -80,8 +80,11 @@ fun TimerPage(navController: NavController = rememberNavController()) {
             Clock(
                 modifier = Modifier
                     .size(Constants.CIRCLE_RADIUS.dp)
-                    .align(alignment = Alignment.CenterHorizontally), shouldPlay = !isTimerRunning
-            )
+                    .align(alignment = Alignment.CenterHorizontally),
+                isRunning = isTimerRunning
+            ) {
+                // TODO: no-op for now
+            }
 
             Row(
                 modifier = Modifier
@@ -90,14 +93,14 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                val buttonResource = if (isTimerRunning) {
+                val pauseButtonResource = if (isTimerRunning) {
                     R.drawable.ic_pause_transparent_24
                 } else {
                     R.drawable.ic_play_transparent_24
                 }
                 RoundedButton(
                     modifier = Modifier.padding(all = 6.dp),
-                    resource = buttonResource,
+                    resource = pauseButtonResource,
                 ) {
                     isTimerRunning = !isTimerRunning
                 }

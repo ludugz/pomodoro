@@ -13,13 +13,11 @@ import androidx.navigation.compose.rememberNavController
  * Email: ludugz@gmail.com
  */
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun StatisticPage(navController: NavController) {
 
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview(widthDp = 360, heightDp = 360, showBackground = true)
 @Composable
 fun PreviewStatisticPage() {

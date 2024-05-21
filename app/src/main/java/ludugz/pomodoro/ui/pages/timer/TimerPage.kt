@@ -45,6 +45,7 @@ import ludugz.pomodoro.ui.helpers.pixelsToDp
 
 var edgeBarCount by mutableIntStateOf(0)
 var isTimerRunning by mutableStateOf(false)
+var isTimerReset by mutableStateOf(false)
 var parentHeightInDp by mutableStateOf(0.dp)
 
 @Composable
@@ -81,7 +82,8 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                 modifier = Modifier
                     .size(Constants.CIRCLE_RADIUS.dp)
                     .align(alignment = Alignment.CenterHorizontally),
-                isRunning = isTimerRunning
+                isRunning = isTimerRunning,
+                isReset = isTimerReset,
             ) {
                 // TODO: no-op for now
             }
@@ -103,13 +105,15 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                     resource = pauseButtonResource,
                 ) {
                     isTimerRunning = !isTimerRunning
+                    isTimerReset = false
                 }
 
                 RoundedButton(
                     modifier = Modifier.padding(all = 6.dp),
                     resource = R.drawable.ic_reset_transparent_24,
                 ) {
-                    // TODO: Implement later
+                    isTimerReset = true
+                    isTimerRunning = false
                 }
             }
 

@@ -1,8 +1,14 @@
 package ludugz.pomodoro.ui.components
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import java.lang.reflect.Modifier
+import androidx.compose.ui.unit.sp
+import ludugz.pomodoro.ui.helpers.formattedTime
 
 
 /**
@@ -11,13 +17,21 @@ import java.lang.reflect.Modifier
  */
 @Composable
 fun FocusZone(
-    modifier: Modifier = Modifier(),
+    timeLeft: Long,
+    onClick: () -> Unit,
 ) {
-    // TODO: Implement FocusZone composable
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .clickable { onClick() }) {
+        Text(
+            text = timeLeft.formattedTime(),
+            fontSize = 32.sp,
+        )
+    }
 }
 
 @Composable
 @Preview
 fun PreviewFocusZone() {
-    FocusZone()
+//    FocusZone()
 }

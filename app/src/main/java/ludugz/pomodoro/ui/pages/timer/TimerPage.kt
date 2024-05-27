@@ -53,6 +53,7 @@ var isTimerRunning by mutableStateOf(false)
 var isTimerReset by mutableStateOf(false)
 var parentHeightInDp by mutableStateOf(0.dp)
 var timeLeft by mutableLongStateOf(Constants.POMODORO_TIMER_DURATION)
+var isFocusZoneVisible by mutableStateOf(false)
 
 
 @Composable
@@ -75,93 +76,101 @@ fun TimerPage(navController: NavController = rememberNavController()) {
             }
         }
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .onGloballyPositioned { coordinates ->
-                    parentHeightInDp = coordinates.size.height.pixelsToDp()
-                }
-                .clickable {
-                    if (edgeBarCount < Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
-                        edgeBarCount++
+        if (isFocusZoneVisible) {
+            FocusZone(timeLeft = timeLeft) {
+                isFocusZoneVisible = false
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .onGloballyPositioned { coordinates ->
+                        parentHeightInDp = coordinates.size.height.pixelsToDp()
                     }
-                },
-        ) {
-            // Motivation Quote component
-            Spacer(modifier = Modifier.weight(1f))
-            Text(
-                modifier = Modifier
-                    .align(alignment = Alignment.CenterHorizontally),
-                text = Constants.MOTIVATION_QUOTE,
-                style = MaterialTheme.typography.bodyMedium,
-            )
-
-            Spacer(modifier = Modifier.weight(1f))
-
-            // Timer Clock component
-            Clock(
-                modifier = Modifier
-                    .size(Constants.CIRCLE_RADIUS.dp)
-                    .align(alignment = Alignment.CenterHorizontally),
-                timeLeft = timeLeft,
+                    .clickable {
+                        if (edgeBarCount < Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
+                            edgeBarCount++
+                        }
+                        isFocusZoneVisible = true
+                    },
             ) {
-                // TODO: no-op for now
-            }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(alignment = Alignment.CenterHorizontally),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                val pauseButtonResource = if (isTimerRunning) {
-                    R.drawable.ic_pause_transparent_24
-                } else {
-                    R.drawable.ic_play_transparent_24
-                }
-                RoundedButton(
-                    modifier = Modifier.padding(all = 6.dp),
-                    resource = pauseButtonResource,
-                ) {
-                    isTimerRunning = !isTimerRunning
-                    isTimerReset = false
-                }
-
-                RoundedButton(
-                    modifier = Modifier.padding(all = 6.dp),
-                    resource = R.drawable.ic_reset_transparent_24,
-                ) {
-                    isTimerReset = true
-                    isTimerRunning = false
-                }
-            }
-
-            Spacer(modifier = Modifier.weight(2f))
-
-            // Tap Screen component
-            Text(
-                modifier = Modifier
-                    .align(
-                        alignment = Alignment.CenterHorizontally
-                    )
-                    .padding(
-                        bottom = parentHeightInDp / 5
-                    ),
-                text = Constants.TAP_SCREEN_TEXT,
-                style = MaterialTheme.typography.bodySmall,
-            )
-
-            // Cheering Dialog component
-            if (edgeBarCount >= Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
-                CheeringDialog(
-                    onDismissRequest = { edgeBarCount = 0 },
-                    onConfirmation = {},
-                    painter = painterResource(id = R.drawable.smiling_dog),
-                    imageDescription = "Smiling dog",
+                // Motivation Quote component
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    modifier = Modifier
+                        .align(alignment = Alignment.CenterHorizontally),
+                    text = Constants.MOTIVATION_QUOTE,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                // Timer Clock component
+                Clock(
+                    modifier = Modifier
+                        .size(Constants.CIRCLE_RADIUS.dp)
+                        .align(alignment = Alignment.CenterHorizontally),
+                    timeLeft = timeLeft,
+                ) {
+                    // TODO: no-op for now
+                }
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(alignment = Alignment.CenterHorizontally),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    val pauseButtonResource = if (isTimerRunning) {
+                        R.drawable.ic_pause_transparent_24
+                    } else {
+                        R.drawable.ic_play_transparent_24
+                    }
+                    RoundedButton(
+                        modifier = Modifier.padding(all = 6.dp),
+                        resource = pauseButtonResource,
+                    ) {
+                        isTimerRunning = !isTimerRunning
+                        isTimerReset = false
+                    }
+
+                    RoundedButton(
+                        modifier = Modifier.padding(all = 6.dp),
+                        resource = R.drawable.ic_reset_transparent_24,
+                    ) {
+                        isTimerReset = true
+                        isTimerRunning = false
+                    }
+                }
+
+                Spacer(modifier = Modifier.weight(2f))
+
+                // Tap Screen component
+                Text(
+                    modifier = Modifier
+                        .align(
+                            alignment = Alignment.CenterHorizontally
+                        )
+                        .padding(
+                            bottom = parentHeightInDp / 5
+                        ),
+                    text = Constants.TAP_SCREEN_TEXT,
+                    style = MaterialTheme.typography.bodySmall,
+                )
+
+                // Cheering Dialog component
+                if (edgeBarCount >= Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
+                    CheeringDialog(
+                        onDismissRequest = { edgeBarCount = 0 },
+                        onConfirmation = {},
+                        painter = painterResource(id = R.drawable.smiling_dog),
+                        imageDescription = "Smiling dog",
+                    )
+                }
             }
         }
+
     }
 }
 

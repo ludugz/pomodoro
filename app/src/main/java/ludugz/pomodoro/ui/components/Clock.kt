@@ -38,8 +38,7 @@ import timber.log.Timber
 @Composable
 fun Clock(
     modifier: Modifier = Modifier,
-    isRunning: Boolean = false,
-    isReset: Boolean = false,
+    timeLeft: Long = POMODORO_TIMER_DURATION,
     onPlayOrPause: () -> Unit = {},
 ) {
     Box(
@@ -53,8 +52,7 @@ fun Clock(
         )
 
         Timer(
-            isRunning = isRunning,
-            isReset = isReset,
+            timeLeft = timeLeft,
         )
     }
 }
@@ -63,26 +61,8 @@ fun Clock(
 fun Timer(
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
-    isRunning: Boolean = false,
-    isReset: Boolean = false,
+    timeLeft: Long = POMODORO_TIMER_DURATION,
 ) {
-
-    var timeLeft by remember {
-        mutableLongStateOf(POMODORO_TIMER_DURATION)
-    }
-
-    LaunchedEffect(key1 = isRunning, key2 = isReset) {
-        if (!isReset) {
-            while (timeLeft > 0 && isRunning) {
-                delay(1000L)
-                timeLeft--
-                Timber.d("Timer is running: time left = $timeLeft")
-            }
-        } else {
-            timeLeft = POMODORO_TIMER_DURATION
-            Timber.d("Timer is reset: time left = $timeLeft")
-        }
-    }
 
     Text(
         modifier = modifier,

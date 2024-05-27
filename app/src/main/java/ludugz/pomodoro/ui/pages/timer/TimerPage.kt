@@ -13,8 +13,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -26,12 +28,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.delay
 import ludugz.pomodoro.R
 import ludugz.pomodoro.ui.components.CheeringDialog
 import ludugz.pomodoro.ui.components.Clock
+import ludugz.pomodoro.ui.components.FocusZone
 import ludugz.pomodoro.ui.components.RoundedButton
 import ludugz.pomodoro.ui.helpers.Constants
 import ludugz.pomodoro.ui.helpers.pixelsToDp
+import timber.log.Timber
 
 
 /**
@@ -47,6 +52,8 @@ var edgeBarCount by mutableIntStateOf(0)
 var isTimerRunning by mutableStateOf(false)
 var isTimerReset by mutableStateOf(false)
 var parentHeightInDp by mutableStateOf(0.dp)
+var timeLeft by mutableLongStateOf(Constants.POMODORO_TIMER_DURATION)
+
 
 @Composable
 fun TimerPage(navController: NavController = rememberNavController()) {
@@ -54,6 +61,20 @@ fun TimerPage(navController: NavController = rememberNavController()) {
         modifier = Modifier.fillMaxSize(),
         color = Color.White,
     ) {
+
+        LaunchedEffect(key1 = isTimerRunning, key2 = isTimerReset) {
+            if (!isTimerReset) {
+                while (timeLeft > 0 && isTimerRunning) {
+                    delay(1000L)
+                    timeLeft--
+                    Timber.d("Timer is running: time left = $timeLeft")
+                }
+            } else {
+                timeLeft = Constants.POMODORO_TIMER_DURATION
+                Timber.d("Timer is reset: time left = $timeLeft")
+            }
+        }
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -82,8 +103,7 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                 modifier = Modifier
                     .size(Constants.CIRCLE_RADIUS.dp)
                     .align(alignment = Alignment.CenterHorizontally),
-                isRunning = isTimerRunning,
-                isReset = isTimerReset,
+                timeLeft = timeLeft,
             ) {
                 // TODO: no-op for now
             }

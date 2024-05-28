@@ -1,6 +1,8 @@
 package ludugz.pomodoro.ui.pages.timer
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -56,6 +58,7 @@ var timeLeft by mutableLongStateOf(Constants.POMODORO_TIMER_DURATION)
 var isFocusZoneVisible by mutableStateOf(false)
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TimerPage(navController: NavController = rememberNavController()) {
     Surface(
@@ -87,12 +90,16 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                     .onGloballyPositioned { coordinates ->
                         parentHeightInDp = coordinates.size.height.pixelsToDp()
                     }
-                    .clickable {
-                        if (edgeBarCount < Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
-                            edgeBarCount++
+                    .combinedClickable(
+                        onClick = {
+                            if (edgeBarCount < Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
+                                edgeBarCount++
+                            }
+                        },
+                        onLongClick = {
+                            isFocusZoneVisible = true
                         }
-                        isFocusZoneVisible = true
-                    },
+                    ),
             ) {
                 // Motivation Quote component
                 Spacer(modifier = Modifier.weight(1f))

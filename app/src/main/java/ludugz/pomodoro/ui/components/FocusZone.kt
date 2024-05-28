@@ -1,7 +1,8 @@
 package ludugz.pomodoro.ui.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
@@ -18,15 +19,21 @@ import ludugz.pomodoro.ui.helpers.formattedTime
  * Created by Tan N. Truong, on 22 May, 2024
  * Email: ludugz@gmail.com
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FocusZone(
     timeLeft: Long,
-    onClick: () -> Unit,
+    onLongClick: () -> Unit,
 ) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Color.Black)
-        .clickable { onClick() }) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.Black)
+            .combinedClickable(
+                onClick = {},
+                onLongClick = onLongClick
+            )
+    ) {
         Text(
             modifier = Modifier
                 .align(alignment = Alignment.Center),

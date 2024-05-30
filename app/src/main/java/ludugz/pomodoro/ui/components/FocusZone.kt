@@ -5,13 +5,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import ludugz.pomodoro.R
 import ludugz.pomodoro.ui.helpers.formattedTime
 
 
@@ -34,6 +37,11 @@ fun FocusZone(
                 onLongClick = onLongClick
             )
     ) {
+        Icon(
+            modifier = Modifier.align(alignment = Alignment.TopEnd),
+            painter = painterResource(id = R.drawable.ic_close_filled_24),
+            contentDescription = ""
+        )
         Text(
             modifier = Modifier
                 .align(alignment = Alignment.Center),

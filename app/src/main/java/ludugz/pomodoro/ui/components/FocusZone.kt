@@ -1,10 +1,12 @@
 package ludugz.pomodoro.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,8 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ludugz.pomodoro.R
+import ludugz.pomodoro.ui.helpers.Constants.POMODORO_TIMER_DURATION
 import ludugz.pomodoro.ui.helpers.formattedTime
 
 
@@ -37,9 +41,11 @@ fun FocusZone(
                 onLongClick = onLongClick
             )
     ) {
-        Icon(
-            modifier = Modifier.align(alignment = Alignment.TopEnd),
-            painter = painterResource(id = R.drawable.ic_close_filled_24),
+        Image(
+            modifier = Modifier
+                .align(alignment = Alignment.TopEnd)
+                .padding(all = 16.dp),
+            painter = painterResource(id = R.drawable.ic_close_filled_48),
             contentDescription = ""
         )
         Text(
@@ -55,5 +61,10 @@ fun FocusZone(
 @Composable
 @Preview
 fun PreviewFocusZone() {
-//    FocusZone()
+    FocusZone(
+        timeLeft = POMODORO_TIMER_DURATION,
+        onLongClick = {
+
+        }
+    )
 }

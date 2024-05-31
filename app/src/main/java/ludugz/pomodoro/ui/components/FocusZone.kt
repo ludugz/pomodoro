@@ -3,6 +3,7 @@ package ludugz.pomodoro.ui.components
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,7 +31,8 @@ import ludugz.pomodoro.ui.helpers.formattedTime
 @Composable
 fun FocusZone(
     timeLeft: Long,
-    onLongClick: () -> Unit,
+    onLongClick: () -> Unit = {},
+    onCloseClick: () -> Unit = {},
 ) {
     Box(
         modifier = Modifier
@@ -44,7 +46,8 @@ fun FocusZone(
         Image(
             modifier = Modifier
                 .align(alignment = Alignment.TopEnd)
-                .padding(all = 16.dp),
+                .padding(all = 16.dp)
+                .clickable(onClick = onCloseClick),
             painter = painterResource(id = R.drawable.ic_close_filled_48),
             contentDescription = ""
         )
@@ -63,8 +66,5 @@ fun FocusZone(
 fun PreviewFocusZone() {
     FocusZone(
         timeLeft = POMODORO_TIMER_DURATION,
-        onLongClick = {
-
-        }
     )
 }

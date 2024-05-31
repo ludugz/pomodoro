@@ -1,7 +1,6 @@
 package ludugz.pomodoro.ui.pages.timer
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -38,6 +37,7 @@ import ludugz.pomodoro.ui.components.FocusZone
 import ludugz.pomodoro.ui.components.RoundedButton
 import ludugz.pomodoro.ui.helpers.Constants
 import ludugz.pomodoro.ui.helpers.pixelsToDp
+import ludugz.pomodoro.ui.pages.states.UIState
 import timber.log.Timber
 
 
@@ -50,12 +50,12 @@ import timber.log.Timber
  * Timer Page component
  */
 
-var edgeBarCount by mutableIntStateOf(0)
-var isTimerRunning by mutableStateOf(false)
-var isTimerReset by mutableStateOf(false)
-var parentHeightInDp by mutableStateOf(0.dp)
-var timeLeft by mutableLongStateOf(Constants.POMODORO_TIMER_DURATION)
-var isFocusZoneVisible by mutableStateOf(false)
+private var edgeBarCount by mutableIntStateOf(0)
+private var isTimerRunning by mutableStateOf(false)
+private var isTimerReset by mutableStateOf(false)
+private var parentHeightInDp by mutableStateOf(0.dp)
+private var timeLeft by mutableLongStateOf(Constants.POMODORO_TIMER_DURATION)
+private var uiState by mutableStateOf(UIState())
 
 
 @OptIn(ExperimentalFoundationApi::class)

@@ -79,10 +79,15 @@ fun TimerPage(navController: NavController = rememberNavController()) {
             }
         }
 
-        if (isFocusZoneVisible) {
-            FocusZone(timeLeft = timeLeft) {
-                isFocusZoneVisible = false
-            }
+        if (uiState == UIState.FocusZone) {
+            FocusZone(
+                timeLeft = timeLeft,
+                onLongClick = {
+                    uiState = UIState.TimerPage
+                },
+                onCloseClick = {
+                    uiState = UIState.TimerPage
+                })
         } else {
             Column(
                 modifier = Modifier
@@ -97,7 +102,7 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                             }
                         },
                         onLongClick = {
-                            isFocusZoneVisible = true
+                            uiState = UIState.FocusZone
                         }
                     ),
             ) {

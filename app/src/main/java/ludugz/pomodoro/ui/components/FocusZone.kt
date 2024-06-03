@@ -31,13 +31,14 @@ import ludugz.pomodoro.ui.helpers.formattedTime
 @Composable
 fun FocusZone(
     timeLeft: Long,
+    backgroundColor: Color = Color.Black,
     onLongClick: () -> Unit = {},
     onCloseClick: () -> Unit = {},
 ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.Black)
+            .background(color = backgroundColor)
             .combinedClickable(
                 onClick = {},
                 onLongClick = onLongClick

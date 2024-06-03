@@ -1,5 +1,7 @@
 package ludugz.pomodoro.ui.pages.timer
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -61,11 +63,20 @@ private var uiState by mutableStateOf(UIState())
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TimerPage(navController: NavController = rememberNavController()) {
+    val animatedBackgroundColor by animateColorAsState(
+        if (uiState == UIState.FocusZone) {
+            Color.Black
+        } else {
+            Color.White
+        },
+        animationSpec = tween(durationMillis = 1000),
+        label = "color"
+    )
+
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color.White,
+        color = animatedBackgroundColor,
     ) {
-
         LaunchedEffect(key1 = isTimerRunning, key2 = isTimerReset) {
             if (!isTimerReset) {
                 while (timeLeft > 0 && isTimerRunning) {
@@ -82,12 +93,14 @@ fun TimerPage(navController: NavController = rememberNavController()) {
         if (uiState == UIState.FocusZone) {
             FocusZone(
                 timeLeft = timeLeft,
+                backgroundColor = animatedBackgroundColor,
                 onLongClick = {
                     uiState = UIState.TimerPage
                 },
                 onCloseClick = {
                     uiState = UIState.TimerPage
-                })
+                }
+            )
         } else {
             Column(
                 modifier = Modifier
@@ -95,22 +108,18 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                     .onGloballyPositioned { coordinates ->
                         parentHeightInDp = coordinates.size.height.pixelsToDp()
                     }
-                    .combinedClickable(
-                        onClick = {
-                            if (edgeBarCount < Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
-                                edgeBarCount++
-                            }
-                        },
-                        onLongClick = {
-                            uiState = UIState.FocusZone
+                    .combinedClickable(onClick = {
+                        if (edgeBarCount < Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
+                            edgeBarCount++
                         }
-                    ),
+                    }, onLongClick = {
+                        uiState = UIState.FocusZone
+                    }),
             ) {
                 // Motivation Quote component
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
-                    modifier = Modifier
-                        .align(alignment = Alignment.CenterHorizontally),
+                    modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
                     text = Constants.MOTIVATION_QUOTE,
                     style = MaterialTheme.typography.bodyMedium,
                 )

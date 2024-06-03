@@ -56,7 +56,7 @@ import timber.log.Timber
  * Timer Page component
  */
 
-private var edgeBarCount by mutableIntStateOf(0)
+private var displayDialogCount by mutableIntStateOf(0)
 private var isTimerRunning by mutableStateOf(false)
 private var isTimerReset by mutableStateOf(false)
 private var parentHeightInDp by mutableStateOf(0.dp)
@@ -120,8 +120,8 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                             parentHeightInDp = coordinates.size.height.pixelsToDp()
                         }
                         .combinedClickable(onClick = {
-                            if (edgeBarCount < Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
-                                edgeBarCount++
+                            if (displayDialogCount < Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
+                                displayDialogCount++
                             }
                         }, onLongClick = {
                             uiState = UIState.FocusZone
@@ -192,9 +192,9 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                     )
 
                     // Cheering Dialog component
-                    if (edgeBarCount >= Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
+                    if (displayDialogCount >= Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
                         CheeringDialog(
-                            onDismissRequest = { edgeBarCount = 0 },
+                            onDismissRequest = { displayDialogCount = 0 },
                             onConfirmation = {},
                             painter = painterResource(id = R.drawable.smiling_dog),
                             imageDescription = "Smiling dog",

@@ -137,7 +137,11 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                         style = MaterialTheme.typography.bodyMedium,
                     )
                     Counter(
-                        modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
+                        modifier = Modifier
+                            .align(alignment = Alignment.CenterHorizontally)
+                            .padding(
+                                top = 16.dp
+                            ),
                         counter = counter
                     )
 

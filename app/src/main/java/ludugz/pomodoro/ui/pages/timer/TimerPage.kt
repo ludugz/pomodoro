@@ -39,6 +39,7 @@ import kotlinx.coroutines.delay
 import ludugz.pomodoro.R
 import ludugz.pomodoro.ui.components.CheeringDialog
 import ludugz.pomodoro.ui.components.Clock
+import ludugz.pomodoro.ui.components.Counter
 import ludugz.pomodoro.ui.components.FocusZone
 import ludugz.pomodoro.ui.components.RoundedButton
 import ludugz.pomodoro.ui.helpers.Constants
@@ -62,7 +63,7 @@ private var isTimerReset by mutableStateOf(false)
 private var parentHeightInDp by mutableStateOf(0.dp)
 private var timeLeft by mutableLongStateOf(Constants.POMODORO_TIMER_DURATION)
 private var uiState by mutableStateOf(UIState())
-
+private var counter by mutableIntStateOf(0)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -123,6 +124,7 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                             if (displayDialogCount < Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
                                 displayDialogCount++
                             }
+                            counter++
                         }, onLongClick = {
                             uiState = UIState.FocusZone
                         }),
@@ -133,6 +135,10 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                         modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
                         text = Constants.MOTIVATION_QUOTE,
                         style = MaterialTheme.typography.bodyMedium,
+                    )
+                    Counter(
+                        modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
+                        counter = counter
                     )
 
                     Spacer(modifier = Modifier.weight(1f))
@@ -173,6 +179,7 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                         ) {
                             isTimerReset = true
                             isTimerRunning = false
+                            counter = 0
                         }
                     }
 

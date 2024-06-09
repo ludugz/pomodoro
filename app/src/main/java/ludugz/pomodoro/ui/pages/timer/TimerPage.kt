@@ -133,7 +133,7 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                     Spacer(modifier = Modifier.weight(1f))
                     Text(
                         modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
-                        text = Constants.MOTIVATION_QUOTE,
+                        text = Constants.TAP_ME_TITLE,
                         style = MaterialTheme.typography.bodyMedium,
                     )
                     Counter(

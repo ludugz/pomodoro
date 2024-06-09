@@ -2,6 +2,8 @@ package ludugz.pomodoro.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -23,7 +25,7 @@ fun RoundedButton(
     modifier: Modifier = Modifier,
     resource: Int,
     contentDescription: String = EMPTY_STRING,
-    backGroundColor: Color = Color.White,
+    backGroundColor: Color = Color.Transparent,
     onClick: () -> Unit = { },
 ) {
     Button(

@@ -207,8 +207,6 @@ fun TimerPage(navController: NavController = rememberNavController()) {
                         CheeringDialog(
                             onDismissRequest = { displayDialogCount = 0 },
                             onConfirmation = {},
-                            painter = painterResource(id = R.drawable.smiling_dog),
-                            imageDescription = "Smiling dog",
                         )
                     }
                 }

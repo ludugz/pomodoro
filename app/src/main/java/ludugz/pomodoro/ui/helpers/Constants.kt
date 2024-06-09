@@ -30,6 +30,5 @@ object Constants {
     // Bundle Key
     const val BUNDLE_KEY_SETTING_BACKGROUND_BO = "BUNDLE_KEY_SETTING_BACKGROUND_BO"
 
-    // Sample (will be replaced later)
-    const val MOTIVATION_QUOTE = "Fall in love with boredom."
+    const val TAP_ME_TITLE = "Tap me when you get distracted :)"
 }

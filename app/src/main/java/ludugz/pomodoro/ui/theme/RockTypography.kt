@@ -49,8 +49,8 @@ val RockTypography = Typography(
     labelSmall = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 16.sp,
+        fontSize = 12.sp,
+        lineHeight = 12.sp,
         letterSpacing = 1.sp
     ),
 

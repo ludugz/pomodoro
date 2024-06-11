@@ -66,12 +66,12 @@ fun CheeringDialog(
                 TextButton(
                     modifier = Modifier
                         .padding(top = 64.dp)
-                        .align(Alignment.End),
+                        .align(Alignment.CenterHorizontally),
                     onClick = { onConfirmation() },
                 ) {
                     Text(
                         text = OKAY,
-                        style = RockTypography.labelSmall,
+                        style = RockTypography.labelMedium,
                     )
                 }
             }

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -21,9 +22,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import ludugz.pomodoro.R
+import ludugz.pomodoro.ui.helpers.Constants.OKAY
+import ludugz.pomodoro.ui.theme.RockTypography
 
 
 /**
@@ -44,36 +49,42 @@ fun CheeringDialog(
         // Draw a rectangle shape with rounded corners inside the dialog
         Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(375.dp)
-                .padding(16.dp),
+                .wrapContentSize(),
             shape = RoundedCornerShape(16.dp),
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.wrapContentSize(),
             ) {
                 Text(
                     text = randomCheeringWord,
-                    modifier = Modifier.padding(16.dp),
-                    style = MaterialTheme.typography.bodySmall,
-                )
-                Row(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End,
+                        .padding(16.dp)
+                        .align(Alignment.CenterHorizontally),
+                    style = RockTypography.bodyLarge,
+                    textAlign = TextAlign.Center,
+                )
+                TextButton(
+                    modifier = Modifier
+                        .padding(top = 64.dp)
+                        .align(Alignment.End),
+                    onClick = { onConfirmation() },
                 ) {
-                    TextButton(
-                        onClick = { onConfirmation() },
-                        modifier = Modifier.padding(8.dp),
-                    ) {
-                        Text(text = "Okay let me try")
-                    }
+                    Text(
+                        text = OKAY,
+                        style = RockTypography.labelSmall,
+                    )
                 }
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun CheeringDialogPreview() {
+    CheeringDialog(
+        onDismissRequest = { },
+        onConfirmation = { },
+    )
 }
 

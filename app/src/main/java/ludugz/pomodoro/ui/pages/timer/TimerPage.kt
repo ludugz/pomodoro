@@ -33,10 +33,12 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
 import ludugz.pomodoro.R
+import ludugz.pomodoro.domain.TimerPageViewModel
 import ludugz.pomodoro.ui.components.CheeringDialog
 import ludugz.pomodoro.ui.components.Clock
 import ludugz.pomodoro.ui.components.Counter
@@ -67,7 +69,10 @@ private var counter by mutableIntStateOf(0)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun TimerPage(navController: NavController = rememberNavController()) {
+fun TimerPage(
+    navController: NavController = rememberNavController(),
+    viewModel: TimerPageViewModel = hiltViewModel(),
+) {
     val animatedBackgroundColor by animateColorAsState(
         if (uiState == UIState.FocusZone) {
             Color.Black

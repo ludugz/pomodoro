@@ -30,7 +30,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -65,7 +64,7 @@ private var isTimerReset by mutableStateOf(false)
 private var parentHeightInDp by mutableStateOf(0.dp)
 private var timeLeft by mutableLongStateOf(Constants.POMODORO_TIMER_DURATION)
 private var uiState by mutableStateOf(UIState())
-private var counter by mutableIntStateOf(0)
+private var timerClockCounter by mutableIntStateOf(0)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -129,7 +128,7 @@ fun TimerPage(
                             if (displayDialogCount < Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
                                 displayDialogCount++
                             }
-                            counter++
+                            timerClockCounter++
                         }, onLongClick = {
                             uiState = UIState.FocusZone
                         }),
@@ -147,7 +146,7 @@ fun TimerPage(
                             .padding(
                                 top = 16.dp
                             ),
-                        counter = counter
+                        counter = timerClockCounter
                     )
 
                     Spacer(modifier = Modifier.weight(1f))
@@ -188,7 +187,7 @@ fun TimerPage(
                         ) {
                             isTimerReset = true
                             isTimerRunning = false
-                            counter = 0
+                            timerClockCounter = 0
                         }
                     }
 

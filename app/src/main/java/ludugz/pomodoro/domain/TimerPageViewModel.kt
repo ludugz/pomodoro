@@ -3,6 +3,7 @@ package ludugz.pomodoro.domain
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Inject
 
 
 /**
@@ -10,10 +11,5 @@ import kotlinx.coroutines.flow.MutableStateFlow
  * Email: ludugz@gmail.com
  */
 @HiltViewModel
-class TimerPageViewModel : ViewModel() {
-    var counter = MutableStateFlow(0)
-        private set
-
-    var displayDialogCount = MutableStateFlow(0)
-        private set
+class TimerPageViewModel @Inject constructor() : ViewModel() {
 }

@@ -21,6 +21,8 @@ val LightGray = Color(0xFFC6C6C6)
 // Cheer Dialog
 val DialogBackground = Color(0xFFb0c8c8)
 
+// Blue
+val darkBlue = Color(0xFF00274D)
 // Background colors
 val BackgroundColorsMap = mapOf(
     "Red" to 0xFFFF0000,

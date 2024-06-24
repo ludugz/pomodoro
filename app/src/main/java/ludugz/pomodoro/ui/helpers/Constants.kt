@@ -9,6 +9,7 @@ object Constants {
 
     // Common
     const val EMPTY_STRING = ""
+    const val OKAY = "Ok"
     // Splash Page
 
     // Timer Page

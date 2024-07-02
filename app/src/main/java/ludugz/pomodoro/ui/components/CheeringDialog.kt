@@ -82,6 +82,7 @@ fun CheeringDialog(
                         painter = painterResource(id = R.drawable.bg_quote),
                         contentScale = ContentScale.FillBounds,
                     )
+                    .background(color = Color.Transparent)
                     .fillMaxSize()
             )
             Column(

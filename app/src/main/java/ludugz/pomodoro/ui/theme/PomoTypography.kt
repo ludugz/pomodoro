@@ -60,7 +60,6 @@ val RockTypography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        letterSpacing = 1.sp
     ),
     bodyMedium = TextStyle(
         fontFamily = FontFamily.Monospace,

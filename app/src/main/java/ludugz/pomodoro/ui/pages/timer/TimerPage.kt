@@ -173,6 +173,8 @@ fun TimerPage(
                         } else {
                             R.drawable.ic_play_transparent_24
                         }
+
+                        // Play/Pause button
                         RoundedButton(
                             modifier = Modifier.padding(all = 6.dp),
                             resource = pauseButtonResource,
@@ -181,6 +183,7 @@ fun TimerPage(
                             isTimerReset = false
                         }
 
+                        // Reset Button
                         RoundedButton(
                             modifier = Modifier.padding(all = 6.dp),
                             resource = R.drawable.ic_reset_transparent_24,

@@ -23,7 +23,7 @@ import ludugz.pomodoro.R
 sealed class Screen(val route: String, @DrawableRes val iconRes: Int) {
     object Splash : Screen(SPLASH_SCREEN_ROUTE, UNDEFINED_DRAWABLE_RES)
     object Timer : Screen(TIMER_SCREEN_ROUTE, R.drawable.timer_nav_icon)
-    object Statistic : Screen(STATISTIC_SCREEN_ROUTE, R.drawable.statistic_nav_icon)
+    object Habit : Screen(HABIT_SCREEN_ROUTE, R.drawable.habit_nav_icon)
     object Setting : Screen(SETTING_SCREEN_ROUTE, R.drawable.gear_setting_nav_icon)
     object Background : Screen(route = BACKGROUND_SCREEN_ROUTE, iconRes = UNDEFINED_DRAWABLE_RES) {
         const val colorTypeArg = "color"
@@ -35,7 +35,7 @@ sealed class Screen(val route: String, @DrawableRes val iconRes: Int) {
 
         const val SPLASH_SCREEN_ROUTE = "splash"
         const val TIMER_SCREEN_ROUTE = "timer"
-        const val STATISTIC_SCREEN_ROUTE = "statistic"
+        const val HABIT_SCREEN_ROUTE = "habit"
         const val SETTING_SCREEN_ROUTE = "setting"
         const val BACKGROUND_SCREEN_ROUTE = "background"
     }
@@ -72,6 +72,6 @@ fun BottomNavigationBar(
 fun BottomNavigationBarPreview() {
     BottomNavigationBar(
         navController = rememberNavController(),
-        items = listOf(Screen.Timer, Screen.Statistic, Screen.Setting)
+        items = listOf(Screen.Timer, Screen.Habit, Screen.Setting)
     )
 }

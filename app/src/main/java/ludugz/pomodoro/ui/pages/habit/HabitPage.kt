@@ -1,7 +1,5 @@
-package ludugz.pomodoro.ui.pages.statistic
+package ludugz.pomodoro.ui.pages.habit
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
@@ -14,12 +12,12 @@ import androidx.navigation.compose.rememberNavController
  */
 
 @Composable
-fun StatisticPage(navController: NavController) {
+fun HabitPage(navController: NavController) {
 
 }
 
 @Preview(widthDp = 360, heightDp = 360, showBackground = true)
 @Composable
-fun PreviewStatisticPage() {
-    StatisticPage(navController = rememberNavController())
+fun PreviewHabitPage() {
+    HabitPage(navController = rememberNavController())
 }

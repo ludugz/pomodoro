@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     bottomBar = {
                         BottomNavigationBar(
                             navController = navController,
-                            items = listOf(Screen.Timer, Screen.Statistic, Screen.Setting)
+                            items = listOf(Screen.Timer, Screen.Habit, Screen.Setting)
                         )
                     }
                 ) { paddingValues ->
@@ -50,8 +50,8 @@ class MainActivity : ComponentActivity() {
                         composable(route = Screen.TIMER_SCREEN_ROUTE) {
                             TimerPage(navController = navController)
                         }
-                        composable(route = Screen.STATISTIC_SCREEN_ROUTE) {
-                            StatisticPage(navController = navController)
+                        composable(route = Screen.HABIT_SCREEN_ROUTE) {
+                            HabitPage(navController = navController)
                         }
                         composable(route = Screen.SETTING_SCREEN_ROUTE, arguments = listOf()) {
                             SettingPage(navController = navController)

@@ -65,7 +65,8 @@ fun generateDotsForYear(year: Int): List<Dot> {
     return days
 }
 
-@Preview(widthDp = 360, heightDp = 360, showBackground = true)
+@RequiresApi(Build.VERSION_CODES.O)
+@Preview(widthDp = 720, heightDp = 1080, showBackground = true)
 @Composable
 fun PreviewDotGraph() {
     DotGraph()

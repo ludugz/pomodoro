@@ -3,7 +3,7 @@ package ludugz.pomodoro.ui.helpers
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import ludugz.pomodoro.ui.theme.RockTypography
+import ludugz.pomodoro.ui.theme.PomoTypography
 
 
 /**
@@ -17,14 +17,14 @@ import ludugz.pomodoro.ui.theme.RockTypography
 @Composable
 fun SettingsTitleTextStyle(text: String) = Text(
     text = text,
-    style = RockTypography.titleSmall,
+    style = PomoTypography.titleSmall,
 )
 
 @Composable
 fun SettingsSubtitleTextStyle(modifier: Modifier = Modifier, text: String) = Text(
     modifier = modifier,
     text = text,
-    style = RockTypography.bodyMedium,
+    style = PomoTypography.bodyMedium,
 )
 
 /**
@@ -33,5 +33,5 @@ fun SettingsSubtitleTextStyle(modifier: Modifier = Modifier, text: String) = Tex
 @Composable
 fun BackgroundLabelTextStyle(text: String) = Text(
     text = text,
-    style = RockTypography.titleMedium,
+    style = PomoTypography.titleMedium,
 )

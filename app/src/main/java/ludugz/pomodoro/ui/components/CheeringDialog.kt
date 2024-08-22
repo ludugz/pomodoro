@@ -31,7 +31,7 @@ import androidx.compose.ui.window.Dialog
 import ludugz.pomodoro.R
 import ludugz.pomodoro.ui.helpers.Constants.OKAY
 import ludugz.pomodoro.ui.theme.DarkCyan
-import ludugz.pomodoro.ui.theme.RockTypography
+import ludugz.pomodoro.ui.theme.PomoTypography
 
 /**
  * Created by Tan N. Truong, on 26 December, 2023
@@ -69,7 +69,7 @@ fun CheeringDialog(
                 ) {
                     Text(
                         text = "\"$randomCheeringWord\"",
-                        style = RockTypography.bodyLarge,
+                        style = PomoTypography.bodyLarge,
                         fontSize = 12.sp,
                         color = DarkCyan,
                         textAlign = TextAlign.Start,
@@ -82,7 +82,7 @@ fun CheeringDialog(
                 ) {
                     Text(
                         text = OKAY,
-                        style = RockTypography.labelMedium,
+                        style = PomoTypography.labelMedium,
                     )
                 }
             }

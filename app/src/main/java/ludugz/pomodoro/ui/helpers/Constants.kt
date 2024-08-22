@@ -7,7 +7,6 @@ package ludugz.pomodoro.ui.helpers
  */
 object Constants {
 
-    // Common
     const val EMPTY_STRING = ""
     const val OKAY = "Ok"
     // Splash Page
@@ -18,12 +17,8 @@ object Constants {
 
     const val POMODORO_TIMER_DURATION: Long = 10
     const val TIMER_COUNT_DOWN_INTERVAL = 1000L
-    const val TAP_SCREEN_TEXT= "Tap screen when you get distracted"
-    const val SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT = 5
-
-    // Cheering dialog
-    const val CHEERING_DIALOG_CONFIRM_BUTTON = "Let me try"
-
+    const val TAP_SCREEN_TEXT = "Tap screen when you get distracted"
+    const val SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT = 10
 
     // Key
     const val KEY_SCREEN_ROUTE = "KEY_SCREEN_ROUTE"

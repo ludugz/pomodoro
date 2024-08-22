@@ -13,9 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,7 +27,6 @@ import ludugz.pomodoro.ui.helpers.SettingsSubtitleTextStyle
 import ludugz.pomodoro.ui.helpers.SettingsTitleTextStyle
 import ludugz.pomodoro.ui.navigation.Screen
 import ludugz.pomodoro.ui.theme.BackgroundColorsMap
-import ludugz.pomodoro.ui.theme.RockTypography
 
 
 /**

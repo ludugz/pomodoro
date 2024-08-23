@@ -28,13 +28,13 @@ data class Dot(val date: LocalDate, val isActive: Boolean)
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun DotGraph() {
+fun DotGraph(modifier: Modifier = Modifier) {
     val dots = generateDotsForYear(Year.now().value)
     val rows = 7 // Set a fixed number of rows to ensure horizontal scrolling
 
     LazyHorizontalGrid(
         rows = GridCells.Fixed(rows),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(120.dp)
     ) {

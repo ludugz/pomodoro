@@ -28,7 +28,7 @@ val PomoTypography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 24.sp,
         lineHeight = 24.sp,
-        letterSpacing = 1.sp
+        letterSpacing = 0.5.sp
     ),
 
     // Label

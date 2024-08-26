@@ -8,7 +8,7 @@ package ludugz.pomodoro.ui.helpers
 object Constants {
 
     const val EMPTY_STRING = ""
-    const val OKAY = "Ok"
+    const val OKAY = "OK"
     // Splash Page
 
     // Timer Page

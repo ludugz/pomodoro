@@ -213,7 +213,7 @@ fun TimerPage(
                     if (displayDialogCount >= Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
                         CheeringDialog(
                             onDismissRequest = { displayDialogCount = 0 },
-                            onConfirmation = {},
+                            onConfirmation = { displayDialogCount = 0 },
                         )
                     }
                 }

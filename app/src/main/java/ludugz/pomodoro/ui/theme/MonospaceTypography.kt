@@ -73,7 +73,7 @@ val PomoTypography = Typography(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
-        lineHeight = 18.sp,
-        letterSpacing = 0.25.sp
+        lineHeight = 14.sp,
+        letterSpacing = 0.1.sp
     ),
 )

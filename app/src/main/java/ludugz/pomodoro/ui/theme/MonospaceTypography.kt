@@ -7,7 +7,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 // Set of Material typography styles to start with
-val PomoTypography = Typography(
+val MonospaceTypography = Typography(
     // Title
     titleLarge = TextStyle(
         fontFamily = FontFamily.Monospace,
@@ -71,8 +71,8 @@ val PomoTypography = Typography(
     ),
     bodySmall = TextStyle(
         fontFamily = FontFamily.Monospace,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
+        fontWeight = FontWeight.ExtraLight,
+        fontSize = 10.sp,
         lineHeight = 14.sp,
         letterSpacing = 0.1.sp
     ),

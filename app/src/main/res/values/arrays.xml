@@ -2,8 +2,8 @@
 <resources>
     <!-- Cheering words -->
     <string-array name="cheering_words_array">
-        <item>Embrace the glorious mess that you are.\nDistractions are just opportunities to rediscover your path.</item>
-        <item>Don\'t let distractions derail your dreams.\nKeep your eyes on the prize, and success will follow.</item>
-        <item>Keep going. You\'re closer to your goal than you guess</item>
+        <item>Embrace the glorious mess that you are.\n\nDistractions are just opportunities to rediscover your path.</item>
+        <item>Don\'t let distractions derail your dreams.\n\nKeep your eyes on the prize, and success will follow.</item>
+        <item>Keep going.\n\nYou\'re closer to your goal than you guess</item>
     </string-array>
 </resources>

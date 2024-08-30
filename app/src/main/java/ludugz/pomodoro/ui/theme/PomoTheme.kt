@@ -64,7 +64,7 @@ fun RockTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = PomoTypography,
+        typography = MonospaceTypography,
         content = content
     )
 }

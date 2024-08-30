@@ -23,7 +23,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import ludugz.pomodoro.ui.components.DotGraph
 import ludugz.pomodoro.ui.components.RoundedIcon
-import ludugz.pomodoro.ui.theme.PomoTypography
+import ludugz.pomodoro.ui.theme.MonospaceTypography
 
 
 /**
@@ -53,7 +53,7 @@ fun HabitPage(navController: NavController) {
             ) {
                 Text(
                     text = "Meditation",
-                    style = PomoTypography.bodyLarge,
+                    style = MonospaceTypography.bodyLarge,
                 )
                 RoundedIcon(imageVector = Icons.Default.Check)
             }

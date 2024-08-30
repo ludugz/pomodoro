@@ -3,7 +3,7 @@ package ludugz.pomodoro.ui.helpers
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import ludugz.pomodoro.ui.theme.PomoTypography
+import ludugz.pomodoro.ui.theme.MonospaceTypography
 
 
 /**
@@ -17,14 +17,14 @@ import ludugz.pomodoro.ui.theme.PomoTypography
 @Composable
 fun SettingsTitleTextStyle(text: String) = Text(
     text = text,
-    style = PomoTypography.titleSmall,
+    style = MonospaceTypography.titleSmall,
 )
 
 @Composable
 fun SettingsSubtitleTextStyle(modifier: Modifier = Modifier, text: String) = Text(
     modifier = modifier,
     text = text,
-    style = PomoTypography.bodyMedium,
+    style = MonospaceTypography.bodyMedium,
 )
 
 /**
@@ -33,5 +33,5 @@ fun SettingsSubtitleTextStyle(modifier: Modifier = Modifier, text: String) = Tex
 @Composable
 fun BackgroundLabelTextStyle(text: String) = Text(
     text = text,
-    style = PomoTypography.titleMedium,
+    style = MonospaceTypography.titleMedium,
 )

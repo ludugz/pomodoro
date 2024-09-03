@@ -68,8 +68,9 @@ fun CheeringDialog(
                     verticalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(
-                        text = "\"$randomCheeringWord\"",
-                        style = PomoTypography.bodyLarge,
+                        text = "$randomCheeringWord",
+                        style = MonospaceTypography.bodyMedium,
+                        fontWeight = FontWeight.Thin,
                         fontSize = 12.sp,
                         color = DarkCyan,
                         textAlign = TextAlign.Start,
@@ -82,7 +83,8 @@ fun CheeringDialog(
                 ) {
                     Text(
                         text = OKAY,
-                        style = PomoTypography.labelMedium,
+                        style = IbmPlexSansTypography.bodyMedium,
+                        color = Color.Black,
                     )
                 }
             }
@@ -98,4 +100,3 @@ fun CheeringDialogPreview() {
         onConfirmation = { },
     )
 }
-

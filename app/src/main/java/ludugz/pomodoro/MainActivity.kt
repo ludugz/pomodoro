@@ -41,12 +41,9 @@ class MainActivity : ComponentActivity() {
                 ) { paddingValues ->
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.SPLASH_SCREEN_ROUTE,
+                        startDestination = Screen.TIMER_SCREEN_ROUTE,
                         modifier = Modifier.padding(top = paddingValues.calculateTopPadding()),
                     ) {
-                        composable(route = Screen.SPLASH_SCREEN_ROUTE) {
-                            SplashPage(navController = navController)
-                        }
                         composable(route = Screen.TIMER_SCREEN_ROUTE) {
                             TimerPage(navController = navController)
                         }

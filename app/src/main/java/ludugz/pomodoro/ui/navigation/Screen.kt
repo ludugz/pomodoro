@@ -21,7 +21,6 @@ import ludugz.pomodoro.R
  * Email: ludugz@gmail.com
  */
 sealed class Screen(val route: String, @DrawableRes val iconRes: Int) {
-    object Splash : Screen(SPLASH_SCREEN_ROUTE, UNDEFINED_DRAWABLE_RES)
     object Timer : Screen(TIMER_SCREEN_ROUTE, R.drawable.timer_nav_icon)
     object Habit : Screen(HABIT_SCREEN_ROUTE, R.drawable.habit_nav_icon)
     object Setting : Screen(SETTING_SCREEN_ROUTE, R.drawable.gear_setting_nav_icon)
@@ -33,7 +32,6 @@ sealed class Screen(val route: String, @DrawableRes val iconRes: Int) {
     companion object {
         const val UNDEFINED_DRAWABLE_RES = -1
 
-        const val SPLASH_SCREEN_ROUTE = "splash"
         const val TIMER_SCREEN_ROUTE = "timer"
         const val HABIT_SCREEN_ROUTE = "habit"
         const val SETTING_SCREEN_ROUTE = "setting"

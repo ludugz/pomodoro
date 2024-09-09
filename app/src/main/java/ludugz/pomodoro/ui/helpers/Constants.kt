@@ -9,7 +9,6 @@ object Constants {
 
     const val EMPTY_STRING = ""
     const val OKAY = "OK"
-    // Splash Page
 
     // Timer Page
     const val CIRCLE_RADIUS = 200

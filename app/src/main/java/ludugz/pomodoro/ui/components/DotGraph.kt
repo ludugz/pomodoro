@@ -42,7 +42,7 @@ fun DotGraph(modifier: Modifier = Modifier) {
             val dot = dots[index]
             Box(
                 modifier = Modifier
-                    .padding(1.dp)
+                    .padding(2.dp)
                     .width(16.dp)
                     .height(16.dp)
                     .background(if (dot.isActive) Lima300 else Lima200)
@@ -66,7 +66,9 @@ fun generateDotsForYear(year: Int): List<Dot> {
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
-@Preview(widthDp = 720, heightDp = 1080, showBackground = true)
+@Preview(
+    showBackground = true,
+)
 @Composable
 fun PreviewDotGraph() {
     DotGraph()

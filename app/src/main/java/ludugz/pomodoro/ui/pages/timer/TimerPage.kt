@@ -135,11 +135,6 @@ fun TimerPage(
                 ) {
                     // Motivation Quote component
                     Spacer(modifier = Modifier.weight(1f))
-                    Text(
-                        modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
-                        text = Constants.TAP_ME_TITLE,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
                     Counter(
                         modifier = Modifier
                             .align(alignment = Alignment.CenterHorizontally)

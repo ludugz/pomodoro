@@ -206,7 +206,7 @@ fun TimerPage(
                                 bottom = parentHeightInDp / 5
                             ),
                         text = Constants.TAP_SCREEN_TEXT,
-                        style = MaterialTheme.typography.bodySmall,
+                        style = MonospaceTypography.bodySmall,
                     )
 
                     // Cheering Dialog component

@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -46,6 +45,7 @@ import ludugz.pomodoro.ui.components.RoundedButton
 import ludugz.pomodoro.ui.helpers.Constants
 import ludugz.pomodoro.ui.helpers.pixelsToDp
 import ludugz.pomodoro.ui.pages.states.UIState
+import ludugz.pomodoro.ui.theme.MonospaceTypography
 import timber.log.Timber
 
 
@@ -72,6 +72,7 @@ fun TimerPage(
     navController: NavController = rememberNavController(),
     viewModel: TimerPageViewModel = hiltViewModel(),
 ) {
+    Timber.i("TimerPage Composable")
     val animatedBackgroundColor by animateColorAsState(
         if (uiState == UIState.FocusZone) {
             Color.Black
@@ -86,7 +87,10 @@ fun TimerPage(
         modifier = Modifier.fillMaxSize(),
         color = animatedBackgroundColor,
     ) {
-        LaunchedEffect(key1 = isTimerRunning, key2 = isTimerReset) {
+        LaunchedEffect(
+            key1 = isTimerRunning,
+            key2 = isTimerReset
+        ) {
             if (!isTimerReset) {
                 while (timeLeft > 0 && isTimerRunning) {
                     delay(1000L)
@@ -107,16 +111,14 @@ fun TimerPage(
             label = "",
         ) { targetState ->
             if (targetState == UIState.FocusZone) {
-                FocusZone(
-                    timeLeft = timeLeft,
+                FocusZone(timeLeft = timeLeft,
                     backgroundColor = animatedBackgroundColor,
                     onLongClick = {
                         uiState = UIState.TimerPage
                     },
                     onCloseClick = {
                         uiState = UIState.TimerPage
-                    }
-                )
+                    })
             } else {
                 Column(
                     modifier = Modifier
@@ -140,8 +142,7 @@ fun TimerPage(
                             .align(alignment = Alignment.CenterHorizontally)
                             .padding(
                                 top = 16.dp
-                            ),
-                        counter = timerClockCounter
+                            ), counter = timerClockCounter
                     )
 
                     Spacer(modifier = Modifier.weight(1f))

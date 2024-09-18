@@ -174,6 +174,7 @@ fun TimerPage(
                         RoundedButton(
                             modifier = Modifier.padding(all = 6.dp),
                             resource = pauseButtonResource,
+                            contentDescription = "Play/Pause Button",
                         ) {
                             isTimerRunning = !isTimerRunning
                             isTimerReset = false
@@ -183,6 +184,7 @@ fun TimerPage(
                         RoundedButton(
                             modifier = Modifier.padding(all = 6.dp),
                             resource = R.drawable.ic_reset_transparent_24,
+                            contentDescription = "Reset Button",
                         ) {
                             isTimerReset = true
                             isTimerRunning = false

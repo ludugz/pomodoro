@@ -25,7 +25,6 @@ import ludugz.pomodoro.ui.components.DotGraph
 import ludugz.pomodoro.ui.components.RoundedIcon
 import ludugz.pomodoro.ui.theme.MonospaceTypography
 
-
 /**
  * Created by Tan N. Truong, on 26 December, 2023
  * Email: ludugz@gmail.com
@@ -55,7 +54,10 @@ fun HabitPage(navController: NavController) {
                     text = "Meditation",
                     style = MonospaceTypography.bodyLarge,
                 )
-                RoundedIcon(imageVector = Icons.Default.Check)
+                RoundedIcon(
+                    imageVector = Icons.Default.Check,
+                    contentDescription = "Check Icon"
+                )
             }
             DotGraph(modifier = Modifier.padding(8.dp))
         }

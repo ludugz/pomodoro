@@ -4,17 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -38,6 +34,7 @@ import ludugz.pomodoro.ui.helpers.Constants.OKAY
 import ludugz.pomodoro.ui.theme.DarkCyan
 import ludugz.pomodoro.ui.theme.IbmPlexSansTypography
 import ludugz.pomodoro.ui.theme.MonospaceTypography
+import timber.log.Timber
 
 /**
  * Created by Tan N. Truong, on 26 December, 2023
@@ -48,6 +45,7 @@ fun CheeringDialog(
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit,
 ) {
+    Timber.i("CheeringDialog Composable")
     val cheeringWords = LocalContext.current.resources.getStringArray(R.array.cheering_words_array)
     val randomIndex = (cheeringWords.indices).random()
     val randomCheeringWord = cheeringWords[randomIndex]

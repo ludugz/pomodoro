@@ -13,6 +13,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
+import timber.log.Timber
 
 
 /**
@@ -24,6 +25,7 @@ fun Counter(
     modifier: Modifier = Modifier,
     counter: Int = 0,
 ) {
+    Timber.i("Counter Composable")
     var scale by remember { mutableFloatStateOf(1f) }
     LaunchedEffect(key1 = counter) {
         scale = 2f

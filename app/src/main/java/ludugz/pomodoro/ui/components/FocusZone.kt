@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import ludugz.pomodoro.R
 import ludugz.pomodoro.ui.helpers.Constants.POMODORO_TIMER_DURATION
 import ludugz.pomodoro.ui.helpers.formattedTime
+import timber.log.Timber
 
 
 /**
@@ -35,6 +36,7 @@ fun FocusZone(
     onLongClick: () -> Unit = {},
     onCloseClick: () -> Unit = {},
 ) {
+    Timber.i("FocusZone Composable")
     Box(
         modifier = Modifier
             .fillMaxSize()

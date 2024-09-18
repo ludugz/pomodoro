@@ -13,6 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import ludugz.pomodoro.R
 import ludugz.pomodoro.ui.helpers.Constants.EMPTY_STRING
+import timber.log.Timber
 
 
 /**
@@ -28,6 +29,7 @@ fun RoundedButton(
     backGroundColor: Color = Color.Transparent,
     onClick: () -> Unit = { },
 ) {
+    Timber.i("RoundedButton/${contentDescription} Composable")
     Button(
         modifier = modifier.background(color = backGroundColor),
         shape = RoundedCornerShape(50),

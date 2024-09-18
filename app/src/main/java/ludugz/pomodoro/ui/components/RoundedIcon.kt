@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ludugz.pomodoro.ui.helpers.Constants.EMPTY_STRING
+import timber.log.Timber
 
 /**
  * Created by Tan N. Truong, on 22 August, 2024
@@ -17,13 +19,15 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun RoundedIcon(imageVector: ImageVector) {
+    contentDescription: String = EMPTY_STRING,
+    Timber.i("RoundedIcon/${contentDescription} Composable")
     Card(
         onClick = {},
         shape = RoundedCornerShape(4.dp)
     ) {
         Icon(
             imageVector = imageVector,
-            contentDescription = "Check Icon"
+            contentDescription = contentDescription
         )
     }
 }

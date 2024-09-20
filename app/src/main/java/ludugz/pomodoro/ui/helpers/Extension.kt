@@ -1,8 +1,10 @@
 package ludugz.pomodoro.ui.helpers
 
+import android.content.Context
 import android.content.res.Resources
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import java.io.File
 
 
 /**
@@ -23,4 +25,13 @@ fun Long.formattedTime() =
 
 fun Int.pixelsToDp(): Dp {
     return (this / Resources.getSystem().displayMetrics.density).dp
+}
+
+fun readJsonFile(filePath: String): String {
+    // Reading the file content into a String
+    return File(filePath).readText(Charsets.UTF_8)
+}
+
+fun readJsonFromAssets(context: Context, fileName: String): String {
+    return context.assets.open(fileName).bufferedReader().use { it.readText() }
 }

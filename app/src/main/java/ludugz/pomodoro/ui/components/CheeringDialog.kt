@@ -29,8 +29,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import ludugz.pomodoro.R
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import ludugz.pomodoro.domain.model.Quote
 import ludugz.pomodoro.ui.helpers.Constants.OKAY
+import ludugz.pomodoro.ui.helpers.readJsonFromAssets
 import ludugz.pomodoro.ui.theme.DarkCyan
 import ludugz.pomodoro.ui.theme.IbmPlexSansTypography
 import ludugz.pomodoro.ui.theme.MonospaceTypography
@@ -46,9 +49,12 @@ fun CheeringDialog(
     onConfirmation: () -> Unit,
 ) {
     Timber.i("CheeringDialog Composable")
-    val cheeringWords = LocalContext.current.resources.getStringArray(R.array.cheering_words_array)
-    val randomIndex = (cheeringWords.indices).random()
-    val randomCheeringWord = cheeringWords[randomIndex]
+    val jsonContent: String = readJsonFromAssets(LocalContext.current, "quotes.json")
+    val gson = Gson()
+    val listType = object : TypeToken<List<Quote>>() {}.type
+    val quotes: List<Quote> = gson.fromJson(jsonContent, listType)
+    val randomIndex = (quotes.indices).random()
+    val randomCheeringWord = quotes[randomIndex]
     var parentHeight by remember { mutableIntStateOf(0) }
 
     Dialog(onDismissRequest = { onDismissRequest() }) {
@@ -71,7 +77,7 @@ fun CheeringDialog(
                     verticalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(
-                        text = randomCheeringWord,
+                        text = randomCheeringWord.description,
                         style = MonospaceTypography.bodyMedium,
                         fontWeight = FontWeight.Thin,
                         fontSize = 12.sp,

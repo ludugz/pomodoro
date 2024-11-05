@@ -6,7 +6,7 @@ package ludugz.pomodoro.ui.pages.states
  * Email: ludugz@gmail.com
  */
 
-open class UIState() {
+open class UIState {
 
     object Default: UIState()
     object TimerPage: UIState()

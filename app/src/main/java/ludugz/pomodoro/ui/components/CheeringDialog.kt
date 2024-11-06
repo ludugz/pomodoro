@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -55,39 +56,32 @@ fun CheeringDialog(
     val quotes: List<Quote> = gson.fromJson(jsonContent, listType)
     val randomIndex = (quotes.indices).random()
     val randomCheeringWord = quotes[randomIndex]
-    var parentHeight by remember { mutableIntStateOf(0) }
 
     Dialog(onDismissRequest = { onDismissRequest() }) {
         Card(
             modifier = Modifier
                 .aspectRatio(2f)
-                .onGloballyPositioned { coordinates ->
-                    parentHeight = coordinates.size.height
-                },
+                .wrapContentHeight(),
             shape = RoundedCornerShape(32.dp),
         ) {
-            Box(modifier = Modifier.fillMaxSize()) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth(0.8f)
-                        .wrapContentHeight()
-                        .padding(vertical = 8.dp)
-                        .background(color = Color.Transparent)
-                        .align(Alignment.Center),
-                    verticalArrangement = Arrangement.SpaceBetween,
-                ) {
-                    Text(
-                        text = randomCheeringWord.description,
-                        style = MonospaceTypography.bodyMedium,
-                        fontWeight = FontWeight.Thin,
-                        fontSize = 12.sp,
-                        color = DarkCyan,
-                        textAlign = TextAlign.Start,
-                    )
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(vertical = 8.dp)
+                    .background(color = Color.Transparent),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceBetween,
+            ) {
+                Text(
+                    modifier = Modifier.padding(12.dp),
+                    text = randomCheeringWord.description,
+                    style = MonospaceTypography.bodyMedium,
+                    fontWeight = FontWeight.Thin,
+                    fontSize = 12.sp,
+                    color = DarkCyan,
+                )
 
-                }
                 TextButton(
-                    modifier = Modifier.align(Alignment.BottomCenter),
                     onClick = { onConfirmation() },
                 ) {
                     Text(

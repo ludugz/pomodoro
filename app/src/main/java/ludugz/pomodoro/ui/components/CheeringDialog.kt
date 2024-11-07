@@ -79,6 +79,7 @@ fun CheeringDialog(
                     fontWeight = FontWeight.Thin,
                     fontSize = 12.sp,
                     color = DarkCyan,
+                    textAlign = TextAlign.Center,
                 )
 
                 TextButton(

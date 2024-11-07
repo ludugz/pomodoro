@@ -194,19 +194,6 @@ fun TimerPage(
 
                     Spacer(modifier = Modifier.weight(2f))
 
-                    // Tap Screen component
-                    Text(
-                        modifier = Modifier
-                            .align(
-                                alignment = Alignment.CenterHorizontally
-                            )
-                            .padding(
-                                bottom = parentHeightInDp / 5
-                            ),
-                        text = Constants.TAP_SCREEN_TEXT,
-                        style = MonospaceTypography.bodySmall,
-                    )
-
                     // Cheering Dialog component
                     if (displayDialogCount >= Constants.SHOULD_DISPLAY_CHEERING_DIALOG_MAXIMUM_COUNT) {
                         CheeringDialog(

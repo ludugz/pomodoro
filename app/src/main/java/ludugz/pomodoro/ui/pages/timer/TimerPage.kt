@@ -24,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,6 +45,7 @@ import ludugz.pomodoro.ui.components.FocusZone
 import ludugz.pomodoro.ui.components.RoundedButton
 import ludugz.pomodoro.ui.helpers.Constants
 import ludugz.pomodoro.ui.helpers.pixelsToDp
+import ludugz.pomodoro.ui.navigation.Screen
 import ludugz.pomodoro.ui.pages.states.UIState
 import ludugz.pomodoro.ui.theme.MonospaceTypography
 import timber.log.Timber
@@ -71,8 +73,10 @@ private var timerClockCounter by mutableIntStateOf(0)
 fun TimerPage(
     navController: NavController = rememberNavController(),
     viewModel: TimerPageViewModel = hiltViewModel(),
+    isBottomNavigationBarVisible: (Boolean) -> Unit = {},
 ) {
     Timber.i("TimerPage Composable")
+    isBottomNavigationBarVisible(uiState != UIState.FocusZone)
     val animatedBackgroundColor by animateColorAsState(
         if (uiState == UIState.FocusZone) {
             Color.Black

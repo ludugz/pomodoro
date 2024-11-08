@@ -5,11 +5,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
@@ -30,7 +25,7 @@ import ludugz.pomodoro.ui.pages.setting.SettingPage
 import ludugz.pomodoro.ui.pages.timer.TimerPage
 import ludugz.pomodoro.ui.pages.setting.BackgroundPage
 import ludugz.pomodoro.ui.theme.BackgroundColorsMap
-import ludugz.pomodoro.ui.theme.RockTheme
+import ludugz.pomodoro.ui.theme.PomodoroidTheme
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -39,7 +34,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            RockTheme {
+            PomodoroidTheme {
                 val navController = rememberNavController()
                 var isBottomBarVisible by remember { mutableStateOf(true) }
                 Scaffold(

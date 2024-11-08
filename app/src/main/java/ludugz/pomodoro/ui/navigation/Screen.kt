@@ -1,6 +1,7 @@
 package ludugz.pomodoro.ui.navigation
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -15,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import ludugz.pomodoro.R
+import ludugz.pomodoro.ui.theme.PomodoroidTheme
 
 /**
  * Created by Tan N. Truong, on 16 November, 2023
@@ -68,8 +70,10 @@ fun BottomNavigationBar(
 @Preview
 @Composable
 fun BottomNavigationBarPreview() {
-    BottomNavigationBar(
-        navController = rememberNavController(),
-        items = listOf(Screen.Timer, Screen.Habit, Screen.Setting)
-    )
+    PomodoroidTheme {
+        BottomNavigationBar(
+            navController = rememberNavController(),
+            items = listOf(Screen.Timer, Screen.Habit, Screen.Setting)
+        )
+    }
 }

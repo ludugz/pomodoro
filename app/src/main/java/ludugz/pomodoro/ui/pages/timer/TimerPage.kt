@@ -24,7 +24,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,7 +44,6 @@ import ludugz.pomodoro.ui.components.FocusZone
 import ludugz.pomodoro.ui.components.RoundedButton
 import ludugz.pomodoro.ui.helpers.Constants
 import ludugz.pomodoro.ui.helpers.pixelsToDp
-import ludugz.pomodoro.ui.navigation.Screen
 import ludugz.pomodoro.ui.pages.states.UIState
 import ludugz.pomodoro.ui.theme.MonospaceTypography
 import timber.log.Timber
@@ -64,7 +62,7 @@ private var displayDialogCount by mutableIntStateOf(0)
 private var isTimerRunning by mutableStateOf(false)
 private var isTimerReset by mutableStateOf(false)
 private var parentHeightInDp by mutableStateOf(0.dp)
-private var timeLeft by mutableLongStateOf(Constants.POMODORO_TIMER_DURATION)
+private var timeLeft by mutableLongStateOf(Constants.POMODORO_TIMER_DURATION_MINUTES)
 private var uiState by mutableStateOf(UIState())
 private var timerClockCounter by mutableIntStateOf(0)
 
@@ -102,7 +100,7 @@ fun TimerPage(
                     Timber.d("Timer is running: time left = $timeLeft")
                 }
             } else {
-                timeLeft = Constants.POMODORO_TIMER_DURATION
+                timeLeft = Constants.POMODORO_TIMER_DURATION_MINUTES
                 Timber.d("Timer is reset: time left = $timeLeft")
             }
         }

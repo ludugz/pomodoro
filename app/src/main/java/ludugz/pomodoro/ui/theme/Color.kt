@@ -9,11 +9,13 @@ val Pink80 = Color(0xFFEFB8C8)
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
+val Gray = Color(0xFFebedf0)     // Light gray
 
-// Lima (Green)
-val Lima300 = Color(0xFFcdeda5)
-val Lima200 = Color(0xFFe6f5c1)
-val Lima100 = Color(0xFFf4fae3)
+// Green
+val Green200 = Color(0xFF9be9a8) // Light green
+val Green400 = Color(0xFF40c463) // Medium green
+val Green600 = Color(0xFF30a14e) // Darker green
+val Green800 = Color(0xFF216e39) // Darkest green
 
 // Gray
 val LightGray = Color(0xFFC6C6C6)

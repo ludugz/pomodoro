@@ -14,17 +14,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ludugz.pomodoro.ui.theme.Lima200
-import ludugz.pomodoro.ui.theme.Lima300
+import ludugz.pomodoro.ui.helpers.HabitDotLevel
+import ludugz.pomodoro.ui.theme.Gray
+import ludugz.pomodoro.ui.theme.Green200
+import ludugz.pomodoro.ui.theme.Green400
+import ludugz.pomodoro.ui.theme.Green600
+import ludugz.pomodoro.ui.theme.Green800
 import java.time.LocalDate
 import java.time.Year
+import kotlin.random.Random
 
 
 /**
  * Created by Tan N. Truong, on 20 August, 2024
  * Email: ludugz@gmail.com
  */
-data class Dot(val date: LocalDate, val isActive: Boolean)
+data class Dot(
+    val date: LocalDate,
+    val level: HabitDotLevel,
+)
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -40,12 +48,19 @@ fun DotGraph(modifier: Modifier = Modifier) {
     ) {
         items(dots.size) { index ->
             val dot = dots[index]
+            val color = when (dot.level) {
+                HabitDotLevel.NONE -> Gray
+                HabitDotLevel.WEAK -> Green200
+                HabitDotLevel.NORMAL -> Green400
+                HabitDotLevel.STRONG -> Green600
+                HabitDotLevel.SUPER -> Green800
+            }
             Box(
                 modifier = Modifier
                     .padding(2.dp)
                     .width(16.dp)
                     .height(16.dp)
-                    .background(if (dot.isActive) Lima300 else Lima200)
+                    .background(color = color)
             )
 
         }
@@ -59,7 +74,9 @@ fun generateDotsForYear(year: Int): List<Dot> {
     val days = mutableListOf<Dot>()
     var currentDate = startDate
     while (!currentDate.isAfter(endDate)) {
-        days.add(Dot(currentDate, isActive = (0..1).random() == 1))
+        // TODO: Add random for now, need to remove later
+        val values = HabitDotLevel.values()
+        days.add(Dot(date = currentDate, level = values[Random.nextInt(values.size)]))
         currentDate = currentDate.plusDays(1)
     }
     return days

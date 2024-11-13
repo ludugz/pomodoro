@@ -16,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -38,9 +37,6 @@ fun HabitPage(navController: NavController) {
                 .padding(8.dp),
             onClick = {},
             shape = RoundedCornerShape(size = 16.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = Color.White
-            ),
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
             Row(

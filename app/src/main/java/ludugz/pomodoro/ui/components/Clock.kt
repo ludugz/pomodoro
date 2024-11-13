@@ -56,7 +56,6 @@ fun Clock(
 @Composable
 fun Timer(
     modifier: Modifier = Modifier,
-    color: Color = Color.Black,
     timeLeft: Long = POMODORO_TIMER_DURATION_MINUTES,
 ) {
 
@@ -64,7 +63,6 @@ fun Timer(
         modifier = modifier,
         text = timeLeft.formattedTime(),
         style = MaterialTheme.typography.titleLarge,
-        color = color,
     )
 }
 
@@ -72,7 +70,7 @@ fun Timer(
 fun BorderOuterCircle(
     modifier: Modifier = Modifier,
     passedColor: Color = LightColorScheme.primary,
-    remainingColor: Color = LightColorScheme.surface,
+    remainingColor: Color = Color.White,
     circleSize: Dp = CIRCLE_RADIUS.dp,
     thickness: Dp = CIRCLE_THICKNESS.dp,
     timeLeft: Long = POMODORO_TIMER_DURATION_MINUTES,

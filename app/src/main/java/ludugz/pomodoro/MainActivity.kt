@@ -53,17 +53,14 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(top = paddingValues.calculateTopPadding()),
                     ) {
                         composable(route = Screen.TIMER_SCREEN_ROUTE) {
-                            Timber.i("Timer Screen")
                             TimerPage(navController = navController) { isVisible ->
                                 isBottomBarVisible = isVisible
                             }
                         }
                         composable(route = Screen.HABIT_SCREEN_ROUTE) {
-                            Timber.i("Habit Screen")
                             HabitPage(navController = navController)
                         }
                         composable(route = Screen.SETTING_SCREEN_ROUTE, arguments = listOf()) {
-                            Timber.i("Setting Screen")
                             SettingPage(navController = navController)
                         }
                         composable(

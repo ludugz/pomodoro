@@ -78,7 +78,6 @@ fun CheeringDialog(
                     style = MonospaceTypography.bodyMedium,
                     fontWeight = FontWeight.Thin,
                     fontSize = 12.sp,
-                    color = DarkCyan,
                     textAlign = TextAlign.Center,
                 )
 
@@ -87,8 +86,7 @@ fun CheeringDialog(
                 ) {
                     Text(
                         text = OKAY,
-                        style = IbmPlexSansTypography.bodyMedium,
-                        color = Color.Black,
+                        style = MonospaceTypography.bodyMedium,
                     )
                 }
             }

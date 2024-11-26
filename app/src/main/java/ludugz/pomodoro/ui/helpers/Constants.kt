@@ -12,7 +12,7 @@ object Constants {
 
     // Timer Page
     const val CIRCLE_RADIUS = 200
-    const val CIRCLE_THICKNESS = 16
+    const val CIRCLE_THICKNESS = 4
 
     const val POMODORO_TIMER_DURATION_MINUTES: Long = 25 * 60
     const val TAP_SCREEN_TEXT = "Tap screen when you get distracted"

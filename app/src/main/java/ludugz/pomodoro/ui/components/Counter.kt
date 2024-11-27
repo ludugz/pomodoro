@@ -25,7 +25,7 @@ fun Counter(
     modifier: Modifier = Modifier,
     counter: Int = 0,
 ) {
-    Timber.i("Counter Composable")
+    Timber.d("Counter Composable")
     var scale by remember { mutableFloatStateOf(1f) }
     LaunchedEffect(key1 = counter) {
         scale = 2f

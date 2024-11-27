@@ -29,7 +29,7 @@ fun RoundedButton(
     backGroundColor: Color = Color.Transparent,
     onClick: () -> Unit = { },
 ) {
-    Timber.i("RoundedButton/${contentDescription} Composable")
+    Timber.d("RoundedButton/${contentDescription} Composable")
     Button(
         modifier = modifier.background(color = backGroundColor),
         shape = RoundedCornerShape(50),

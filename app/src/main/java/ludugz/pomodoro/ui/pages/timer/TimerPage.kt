@@ -74,7 +74,7 @@ fun TimerPage(
     viewModel: TimerPageViewModel = hiltViewModel(),
     isBottomNavigationBarVisible: (Boolean) -> Unit = {},
 ) {
-    Timber.i("TimerPage Composable")
+    Timber.d("TimerPage Composable")
     isBottomNavigationBarVisible(uiState != UIState.FocusZone)
     val animatedBackgroundColor by animateColorAsState(
         if (uiState == UIState.FocusZone) {

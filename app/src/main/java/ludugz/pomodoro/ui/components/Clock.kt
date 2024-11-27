@@ -35,7 +35,7 @@ fun Clock(
     timeLeft: Long = POMODORO_TIMER_DURATION_MINUTES,
     onPlayOrPause: () -> Unit = {},
 ) {
-    Timber.i("Clock Composable")
+    Timber.d("Clock Composable")
     Box(
         modifier = modifier
             .clip(shape = CircleShape)

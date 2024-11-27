@@ -27,7 +27,7 @@ fun RoundedIcon(
     sizeInDP: Dp = 36.dp,
     contentDescription: String = EMPTY_STRING,
 ) {
-    Timber.i("RoundedIcon/${contentDescription} Composable")
+    Timber.d("RoundedIcon/${contentDescription} Composable")
     Card(
         modifier = Modifier.wrapContentSize(),
         onClick = {},

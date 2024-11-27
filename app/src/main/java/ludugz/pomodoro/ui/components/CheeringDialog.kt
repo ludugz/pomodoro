@@ -49,7 +49,7 @@ fun CheeringDialog(
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit,
 ) {
-    Timber.i("CheeringDialog Composable")
+    Timber.d("CheeringDialog Composable")
     val jsonContent: String = readJsonFromAssets(LocalContext.current, "quotes.json")
     val gson = Gson()
     val listType = object : TypeToken<List<Quote>>() {}.type

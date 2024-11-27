@@ -40,7 +40,7 @@ fun DotGraph(modifier: Modifier = Modifier) {
     val dots = generateDotsForYear(Year.now().value)
     val rows = 7 // Set a fixed number of rows to ensure horizontal scrolling
 
-    Timber.i("DotGraph Composable")
+    Timber.d("DotGraph Composable")
     LazyHorizontalGrid(
         rows = GridCells.Fixed(rows),
         modifier = modifier

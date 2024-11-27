@@ -35,7 +35,7 @@ fun FocusZone(
     onLongClick: () -> Unit = {},
     onCloseClick: () -> Unit = {},
 ) {
-    Timber.i("FocusZone Composable")
+    Timber.d("FocusZone Composable")
     Box(
         modifier = Modifier
             .fillMaxSize()

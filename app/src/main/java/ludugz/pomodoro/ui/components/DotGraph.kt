@@ -56,14 +56,20 @@ fun DotGraph(modifier: Modifier = Modifier) {
                 HabitDotLevel.STRONG -> Green600
                 HabitDotLevel.SUPER -> Green800
             }
-            Box(
+            Card(
                 modifier = Modifier
                     .padding(2.dp)
                     .width(16.dp)
-                    .height(16.dp)
-                    .background(color = color)
-            )
-
+                    .height(16.dp),
+                shape = RoundedCornerShape(4.dp),
+                colors = CardColors(
+                    containerColor = color,
+                    contentColor = Color.Cyan,
+                    disabledContainerColor = Color.Red,
+                    disabledContentColor = Color.Black,
+                )
+            ) {
+            }
         }
     }
 }

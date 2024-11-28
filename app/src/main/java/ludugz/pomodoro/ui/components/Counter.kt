@@ -32,7 +32,7 @@ fun Counter(
         delay(300)
         scale = 1f
     }
-    var animatedScale = animateFloatAsState(
+    val animatedScale = animateFloatAsState(
         targetValue = scale,
         label = "animated scale"
     )

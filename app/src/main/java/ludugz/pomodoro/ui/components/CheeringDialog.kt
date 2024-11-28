@@ -86,7 +86,7 @@ fun CheeringDialog(
                 ) {
                     Text(
                         text = OKAY,
-                        style = MonospaceTypography.bodyMedium,
+                        style = MonospaceTypography.titleMedium,
                     )
                 }
             }

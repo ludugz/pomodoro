@@ -27,11 +27,6 @@ fun Int.pixelsToDp(): Dp {
     return (this / Resources.getSystem().displayMetrics.density).dp
 }
 
-fun readJsonFile(filePath: String): String {
-    // Reading the file content into a String
-    return File(filePath).readText(Charsets.UTF_8)
-}
-
 fun readJsonFromAssets(context: Context, fileName: String): String {
     return context.assets.open(fileName).bufferedReader().use { it.readText() }
 }

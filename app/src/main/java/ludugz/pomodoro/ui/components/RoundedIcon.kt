@@ -26,11 +26,12 @@ fun RoundedIcon(
     imageVector: ImageVector,
     sizeInDP: Dp = 36.dp,
     contentDescription: String = EMPTY_STRING,
+    onClick: () -> Unit,
 ) {
     Timber.d("RoundedIcon/${contentDescription} Composable")
     Card(
         modifier = Modifier.wrapContentSize(),
-        onClick = {},
+        onClick = onClick,
         shape = RoundedCornerShape(4.dp)
     ) {
         Icon(
@@ -44,5 +45,8 @@ fun RoundedIcon(
 @Preview(showBackground = true)
 @Composable
 fun PreviewRoundedIcon() {
-    RoundedIcon(imageVector = Icons.Default.Check)
+    RoundedIcon(
+        imageVector = Icons.Default.Check,
+        onClick = {}
+    )
 }

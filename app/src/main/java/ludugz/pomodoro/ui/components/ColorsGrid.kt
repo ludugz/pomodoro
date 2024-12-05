@@ -25,13 +25,13 @@ import timber.log.Timber
  * Email: ludugz@gmail.com
  */
 
-const val BACKGROUND_GRID_COLUMN = 6
-
 @Composable
 fun ColorsGrid(
     modifier: Modifier = Modifier,
     color: Color,
+    itemPadding: Dp,
     itemSize: Dp,
+    chunkedColumn: Int,
 ) {
     val colors = BackgroundColorsMap
     Column(
@@ -40,8 +40,7 @@ fun ColorsGrid(
             .wrapContentHeight()
             .padding(horizontal = 16.dp),
     ) {
-        colors.entries.chunked(size = BACKGROUND_GRID_COLUMN).forEach { chunk ->
-            Timber.d("chunk: $chunk")
+        colors.entries.chunked(size = chunkedColumn).forEach { chunk ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -50,8 +49,8 @@ fun ColorsGrid(
                     Timber.d("colorEntry: $colorEntry")
                     Box(
                         modifier = Modifier
-                            .padding(5.dp)
-                            .size(size = 32.dp)
+                            .padding(all = itemPadding)
+                            .size(size = itemSize)
                             .clip(shape = RoundedCornerShape(size = 4.dp))
                             .background(color = Color(color = colorEntry.value))
                     )
@@ -66,6 +65,8 @@ fun ColorsGrid(
 fun ColorsGridPreview() {
     ColorsGrid(
         color = Color(color = 0xFF000000),
-        itemSize = 32.dp
+        itemPadding = 2.dp,
+        itemSize = 32.dp,
+        chunkedColumn = 5,
     )
 }

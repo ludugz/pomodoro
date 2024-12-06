@@ -28,7 +28,6 @@ import timber.log.Timber
 @Composable
 fun ColorsGrid(
     modifier: Modifier = Modifier,
-    color: Color,
     itemPadding: Dp,
     itemSize: Dp,
     chunkedColumn: Int,
@@ -64,7 +63,6 @@ fun ColorsGrid(
 @Composable
 fun ColorsGridPreview() {
     ColorsGrid(
-        color = Color(color = 0xFF000000),
         itemPadding = 2.dp,
         itemSize = 32.dp,
         chunkedColumn = 5,

@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -17,9 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
@@ -34,6 +31,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ludugz.pomodoro.ui.components.Dot
 import ludugz.pomodoro.ui.components.DotGraph
+import ludugz.pomodoro.ui.components.HabitItemCardEditLayout
 import ludugz.pomodoro.ui.components.RoundedIcon
 import ludugz.pomodoro.ui.helpers.HabitDotLevel
 import ludugz.pomodoro.ui.theme.MonospaceTypography
@@ -46,6 +44,9 @@ import kotlin.random.Random
  * Created by Tan N. Truong, on 26 December, 2023
  * Email: ludugz@gmail.com
  */
+
+var showEditHabit by mutableStateOf(false)
+
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HabitPage(navController: NavController) {
@@ -84,16 +85,26 @@ fun HabitPage(navController: NavController) {
                     imageVector = Icons.Default.MoreVert,
                     contentDescription = "Check Icon"
                 ) {
-                    // Should open new dialog
+                    showEditHabit = true
                 }
             }
             if (dots.isNotEmpty()) {
                 DotGraph(
-                    modifier = Modifier.padding(8.dp),
                     dots = dots
                 )
             }
         }
+    }
+
+    if (showEditHabit) {
+        HabitItemCardEditLayout(
+            onDismissRequest = {
+                showEditHabit = false
+            },
+            onConfirmation = {
+                showEditHabit = false
+            }
+        )
     }
 }
 

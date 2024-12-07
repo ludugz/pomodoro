@@ -2,6 +2,9 @@ package ludugz.pomodoro.ui.pages.habit
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -50,6 +53,11 @@ var showEditHabit by mutableStateOf(false)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HabitPage(navController: NavController) {
+//    val dots by remember { mutableStateOf(value = generateDotsForYear(Year.now().value)) }
+//    val dots by produceState<List<Dot>>(initialValue = emptyList()) {
+//        value = generateDotsForYear(Year.now().value)
+//    }
+//    val dots = generateDotsForYear(Year.now().value)
     val scope = rememberCoroutineScope()
     var dots by remember { mutableStateOf<List<Dot>>(emptyList()) }
     LaunchedEffect(key1 = Unit) {
@@ -96,7 +104,11 @@ fun HabitPage(navController: NavController) {
         }
     }
 
-    if (showEditHabit) {
+    AnimatedVisibility(
+        visible = showEditHabit,
+        enter = expandVertically(),
+        exit = shrinkVertically()
+    ) {
         HabitItemCardEditLayout(
             onDismissRequest = {
                 showEditHabit = false

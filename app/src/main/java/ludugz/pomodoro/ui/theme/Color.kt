@@ -2,14 +2,14 @@ package ludugz.pomodoro.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val MidnightBlue = Color(0xFF145DA0)
+val SkyBlue = Color(0xFF1A7FC1)
+val AquaBlue = Color(0xFF2DB4E4)
+val SoftWhite = Color(0xFFF3F7FA)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
-val Gray = Color(0xFFebedf0)     // Light gray
+val MutedBlue = Color(0xFF1973A6)
+val SoftAquaBlue = Color(0xFF2091C8)
+val MutedWhite = Color(0xFFE0E8ED)
 
 // Green
 val Green200 = Color(0xFF9be9a8) // Light green
@@ -17,14 +17,30 @@ val Green400 = Color(0xFF40c463) // Medium green
 val Green600 = Color(0xFF30a14e) // Darker green
 val Green800 = Color(0xFF216e39) // Darkest green
 
+// Define custom colors
+val LightGreen = Color(0xFF81C784) // Light green
+val DarkGreen = Color(0xFF388E3C)  // Darker green for contrast
+val LightOnGreen = Color(0xFF003300) // Text color for light green
+val LightBackground = Color(0xFFF1F8E9) // Light greenish background
+val LightSurface = Color(0xFFDCEDC8) // Slightly darker surface
+val ErrorRed = Color(0xFFD32F2F) // Standard Material error color
+
+val DarkPrimaryGreen = Color(0xFF66BB6A) // Softer green for dark mode
+val DarkOnGreen = Color(0xFFCCFFCC) // Text color for dark mode green
+val DarkBackground = Color(0xFF1B5E20) // Dark greenish background
+val DarkSurface = Color(0xFF2E7D32) // Darker surface
+val DarkErrorRed = Color(0xFFEF9A9A) // Softer red for dark mode errors
+
 // Gray
-val LightGray = Color(0xFFC6C6C6)
+val LightGray = Color(0xFFebedf0) // Light Gray
 
-// Cheer Dialog
-val DialogBackground = Color(0xFFb0c8c8)
+// Github DarkTheme
+val DarkGray = Color(0xFF161b22) // Dark Gray
+val DarkGreen1 = Color(0xFF0e4429) // Dark Green Level 1
+val DarkGreen2 = Color(0xFF006d32) // Dark Green Level 2
+val Green = Color(0xFF26a641) // Green Level 3
+val BrightGreen = Color(0xFF39d353) // Bright Green Level 4
 
-// Cyan
-val DarkCyan = Color(0xFF0c6682)
 
 // Background colors
 val BackgroundColorsMap = mapOf(

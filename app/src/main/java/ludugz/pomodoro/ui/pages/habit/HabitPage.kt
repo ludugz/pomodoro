@@ -5,6 +5,8 @@ import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -50,6 +52,7 @@ import kotlin.random.Random
 
 var showEditHabit by mutableStateOf(false)
 
+@OptIn(ExperimentalFoundationApi::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HabitPage(navController: NavController) {
@@ -73,8 +76,13 @@ fun HabitPage(navController: NavController) {
     Column(modifier = Modifier) {
         Card(
             modifier = Modifier
-                .padding(8.dp),
-            onClick = {},
+                .padding(8.dp)
+                .combinedClickable(
+                    onClick = {},
+                    onLongClick = {
+                        showEditHabit = true
+                    }
+                ),
             shape = RoundedCornerShape(size = 16.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
         ) {

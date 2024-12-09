@@ -120,62 +120,6 @@ fun HabitItemCardEditLayout(
     }
 }
 
-@Composable
-fun FancyTextField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    placeholder: String = "Enter text...",
-    leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null,
-    modifier: Modifier = Modifier,
-    isError: Boolean = false,
-    errorMessage: String? = null,
-) {
-    val colorScheme = MaterialTheme.colorScheme
-    val typography = MaterialTheme.typography
-
-    Column(modifier = modifier) {
-        OutlinedTextField(
-            value = value,
-            onValueChange = onValueChange,
-            leadingIcon = leadingIcon,
-            trailingIcon = trailingIcon,
-            placeholder = {
-                Text(
-                    text = placeholder,
-                    style = typography.bodyLarge.copy(color = colorScheme.onSurfaceVariant)
-                )
-            },
-            isError = isError,
-            colors = TextFieldDefaults.colors(
-                focusedTextColor = colorScheme.surface,
-                unfocusedTextColor = colorScheme.surface,
-                errorContainerColor = colorScheme.errorContainer,
-                focusedIndicatorColor = colorScheme.primary,
-                unfocusedIndicatorColor = colorScheme.onSurface.copy(alpha = 0.5f),
-                errorIndicatorColor = colorScheme.error,
-                focusedPlaceholderColor = colorScheme.onSurfaceVariant,
-            ),
-
-            shape = RoundedCornerShape(12.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .shadow(4.dp, RoundedCornerShape(12.dp))
-        )
-
-        // Error message below the TextField
-        if (isError && errorMessage != null) {
-            Text(
-                text = errorMessage,
-                color = colorScheme.error,
-                style = typography.bodySmall,
-                modifier = Modifier.padding(start = 8.dp, top = 4.dp)
-            )
-        }
-    }
-}
-
-
 @Preview(showBackground = true)
 @Composable
 fun CardItemEditDialogPreview() {

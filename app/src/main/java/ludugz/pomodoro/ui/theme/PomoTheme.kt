@@ -23,11 +23,23 @@ val DarkColorScheme = darkColorScheme(
     onSurface = SoftWhite,
 )
 
+// Light Theme Color Scheme
 val LightColorScheme = lightColorScheme(
-    primary = MidnightBlue,
-    secondary = MutedBlue,
-    tertiary = SoftAquaBlue,
-    onSurface = MutedWhite,
+    primary = Color(0xFF81C784),
+    onPrimary = Color(0xFF003300),
+    primaryContainer = Color(0xFFA5D6A7),
+    onPrimaryContainer = Color(0xFF1B5E20),
+    secondary = Color(0xFF66BB6A),
+    onSecondary = Color(0xFF1B5E20),
+    secondaryContainer = Color(0xFF81C784),
+    onSecondaryContainer = Color(0xFF003300),
+    background = LightBackground,
+    onBackground = Color.Black,
+    surface = LightSurface,
+    onSurface = Color.Black,
+    error = ErrorRed,
+    onError = Color.White
+)
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -38,14 +50,13 @@ val LightColorScheme = lightColorScheme(
     onBackground = Color(0xFF1C1B1F),
     onSurface = Color(0xFF1C1B1F),
     */
-)
 
 @Composable
 fun PomodoroidTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
@@ -65,7 +76,7 @@ fun PomodoroidTheme(
         }
     }
 
-    MaterialTheme(
+    return MaterialTheme(
         colorScheme = colorScheme,
         typography = MonospaceTypography,
         content = content

@@ -27,8 +27,9 @@ fun BackgroundPage(
     ) {
         BackgroundLabelTextStyle(text = "Color")
         ColorsGrid(
-            color = Color(color = colorResource),
-            itemSize = 32.dp
+            itemPadding = 2.dp,
+            itemSize = 32.dp,
+            chunkedColumn = 5,
         )
     }
 }

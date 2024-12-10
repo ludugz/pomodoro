@@ -76,7 +76,7 @@ dependencies {
     implementation "androidx.compose.material3:material3-adaptive-navigation-suite:1.0.0-alpha05"
 
     // Canvas
-    implementation "androidx.compose.foundation:foundation:1.4.3"
+    implementation "androidx.compose.foundation:foundation:1.7.5"
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

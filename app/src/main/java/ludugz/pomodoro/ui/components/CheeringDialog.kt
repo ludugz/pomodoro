@@ -35,8 +35,6 @@ import com.google.gson.reflect.TypeToken
 import ludugz.pomodoro.domain.model.Quote
 import ludugz.pomodoro.ui.helpers.Constants.OKAY
 import ludugz.pomodoro.ui.helpers.readJsonFromAssets
-import ludugz.pomodoro.ui.theme.DarkCyan
-import ludugz.pomodoro.ui.theme.IbmPlexSansTypography
 import ludugz.pomodoro.ui.theme.MonospaceTypography
 import timber.log.Timber
 

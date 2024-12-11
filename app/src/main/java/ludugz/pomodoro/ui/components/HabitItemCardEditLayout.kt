@@ -46,8 +46,9 @@ import timber.log.Timber
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HabitItemCardEditLayout(
+    name: String,
     onDismissRequest: () -> Unit,
-    onConfirmation: () -> Unit,
+    onConfirmation: (String) -> Unit,
 ) {
     Timber.d("HabitItemCardEditLayout Composable")
     var sessionName by remember { mutableStateOf(name) }
@@ -114,7 +115,7 @@ fun HabitItemCardEditLayout(
                 .padding(16.dp)
                 .clip(RoundedCornerShape(size = 16.dp))
                 .background(MaterialTheme.colorScheme.primary),
-            onClick = { onConfirmation() },
+            onClick = { onConfirmation(sessionName) },
             interactionSource = remember { MutableInteractionSource() },
             colors = ButtonDefaults.textButtonColors(
                 contentColor = MaterialTheme.colorScheme.onPrimary
@@ -132,6 +133,7 @@ fun HabitItemCardEditLayout(
 @Composable
 fun CardItemEditDialogPreview() {
     HabitItemCardEditLayout(
+        name = "Default Session",
         onDismissRequest = { },
         onConfirmation = { },
     )

@@ -50,7 +50,7 @@ fun HabitItemCardEditLayout(
     onConfirmation: () -> Unit,
 ) {
     Timber.d("HabitItemCardEditLayout Composable")
-    var sectionName by remember { mutableStateOf("") }
+    var sessionName by remember { mutableStateOf(name) }
     val scrollState = rememberScrollState()
     val focusManager = LocalFocusManager.current
     Column(
@@ -75,7 +75,7 @@ fun HabitItemCardEditLayout(
         )
         Text(
             modifier = Modifier.padding(8.dp),
-            text = "Section",
+            text = "Session Name",
             style = MonospaceTypography.labelLarge,
             textAlign = TextAlign.Center,
         )
@@ -89,9 +89,9 @@ fun HabitItemCardEditLayout(
                     horizontal = 24.dp
                 )
                 .background(Color.Transparent),
-            value = sectionName,
+            value = sessionName,
             onValueChange = {
-                sectionName = it
+                sessionName = it
             }
         )
 

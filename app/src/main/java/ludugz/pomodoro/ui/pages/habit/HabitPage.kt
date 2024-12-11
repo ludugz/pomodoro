@@ -111,18 +111,19 @@ fun HabitPage(navController: NavController) {
             }
         }
     }
-
     AnimatedVisibility(
         visible = showEditHabit,
         enter = expandVertically(),
         exit = shrinkVertically()
     ) {
         HabitItemCardEditLayout(
+            name = habitItemList[selectedHabit].name,
             onDismissRequest = {
                 showEditHabit = false
             },
-            onConfirmation = {
+            onConfirmation = { sessionName ->
                 showEditHabit = false
+                habitItemList[selectedHabit].name = sessionName
             }
         )
     }

@@ -6,12 +6,17 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
@@ -21,13 +26,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -46,11 +56,15 @@ import java.time.Year
 import kotlin.random.Random
 
 /**
+ * Note: each session is defined as a habit
+ *
  * Created by Tan N. Truong, on 26 December, 2023
  * Email: ludugz@gmail.com
  */
 
 var showEditHabit by mutableStateOf(false)
+var sessionCount by mutableIntStateOf(0)
+var selectedHabit = 0
 
 @OptIn(ExperimentalFoundationApi::class)
 @RequiresApi(Build.VERSION_CODES.O)
@@ -62,70 +76,71 @@ fun HabitPage(navController: NavController) {
 //    }
 //    val dots = generateDotsForYear(Year.now().value)
     val scope = rememberCoroutineScope()
-    var dots by remember { mutableStateOf<List<Dot>>(emptyList()) }
+    val habitItemList =
+        remember { mutableStateListOf(HabitItemInfo(emptyList(), "Default Session")) }
+
     LaunchedEffect(key1 = Unit) {
         scope.launch {
             withContext(context = Dispatchers.IO) {
                 Timber.d("Launched Effect Thread: ${Thread.currentThread().name}")
-                dots = generateDotsForYear(Year.now().value)
+                val dots = generateDotsForYear(Year.now().value)
+                habitItemList.forEachIndexed { index, item ->
+                    habitItemList[index] = item.copy(dots = dots)
+                }
             }
         }
     }
 
     Timber.d("Compose Thread: ${Thread.currentThread().name}")
-    Column(modifier = Modifier) {
-        Card(
-            modifier = Modifier
-                .padding(8.dp)
-                .combinedClickable(
-                    onClick = {},
-                    onLongClick = {
-                        showEditHabit = true
-                    }
-                ),
-            shape = RoundedCornerShape(size = 16.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-        ) {
-            Row(
+    LazyColumn(modifier = Modifier) {
+        items(count = habitItemList.size) { index: Int ->
+            Card(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                verticalAlignment = CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .padding(8.dp)
+                    .combinedClickable(onClick = {}, onLongClick = {
+                        showEditHabit = true
+                        selectedHabit = index
+                    }),
+                shape = RoundedCornerShape(size = 16.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
             ) {
-                Text(
-                    text = "Meditation",
-                    style = MonospaceTypography.labelMedium,
-                )
-                RoundedIcon(
-                    imageVector = Icons.Default.MoreVert,
-                    contentDescription = "Check Icon"
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    verticalAlignment = CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    showEditHabit = true
+                    Text(
+                        text = habitItemList[index].name,
+                        style = MonospaceTypography.labelMedium,
+                    )
+                    RoundedIcon(
+                        imageVector = Icons.Default.MoreVert, contentDescription = "Check Icon"
+                    ) {
+                        showEditHabit = true
+                        selectedHabit = index
+                    }
                 }
-            }
-            if (dots.isNotEmpty()) {
-                DotGraph(
-                    dots = dots
-                )
+                if (habitItemList[index].dots.isNotEmpty()) {
+                    DotGraph(
+                        dots = habitItemList[index].dots
+                    )
+                }
             }
         }
     }
     AnimatedVisibility(
-        visible = showEditHabit,
-        enter = expandVertically(),
-        exit = shrinkVertically()
+        visible = showEditHabit, enter = expandVertically(), exit = shrinkVertically()
     ) {
-        HabitItemCardEditLayout(
-            name = habitItemList[selectedHabit].name,
-            onDismissRequest = {
-                showEditHabit = false
-            },
-            onConfirmation = { sessionName ->
-                showEditHabit = false
-                habitItemList[selectedHabit].name = sessionName
-            }
-        )
+        HabitItemCardEditLayout(name = habitItemList[selectedHabit].name, onDismissRequest = {
+            showEditHabit = false
+        }, onConfirmation = { sessionName ->
+            showEditHabit = false
+            habitItemList[selectedHabit].name = sessionName
+        })
+    }
+}
     }
 }
 

@@ -124,7 +124,7 @@ fun HabitPage(navController: NavController) {
             showEditHabit = false
         }, onConfirmation = { sessionName ->
             showEditHabit = false
-            habitItemList[selectedHabit].name = sessionName
+            habitItemList[selectedHabit] = habitItemList[selectedHabit].copy(name = sessionName)
         })
     }
 }

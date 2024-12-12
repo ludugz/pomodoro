@@ -6,16 +6,11 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -32,12 +27,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -70,11 +62,6 @@ var selectedHabit = 0
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HabitPage(navController: NavController) {
-//    val dots by remember { mutableStateOf(value = generateDotsForYear(Year.now().value)) }
-//    val dots by produceState<List<Dot>>(initialValue = emptyList()) {
-//        value = generateDotsForYear(Year.now().value)
-//    }
-//    val dots = generateDotsForYear(Year.now().value)
     val scope = rememberCoroutineScope()
     val habitItemList =
         remember { mutableStateListOf(HabitItemInfo(emptyList(), "Default Session")) }
@@ -139,8 +126,6 @@ fun HabitPage(navController: NavController) {
             showEditHabit = false
             habitItemList[selectedHabit].name = sessionName
         })
-    }
-}
     }
 }
 

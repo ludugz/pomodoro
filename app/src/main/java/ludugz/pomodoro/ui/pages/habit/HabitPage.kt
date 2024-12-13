@@ -55,7 +55,6 @@ import kotlin.random.Random
  */
 
 var showEditHabit by mutableStateOf(false)
-var sessionCount by mutableIntStateOf(0)
 var selectedHabit = 0
 
 @OptIn(ExperimentalFoundationApi::class)

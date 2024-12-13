@@ -58,7 +58,9 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                         composable(route = Screen.HABIT_SCREEN_ROUTE) {
-                            HabitPage(navController = navController)
+                            HabitPage(navController = navController) { isVisible ->
+                                isBottomBarVisible = isVisible
+                            }
                         }
                         composable(route = Screen.SETTING_SCREEN_ROUTE, arguments = listOf()) {
                             SettingPage(navController = navController)

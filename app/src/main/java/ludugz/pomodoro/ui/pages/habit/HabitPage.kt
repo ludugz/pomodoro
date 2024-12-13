@@ -61,10 +61,16 @@ var selectedHabit = 0
 @OptIn(ExperimentalFoundationApi::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun HabitPage(navController: NavController) {
+fun HabitPage(
+    navController: NavController,
+    // TODO: Might need to move to ViewModel or shared ViewModel (with MainActivity) later
+    isBottomNavigationBarVisible: (Boolean) -> Unit = {},
+) {
     val scope = rememberCoroutineScope()
     val habitItemList =
         remember { mutableStateListOf(HabitItemInfo(emptyList(), "Default Session")) }
+
+    isBottomNavigationBarVisible(!showEditHabit) // This is neat
 
     LaunchedEffect(key1 = Unit) {
         scope.launch {

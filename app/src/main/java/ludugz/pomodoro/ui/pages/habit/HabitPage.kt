@@ -68,10 +68,13 @@ fun HabitPage(
 ) {
     val scope = rememberCoroutineScope()
     val habitItemList =
-        remember { mutableStateListOf(HabitItemInfo(emptyList(), "Default Session")) }
-
+        remember {
+            mutableStateListOf(
+                HabitItemInfo(emptyList(), "Default Session"),
+                HabitItemInfo(emptyList(), "Default Session"),
+            )
+        }
     isBottomNavigationBarVisible(!showEditHabit) // This is neat
-
     LaunchedEffect(key1 = Unit) {
         scope.launch {
             withContext(context = Dispatchers.IO) {

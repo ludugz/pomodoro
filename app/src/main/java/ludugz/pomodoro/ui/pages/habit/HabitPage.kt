@@ -107,7 +107,7 @@ fun HabitPage(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = habitItemList[index].name,
+                        text = "${habitItemList[index].name} $index",
                         style = MonospaceTypography.labelMedium,
                     )
                     RoundedIcon(

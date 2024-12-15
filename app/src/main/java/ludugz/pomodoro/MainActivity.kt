@@ -26,7 +26,6 @@ import ludugz.pomodoro.ui.pages.timer.TimerPage
 import ludugz.pomodoro.ui.pages.setting.BackgroundPage
 import ludugz.pomodoro.ui.theme.BackgroundColorsMap
 import ludugz.pomodoro.ui.theme.PomodoroidTheme
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

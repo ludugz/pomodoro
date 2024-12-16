@@ -21,9 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterVertically
@@ -102,7 +100,7 @@ fun HabitPage(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
-                            text = "${habitItemList[index].name} $index",
+                            text = "${habitItemList[index].title} $index",
                             style = MonospaceTypography.labelMedium,
                         )
                         RoundedIcon(
@@ -124,14 +122,14 @@ fun HabitPage(
             visible = showEditHabit, enter = expandVertically(), exit = shrinkVertically()
         ) {
             HabitItemCardEditLayout(
-                name = habitItemList[selectedHabit].name,
+                title = habitItemList[selectedHabit].title,
                 onDismissRequest = {
                     showEditHabit = false
                 },
-                onConfirmation = { sessionName ->
+                onConfirmation = { title ->
                     showEditHabit = false
                     habitItemList[selectedHabit] =
-                        habitItemList[selectedHabit].copy(name = sessionName)
+                        habitItemList[selectedHabit].copy(title = title)
                 }
             )
         }

@@ -48,12 +48,12 @@ import timber.log.Timber
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HabitItemCardEditLayout(
-    name: String,
+    title: String,
     onDismissRequest: () -> Unit,
     onConfirmation: (String) -> Unit,
 ) {
     Timber.d("HabitItemCardEditLayout Composable")
-    var sessionName by remember { mutableStateOf(name) }
+    var sessionTitle by remember { mutableStateOf(title) }
     val scrollState = rememberScrollState()
     val focusManager = LocalFocusManager.current
     Box {
@@ -94,9 +94,9 @@ fun HabitItemCardEditLayout(
                         horizontal = 24.dp
                     )
                     .background(Color.Transparent),
-                value = sessionName,
+                value = sessionTitle,
                 onValueChange = {
-                    sessionName = it
+                    sessionTitle = it
                 }
             )
 
@@ -121,7 +121,7 @@ fun HabitItemCardEditLayout(
                 .clip(RoundedCornerShape(size = 16.dp))
                 .background(MaterialTheme.colorScheme.primary)
                 .align(alignment = Alignment.BottomCenter),
-            onClick = { onConfirmation(sessionName) },
+            onClick = { onConfirmation(sessionTitle) },
             interactionSource = remember { MutableInteractionSource() },
             colors = ButtonDefaults.textButtonColors(
                 contentColor = MaterialTheme.colorScheme.onPrimary
@@ -139,7 +139,7 @@ fun HabitItemCardEditLayout(
 @Composable
 fun CardItemEditDialogPreview() {
     HabitItemCardEditLayout(
-        name = "Default Session",
+        title = "Default Session",
         onDismissRequest = { },
         onConfirmation = { },
     )

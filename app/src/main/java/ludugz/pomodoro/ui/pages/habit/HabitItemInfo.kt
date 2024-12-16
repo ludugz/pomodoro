@@ -9,5 +9,5 @@ import ludugz.pomodoro.ui.components.Dot
  */
 data class HabitItemInfo(
     val dots: List<Dot>,
-    var name: String,
+    var title: String,
 )

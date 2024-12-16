@@ -1,5 +1,7 @@
 package ludugz.pomodoro.ui.pages.habit
 
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
 
 
@@ -8,4 +10,10 @@ import androidx.lifecycle.ViewModel
  * Email: ludugz@gmail.com
  */
 class HabitViewModel : ViewModel() {
+
+    val habitItemList =
+        mutableStateListOf(
+            HabitItemInfo(emptyList(), "Default Session"),
+            HabitItemInfo(emptyList(), "Default Session"),
+        )
 }

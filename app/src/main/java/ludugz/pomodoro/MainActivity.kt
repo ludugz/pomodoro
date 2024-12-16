@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -21,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ludugz.pomodoro.ui.navigation.BottomNavigationBar
 import ludugz.pomodoro.ui.navigation.Screen
 import ludugz.pomodoro.ui.pages.habit.HabitPage
+import ludugz.pomodoro.ui.pages.habit.HabitViewModel
 import ludugz.pomodoro.ui.pages.setting.SettingPage
 import ludugz.pomodoro.ui.pages.timer.TimerPage
 import ludugz.pomodoro.ui.pages.setting.BackgroundPage
@@ -29,6 +31,9 @@ import ludugz.pomodoro.ui.theme.PomodoroidTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val habitViewModel: HabitViewModel by viewModels()
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +62,10 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                         composable(route = Screen.HABIT_SCREEN_ROUTE) {
-                            HabitPage(navController = navController) { isVisible ->
+                            HabitPage(
+                                navController = navController,
+                                viewModel = habitViewModel
+                            ) { isVisible ->
                                 isBottomBarVisible = isVisible
                             }
                         }

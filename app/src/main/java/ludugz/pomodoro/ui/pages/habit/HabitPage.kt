@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.Dispatchers
@@ -61,82 +62,79 @@ var selectedHabit = 0
 @Composable
 fun HabitPage(
     navController: NavController,
-    // TODO: Might need to move to ViewModel or shared ViewModel (with MainActivity) later
+    viewModel: HabitViewModel = viewModel(),
     isBottomNavigationBarVisible: (Boolean) -> Unit = {},
 ) {
     val scope = rememberCoroutineScope()
-    val habitItemList =
-        remember {
-            mutableStateListOf(
-                HabitItemInfo(emptyList(), "Default Session"),
-                HabitItemInfo(emptyList(), "Default Session"),
-            )
-        }
     isBottomNavigationBarVisible(!showEditHabit) // This is neat
-    LaunchedEffect(key1 = Unit) {
-        scope.launch {
-            withContext(context = Dispatchers.IO) {
-                Timber.d("Launched Effect Thread: ${Thread.currentThread().name}")
-                val dots = generateDotsForYear(Year.now().value)
-                habitItemList.forEachIndexed { index, item ->
-                    habitItemList[index] = item.copy(dots = dots)
+    viewModel.run {
+        LaunchedEffect(key1 = Unit) {
+            scope.launch {
+                withContext(context = Dispatchers.IO) {
+                    Timber.d("Launched Effect Thread: ${Thread.currentThread().name}")
+                    val dots = generateDotsForYear(Year.now().value)
+                    habitItemList.forEachIndexed { index, item ->
+                        habitItemList[index] = item.copy(dots = dots)
+                    }
+
                 }
             }
         }
-    }
 
-    Timber.d("Compose Thread: ${Thread.currentThread().name}")
-    LazyColumn(modifier = Modifier) {
-        items(count = habitItemList.size) { index: Int ->
-            Card(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .combinedClickable(onClick = {}, onLongClick = {
-                        showEditHabit = true
-                        selectedHabit = index
-                    }),
-                shape = RoundedCornerShape(size = 16.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-            ) {
-                Row(
+        Timber.d("Compose Thread: ${Thread.currentThread().name}")
+        LazyColumn(modifier = Modifier) {
+            items(count = habitItemList.size) { index: Int ->
+                Card(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp),
-                    verticalAlignment = CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                        .padding(8.dp)
+                        .combinedClickable(onClick = {}, onLongClick = {
+                            showEditHabit = true
+                            selectedHabit = index
+                        }),
+                    shape = RoundedCornerShape(size = 16.dp),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                 ) {
-                    Text(
-                        text = "${habitItemList[index].name} $index",
-                        style = MonospaceTypography.labelMedium,
-                    )
-                    RoundedIcon(
-                        imageVector = Icons.Default.MoreVert, contentDescription = "Check Icon"
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                        verticalAlignment = CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        showEditHabit = true
-                        selectedHabit = index
+                        Text(
+                            text = "${habitItemList[index].name} $index",
+                            style = MonospaceTypography.labelMedium,
+                        )
+                        RoundedIcon(
+                            imageVector = Icons.Default.MoreVert, contentDescription = "Check Icon"
+                        ) {
+                            showEditHabit = true
+                            selectedHabit = index
+                        }
+                    }
+                    if (habitItemList[index].dots.isNotEmpty()) {
+                        DotGraph(
+                            dots = habitItemList[index].dots
+                        )
                     }
                 }
-                if (habitItemList[index].dots.isNotEmpty()) {
-                    DotGraph(
-                        dots = habitItemList[index].dots
-                    )
-                }
             }
         }
-    }
-    AnimatedVisibility(
-        visible = showEditHabit, enter = expandVertically(), exit = shrinkVertically()
-    ) {
-        HabitItemCardEditLayout(
-            name = habitItemList[selectedHabit].name,
-            onDismissRequest = {
-                showEditHabit = false
-            },
-            onConfirmation = { sessionName ->
-                showEditHabit = false
-                habitItemList[selectedHabit] = habitItemList[selectedHabit].copy(name = sessionName)
-            }
-        )
+        AnimatedVisibility(
+            visible = showEditHabit, enter = expandVertically(), exit = shrinkVertically()
+        ) {
+            HabitItemCardEditLayout(
+                name = habitItemList[selectedHabit].name,
+                onDismissRequest = {
+                    showEditHabit = false
+                },
+                onConfirmation = { sessionName ->
+                    showEditHabit = false
+                    habitItemList[selectedHabit] =
+                        habitItemList[selectedHabit].copy(name = sessionName)
+                }
+            )
+        }
     }
 }
 

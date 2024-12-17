@@ -53,7 +53,7 @@ fun HabitItemCardEditLayout(
     onConfirmation: (String) -> Unit,
 ) {
     Timber.d("HabitItemCardEditLayout Composable")
-    var sessionTitle by remember { mutableStateOf(title) }
+    var currentTitle by remember { mutableStateOf(title) }
     val scrollState = rememberScrollState()
     val focusManager = LocalFocusManager.current
     Box {
@@ -80,7 +80,7 @@ fun HabitItemCardEditLayout(
             )
             Text(
                 modifier = Modifier.padding(8.dp),
-                text = "Session Name",
+                text = "Title",
                 style = MonospaceTypography.labelLarge,
                 textAlign = TextAlign.Center,
             )
@@ -94,9 +94,9 @@ fun HabitItemCardEditLayout(
                         horizontal = 24.dp
                     )
                     .background(Color.Transparent),
-                value = sessionTitle,
+                value = currentTitle,
                 onValueChange = {
-                    sessionTitle = it
+                    currentTitle = it
                 }
             )
 
@@ -121,7 +121,7 @@ fun HabitItemCardEditLayout(
                 .clip(RoundedCornerShape(size = 16.dp))
                 .background(MaterialTheme.colorScheme.primary)
                 .align(alignment = Alignment.BottomCenter),
-            onClick = { onConfirmation(sessionTitle) },
+            onClick = { onConfirmation(currentTitle) },
             interactionSource = remember { MutableInteractionSource() },
             colors = ButtonDefaults.textButtonColors(
                 contentColor = MaterialTheme.colorScheme.onPrimary

@@ -39,38 +39,37 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PomodoroidTheme {
-                val navController = rememberNavController()
                 var isBottomBarVisible by remember { mutableStateOf(true) }
                 Scaffold(
                     bottomBar = {
                         if (isBottomBarVisible) {
                             BottomNavigationBar(
-                                navController = navController,
+                                navController = rememberNavController(),
                                 items = listOf(Screen.Timer, Screen.Habit, Screen.Setting)
                             )
                         }
                     }
                 ) { paddingValues ->
                     NavHost(
-                        navController = navController,
+                        navController = rememberNavController(),
                         startDestination = Screen.TIMER_SCREEN_ROUTE,
                         modifier = Modifier.padding(top = paddingValues.calculateTopPadding()),
                     ) {
                         composable(route = Screen.TIMER_SCREEN_ROUTE) {
-                            TimerPage(navController = navController) { isVisible ->
+                            TimerPage(navController = rememberNavController()) { isVisible ->
                                 isBottomBarVisible = isVisible
                             }
                         }
                         composable(route = Screen.HABIT_SCREEN_ROUTE) {
                             HabitPage(
-                                navController = navController,
+                                navController = rememberNavController(),
                                 viewModel = habitViewModel
                             ) { isVisible ->
                                 isBottomBarVisible = isVisible
                             }
                         }
                         composable(route = Screen.SETTING_SCREEN_ROUTE, arguments = listOf()) {
-                            SettingPage(navController = navController)
+                            SettingPage(navController = rememberNavController())
                         }
                         composable(
                             route = "background/{color}",

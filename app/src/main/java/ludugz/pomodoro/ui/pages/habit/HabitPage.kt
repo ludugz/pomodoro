@@ -59,7 +59,7 @@ var selectedHabit = 0
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HabitPage(
-    navController: NavController,
+    navController: NavController? = null,
     viewModel: HabitViewModel = viewModel(),
     isBottomNavigationBarVisible: (Boolean) -> Unit = {},
 ) {

@@ -37,7 +37,6 @@ fun ColorsGrid(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .padding(horizontal = 16.dp),
     ) {
         colors.entries.chunked(size = chunkedColumn).forEach { chunk ->
             Row(
